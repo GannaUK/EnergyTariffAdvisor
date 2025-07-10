@@ -1,0 +1,21 @@
+﻿@page
+@model EnergyTariffAdvisor.Pages.OctopusTestModel
+
+<h2>Octopus Products</h2>
+
+@if (Model.Products.Any())
+{
+    <ul>
+        @foreach (var product in Model.Products)
+        {
+            <li>
+                <strong>@product.DisplayName</strong> — @product.Code
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Loading or no data available.</p>
+}
+

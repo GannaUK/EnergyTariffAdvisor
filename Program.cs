@@ -1,7 +1,13 @@
+using EnergyTariffAdvisor.OctopusApi;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddHttpClient<OctopusTariffService>();
+
+
+
 
 var app = builder.Build();
 
