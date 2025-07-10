@@ -1,21 +1,39 @@
 ﻿@page
 @model EnergyTariffAdvisor.Pages.OctopusTestModel
 
-<h2>Octopus Products</h2>
+<h2>Octopus Energy Products</h2>
 
 @if (Model.Products.Any())
 {
-    <ul>
+    <div id="products-list">
         @foreach (var product in Model.Products)
         {
-            <li>
-                <strong>@product.DisplayName</strong> — @product.Code
-            </li>
+            <details style="margin-bottom: 1rem;" id="product-@product.Code">
+                <summary style="cursor: pointer; font-weight: bold;">
+                    @product.DisplayName (@product.Code)
+                </summary>
+                <ul style="margin-top: 0.5rem;">
+                    <li><strong>Direction:</strong> @product.Direction</li>
+                    <li><strong>Green:</strong> @(product.IsGreen ? "Yes" : "No")</li>
+                    <li><strong>Variable:</strong> @(product.IsVariable ? "Yes" : "No")</li>
+                    <li><strong>Available from:</strong> @product.AvailableFrom.ToShortDateString()</li>
+                    <li><strong>Description:</strong> @product.Description</li>
+                </ul>
+                @if (product.Links != null && product.Links.Any())
+                {
+                    <p><strong>API Links:</strong></p>
+                    <ul>
+                        @foreach (var link in product.Links)
+                        {
+                            <li><a href="@link.Href" target="_blank">@link.Rel</a></li>
+                        }
+                    </ul>
+                }
+            </details>
         }
-    </ul>
+    </div>
 }
 else
 {
     <p>Loading or no data available.</p>
 }
-

@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using EnergyTariffAdvisor.OctopusApi;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EnergyTariffAdvisor.Pages
 {
@@ -7,6 +9,7 @@ namespace EnergyTariffAdvisor.Pages
     {
         private readonly OctopusTariffService _octopusService;
 
+        // Список продуктов для отображения
         public List<ProductDto> Products { get; set; } = new();
 
         public OctopusTestModel(OctopusTariffService octopusService)
@@ -17,7 +20,7 @@ namespace EnergyTariffAdvisor.Pages
         public async Task OnGetAsync()
         {
             var response = await _octopusService.GetProductsAsync();
-            if (response != null)
+            if (response != null && response.Results != null)
             {
                 Products = response.Results;
             }
