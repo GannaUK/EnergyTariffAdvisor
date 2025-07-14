@@ -29,6 +29,33 @@
                         }
                     </ul>
                 }
+                @if (Model.TariffsByProduct.ContainsKey(product.Code))
+                {
+                    <div style="margin-left: 1rem; margin-top: 1rem;">
+                        <h5>Tariffs:</h5>
+                        <ul style="list-style-type:none; padding-left: 0;">
+                            @foreach (var tariff in Model.TariffsByProduct[product.Code])
+                            {
+                                <li style="
+                        margin-bottom: 1rem;
+                        padding: 1rem;
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                        background-color: #f9f9f9;">
+                                    <p><strong>Code:</strong> @tariff.Code</p>
+                                    <p><strong>Standing Charge (inc VAT):</strong> @tariff.StandingChargeIncVat.ToString("0.###") p/day</p>
+                                    <p><strong>Unit Rate (inc VAT):</strong> @tariff.StandardUnitRateIncVat.ToString("0.###") p/kWh</p>
+                                    <p><strong>Exit Fees Type:</strong> @tariff.ExitFeesType</p>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <p>No tariff details loaded yet.</p>
+                }
             </details>
         }
     </div>

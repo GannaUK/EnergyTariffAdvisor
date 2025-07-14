@@ -11,6 +11,7 @@ namespace EnergyTariffAdvisor.Pages
 
         // Список продуктов для отображения
         public List<ProductDto> Products { get; set; } = new();
+        public Dictionary<string, List<TariffDetailsDto>> TariffsByProduct { get; set; } = new();
 
         public OctopusTestModel(OctopusTariffService octopusService)
         {
@@ -23,6 +24,45 @@ namespace EnergyTariffAdvisor.Pages
             if (response != null && response.Results != null)
             {
                 Products = response.Results;
+                // Iterate over each product to access StandardUnitRateDto
+                foreach (var product in Products)
+                {
+                    LinkDto selfLink = null;
+                    foreach (var link in product.Links)
+                    {
+                        if (link.Rel == "self")
+                        {
+                            selfLink = link;
+                            break;
+                        }
+                    }
+
+                    if (selfLink != null)
+                    {
+                        var fullProduct = await _octopusService.GetProductDetailsByUrlAsync(selfLink.Href);
+                        // Process productDetails as needed
+                        if (fullProduct != null && fullProduct.SingleRegisterElectricityTariffs != null)
+                        {
+                            var allTariffs = new List<TariffDetailsDto>();
+
+                            foreach (var regionEntry in fullProduct.SingleRegisterElectricityTariffs)
+                            {
+                                // Process each tariff as needed
+                                string regionCode = regionEntry.Key;
+                                var methodsDict = regionEntry.Value;
+                                foreach (var methodEntry in methodsDict)
+                                {
+                                    string paymentMethod = methodEntry.Key;
+                                    var tariff = methodEntry.Value;
+                                    
+                                    allTariffs.Add(tariff);
+                                   
+                                }
+                            }
+                            TariffsByProduct[product.Code] = allTariffs;
+                        }
+                    }
+                }
             }
         }
     }

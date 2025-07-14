@@ -22,7 +22,7 @@ namespace EnergyTariffAdvisor.OctopusApi
         public List<ProductDto> Results { get; set; } = new();
     }
 
-    public class ProductDto
+    public partial class ProductDto
     {
         [JsonPropertyName("code")]
         public string Code { get; set; } = string.Empty;
@@ -71,17 +71,68 @@ namespace EnergyTariffAdvisor.OctopusApi
 
         [JsonPropertyName("brand")]
         public string Brand { get; set; } = string.Empty;
+
+        [JsonPropertyName("single_register_electricity_tariffs")]
+        public Dictionary<string, Dictionary<string, TariffDetailsDto>> SingleRegisterElectricityTariffs { get; set; } = new();
+
+        [JsonPropertyName("dual_register_electricity_tariffs")]
+        public Dictionary<string, Dictionary<string, TariffDetailsDto>> DualRegisterElectricityTariffs { get; set; } = new();
+
+        [JsonPropertyName("three_rate_electricity_tariffs")]
+        public Dictionary<string, Dictionary<string, TariffDetailsDto>> ThreeRateElectricityTariffs { get; set; } = new();
     }
 
-    public class LinkDto
+    //public class LinkDto
+    //{
+    //    [JsonPropertyName("href")]
+    //    public string Href { get; set; } = string.Empty;
+
+    //    [JsonPropertyName("method")]
+    //    public string Method { get; set; } = string.Empty;
+
+    //    [JsonPropertyName("rel")]
+    //    public string Rel { get; set; } = string.Empty;
+    //}
+
+    public class TariffDetailsDto
     {
-        [JsonPropertyName("href")]
-        public string Href { get; set; } = string.Empty;
+        [JsonPropertyName("code")]
+        public string Code { get; set; }
 
-        [JsonPropertyName("method")]
-        public string Method { get; set; } = string.Empty;
+        [JsonPropertyName("standing_charge_exc_vat")]
+        public decimal StandingChargeExcVat { get; set; }
 
-        [JsonPropertyName("rel")]
-        public string Rel { get; set; } = string.Empty;
+        [JsonPropertyName("standing_charge_inc_vat")]
+        public decimal StandingChargeIncVat { get; set; }
+
+        [JsonPropertyName("online_discount_exc_vat")]
+        public decimal OnlineDiscountExcVat { get; set; }
+
+        [JsonPropertyName("online_discount_inc_vat")]
+        public decimal OnlineDiscountIncVat { get; set; }
+
+        [JsonPropertyName("dual_fuel_discount_exc_vat")]
+        public decimal DualFuelDiscountExcVat { get; set; }
+
+        [JsonPropertyName("dual_fuel_discount_inc_vat")]
+        public decimal DualFuelDiscountIncVat { get; set; }
+
+        [JsonPropertyName("exit_fees_exc_vat")]
+        public decimal ExitFeesExcVat { get; set; }
+
+        [JsonPropertyName("exit_fees_inc_vat")]
+        public decimal ExitFeesIncVat { get; set; }
+
+        [JsonPropertyName("exit_fees_type")]
+        public string ExitFeesType { get; set; }
+
+        [JsonPropertyName("links")]
+        public List<LinkDto> Links { get; set; } = new();
+
+        [JsonPropertyName("standard_unit_rate_exc_vat")]
+        public decimal StandardUnitRateExcVat { get; set; }
+
+        [JsonPropertyName("standard_unit_rate_inc_vat")]
+        public decimal StandardUnitRateIncVat { get; set; }
     }
 }

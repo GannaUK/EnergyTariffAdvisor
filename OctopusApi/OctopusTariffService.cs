@@ -22,16 +22,23 @@ namespace EnergyTariffAdvisor.OctopusApi
             return await _httpClient.GetFromJsonAsync<ProductsResponse>("products/");
         }
 
+        // Получает полную информацию о продукте по ссылке self
+        // Retrieves detailed information about a product by its self link
+        public async Task<ProductDto?> GetProductDetailsByUrlAsync(string productUrl)
+        {
+            return await _httpClient.GetFromJsonAsync<ProductDto>(productUrl);
+        }
+
         // "H" is the region code for North Scotland (including Aberdeen)
         public async Task<StandardUnitRatesResponse?> GetStandardUnitRatesAsync(string productCode, string tariffCode, string regionCode = "H")
         {
-            var url = $"products/{productCode}/electricity-tariffs/{tariffCode}/standard-unit-rates/?page_size=100&region={regionCode}";
+            var url = $"products/{productCode}/electricity-tariffs/{tariffCode}/standard-unit-rates/?region={regionCode}";
             return await _httpClient.GetFromJsonAsync<StandardUnitRatesResponse>(url);
         }
 
         public async Task<StandingChargesResponse?> GetStandingChargesAsync(string productCode, string tariffCode, string regionCode = "H")
         {
-            var url = $"products/{productCode}/electricity-tariffs/{tariffCode}/standing-charges/?page_size=100&region={regionCode}";
+            var url = $"products/{productCode}/electricity-tariffs/{tariffCode}/standing-charges/?region={regionCode}";
             return await _httpClient.GetFromJsonAsync<StandingChargesResponse>(url);
         }
     }
