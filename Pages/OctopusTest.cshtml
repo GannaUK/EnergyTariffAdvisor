@@ -25,7 +25,7 @@
                     <ul>
                         @foreach (var link in product.Links)
                         {
-                            <li><a href="@link.Href" target="_blank">@link.Rel</a></li>
+                            <li><a href="@link.Href" target="_blank">@link.Href</a></li>
                         }
                     </ul>
                 }
@@ -37,16 +37,50 @@
                             @foreach (var tariff in Model.TariffsByProduct[product.Code])
                             {
                                 <li style="
-                        margin-bottom: 1rem;
-                        padding: 1rem;
-                        border: 1px solid #ddd;
-                        border-radius: 8px;
-                        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-                        background-color: #f9f9f9;">
+                                                        margin-bottom: 1rem;
+                                                        padding: 1rem;
+                                                        border: 1px solid #ddd;
+                                                        border-radius: 8px;
+                                                        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                                                        background-color: #f9f9f9;">
                                     <p><strong>Code:</strong> @tariff.Code</p>
                                     <p><strong>Standing Charge (inc VAT):</strong> @tariff.StandingChargeIncVat.ToString("0.###") p/day</p>
                                     <p><strong>Unit Rate (inc VAT):</strong> @tariff.StandardUnitRateIncVat.ToString("0.###") p/kWh</p>
                                     <p><strong>Exit Fees Type:</strong> @tariff.ExitFeesType</p>
+
+                                   
+                                        @if (Model.UnitRatesByTariff.ContainsKey(tariff.Code))
+                                        {
+                                            <details style="margin-top: 0.5rem;">
+                                                <summary style="cursor:pointer;">View unit rates</summary>
+                                                <ul style="padding-left: 1rem;">
+                                                    @{
+                                                        var average = tariff.StandardUnitRateIncVat;
+                                                        var allRates = Model.UnitRatesByTariff[tariff.Code];
+                                                    }
+                                                    @foreach (var currentRate in allRates)
+                                                    {
+                                                        string color = "black";
+                                                        if (currentRate.ValueIncVat > average * 1.1m)
+                                                        {
+                                                            color = "red";
+                                                        }
+                                                        else if (currentRate.ValueIncVat < average * 0.9m)
+                                                        {
+                                                            color = "green";
+                                                        }
+                                                        <li style="color:@color;">
+                                                            <strong>@currentRate.ValidFrom.ToString("dd.MM.yyyy HH:mm")</strong> —
+                                                            @currentRate.ValueIncVat.ToString("0.###") p/kWh
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </details>
+                                        }
+                                    else
+                                    {
+                                        <p style="font-style: italic; color: gray;">No unit rates loaded.</p>
+                                    }
                                 </li>
                             }
                         </ul>
