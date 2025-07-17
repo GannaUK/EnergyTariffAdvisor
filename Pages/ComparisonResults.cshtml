@@ -1,4 +1,33 @@
 ﻿@page
 @model EnergyTariffAdvisor.Pages.ComparisonResultsModel
-@{
+
+<h2>Comparison Results</h2>
+
+@if (Model.Results.Any())
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Tariff</th>
+                <th>Supplier</th>
+                <th>Type</th>
+                <th>Total Cost (£)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var result in Model.Results)
+            {
+                <tr>
+                    <td>@result.Tariff.TariffName</td>
+                    <td>@result.Tariff.SupplierName</td>
+                    <td>@result.Tariff.TariffType</td>
+                    <td>@result.Cost.ToString("0.00")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No data to compare. Please select tariffs and provide a profile.</p>
 }

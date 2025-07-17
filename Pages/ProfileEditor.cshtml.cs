@@ -28,17 +28,35 @@ namespace EnergyTariffAdvisor.Pages
             }
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(string action)
         {
+            if (action == "reset")
+            {
+                for (int i = 0; i < Profile.Consumption.Count; i++)
+                {
+                    Profile.Consumption[i] = 0;
+                }
+
+                return Page();
+            }
+            else if (action == "random")
+            {
+                var rand = new Random();
+                for (int i = 0; i < Profile.Consumption.Count; i++)
+                {
+                    Profile.Consumption[i] = Math.Round(((decimal)rand.NextDouble() * 0.9m) + 0.1m, 2);
+                }
+
+                return Page();
+            }
+
+            // ќсновное сохранение Ч если нажата кнопка "Use This Profile"
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            // «десь можно временно сохранить профиль, например, в TempData или сессии
-            //TempData["Profile"] = System.Text.Json.JsonSerializer.Serialize(Profile);
             HttpContext.Session.SetObject("UserProfile", Profile);
-
             return RedirectToPage("/CompareTariffs");
         }
     }

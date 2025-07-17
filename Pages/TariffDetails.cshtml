@@ -1,0 +1,129 @@
+﻿@page
+@model EnergyTariffAdvisor.Pages.TariffDetailsModel
+@using EnergyTariffAdvisor.Models
+@{
+    var tariff = Model.Tariff;
+}
+
+<h2 class="mb-4">Tariff Details</h2>
+
+@if (tariff != null)
+{
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">@tariff.TariffName</h5>
+            <small>@tariff.SupplierName</small>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <strong>Product:</strong> @tariff.ProductName <br />
+                <strong>Description:</strong> @tariff.Description <br />
+                <strong>Tariff Type:</strong> @tariff.TariffType.ToString() <br />
+                <strong>Standing Charge:</strong> @tariff.StandingChargeDaily.ToString("0.##") p/day <br />
+                <strong>Unit Rate:</strong> @tariff.GetUnitRateDisplay()
+            </p>
+
+
+            @if (tariff is EnergyTariffAdvisor.Models.IntervalTariff intervalTariff)
+            {
+                <h5 class="mt-4 mb-2">Half-Hourly Rates (48 intervals)</h5>
+
+                <div class="d-flex flex-row gap-3 overflow-auto pb-2">
+
+                    <!-- Night Zone -->
+                    <div class="card border-success bg-light" style="min-width: 250px;">
+                        <div class="card-header bg-success bg-opacity-25 text-center">
+                            Night<br />(00:00–07:00)
+                        </div>
+                        <div class="card-body">
+                            @for (int i = 0; i < 14; i++)
+                            {
+                                var time = $"{i / 2:D2}:{(i % 2 == 0 ? "00" : "30")}";
+                                <div class="mb-2 d-flex justify-content-between">
+                                    <span>@time</span>
+                                    <span>@intervalTariff.UnitRatesPerInterval[i].ToString("0.###") p</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Morning Peak -->
+                    <div class="card border-danger bg-light" style="min-width: 220px;">
+                        <div class="card-header bg-danger bg-opacity-25 text-center">
+                            Morning Peak<br />(07:00–10:00)
+                        </div>
+                        <div class="card-body">
+                            @for (int i = 14; i < 20; i++)
+                            {
+                                var time = $"{i / 2:D2}:{(i % 2 == 0 ? "00" : "30")}";
+                                <div class="mb-2 d-flex justify-content-between">
+                                    <span>@time</span>
+                                    <span>@intervalTariff.UnitRatesPerInterval[i].ToString("0.###") p</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Day Zone -->
+                    <div class="card border-secondary bg-light" style="min-width: 220px;">
+                        <div class="card-header bg-secondary bg-opacity-25 text-center">
+                            Day<br />(10:00–16:00)
+                        </div>
+                        <div class="card-body">
+                            @for (int i = 20; i < 32; i++)
+                            {
+                                var time = $"{i / 2:D2}:{(i % 2 == 0 ? "00" : "30")}";
+                                <div class="mb-2 d-flex justify-content-between">
+                                    <span>@time</span>
+                                    <span>@intervalTariff.UnitRatesPerInterval[i].ToString("0.###") p</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Evening Peak -->
+                    <div class="card border-danger bg-light" style="min-width: 220px;">
+                        <div class="card-header bg-danger bg-opacity-25 text-center">
+                            Evening Peak<br />(16:00–20:00)
+                        </div>
+                        <div class="card-body">
+                            @for (int i = 32; i < 40; i++)
+                            {
+                                var time = $"{i / 2:D2}:{(i % 2 == 0 ? "00" : "30")}";
+                                <div class="mb-2 d-flex justify-content-between">
+                                    <span>@time</span>
+                                    <span>@intervalTariff.UnitRatesPerInterval[i].ToString("0.###") p</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Late Evening -->
+                    <div class="card border-info bg-light" style="min-width: 220px;">
+                        <div class="card-header bg-info bg-opacity-25 text-center">
+                            Late Evening<br />(20:00–00:00)
+                        </div>
+                        <div class="card-body">
+                            @for (int i = 40; i < 48; i++)
+                            {
+                                var time = $"{i / 2:D2}:{(i % 2 == 0 ? "00" : "30")}";
+                                <div class="mb-2 d-flex justify-content-between">
+                                    <span>@time</span>
+                                    <span>@intervalTariff.UnitRatesPerInterval[i].ToString("0.###") p</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+        <div class="card-footer bg-light text-end">
+            <a asp-page="/CompareTariffs" class="btn btn-secondary">← Back to Tariffs</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">No tariff data found in session.</div>
+}   

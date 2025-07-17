@@ -8,6 +8,8 @@ namespace EnergyTariffAdvisor.Models
         // Список тарифных ставок по интервалам (48 значений за сутки)
         public List<decimal> UnitRatesPerInterval { get; set; } = new List<decimal>();
 
+        public decimal UnitRate { get; set; }
+
         // Переопределяем метод расчёта стоимости по профилю
         public override decimal CalculateCost(HalfHourlyConsumptionProfile profile)
         {
@@ -34,8 +36,8 @@ namespace EnergyTariffAdvisor.Models
         }
         public override string GetUnitRateDisplay()
         {
-            if (UnitRatesPerInterval == null || UnitRatesPerInterval.Count == 0)
-                return "n/a";
+            if (UnitRate > 0)
+                return $"{UnitRate.ToString("0.###")} p/kWh";
 
             decimal average = UnitRatesPerInterval.Sum() / UnitRatesPerInterval.Count;
             return $"{average.ToString("0.###")} p/kWh (avg)";

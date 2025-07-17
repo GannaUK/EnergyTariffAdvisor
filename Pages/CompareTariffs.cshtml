@@ -3,10 +3,9 @@
 @using EnergyTariffAdvisor.Models
 @{
 }
-<h2> Compare Energy Tariffs</h2>
+<h2>Compare Energy Tariffs</h2>
 
 <h4 class="mt-4">1. Enter Your Current Tariff (optional)</h4>
-<!-- Простая форма для фиксированного или интервального тарифа -->
 <form method="post" asp-page-handler="AddManualTariff">
     <div class="row">
         <div class="col-md-4">
@@ -29,13 +28,20 @@
 
 <h4 class="mt-4">2. Choose Tariffs to Compare</h4>
 
+<form method="post" asp-page-handler="LoadOctopus">
+    <button type="submit" class="btn btn-primary mb-3">
+        Load Octopus Tariffs
+    </button>
+</form>
+
 <form method="post" asp-page-handler="Calculate">
     @if (Model.AvailableTariffs.Any())
     {
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered align-middle">
             <thead>
                 <tr>
                     <th>Select</th>
+                    <th>Details</th>
                     <th>Tariff Name</th>
                     <th>Supplier</th>
                     <th>Unit Rate (p/kWh)</th>
@@ -48,7 +54,14 @@
                     var tariff = Model.AvailableTariffs[i];
                     <tr>
                         <td>
-                            <input type="checkbox" name="SelectedTariffs" value="@i" />
+                            <input type="checkbox" value="@i" name="SelectedTariffs" />
+                        </td>
+                        <td>
+                            <a asp-page-handler="ViewDetails"
+                               asp-route-index="@i"
+                               class="btn btn-sm btn-info">
+                                Details
+                            </a>
                         </td>
                         <td>@tariff.TariffName</td>
                         <td>@tariff.SupplierName</td>
@@ -60,7 +73,7 @@
         </table>
         <button type="submit" class="btn btn-success">Calculate</button>
     }
-        else
+    else
     {
         <p>No tariffs available.</p>
     }

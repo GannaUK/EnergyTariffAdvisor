@@ -7,14 +7,19 @@ namespace EnergyTariffAdvisor.Pages
 {
     public class OctopusTestModel : PageModel
     {
-        private readonly OctopusTariffService _octopusService;
+        //private readonly OctopusTariffService _octopusService;
+        private readonly IOctopusTariffProvider _octopusService;
 
         // Список продуктов для отображения
         public List<ProductDto> Products { get; set; } = new();
         public Dictionary<string, List<TariffDetailsDto>> TariffsByProduct { get; set; } = new();
         public Dictionary<string, List<StandardUnitRateDto>> UnitRatesByTariff { get; set; } = new();
 
-        public OctopusTestModel(OctopusTariffService octopusService)
+        //public OctopusTestModel(OctopusTariffService octopusService)
+        //{
+        //    _octopusService = octopusService;
+        //}
+        public OctopusTestModel(IOctopusTariffProvider octopusService)
         {
             _octopusService = octopusService;
         }

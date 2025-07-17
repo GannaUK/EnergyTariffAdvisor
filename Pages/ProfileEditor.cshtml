@@ -5,7 +5,13 @@
 <h2 class="mb-4">Edit Your Consumption Profile</h2>
 
 <form method="post">
+    <div class="text-center mb-3">
+        <button type="submit" name="action" value="reset" class="btn btn-outline-secondary me-2">Reset All to Zero</button>
+        <button type="submit" name="action" value="random" class="btn btn-outline-info me-2">Randomise</button>
+        <button type="submit" name="action" value="save" class="btn btn-success">Use This Profile</button>
+    </div>
     <div class="d-flex flex-row gap-3 overflow-auto pb-2">
+
 
         <!-- Ночная зона -->
         <div class="card border-success bg-light" style="min-width: 250px;">
@@ -109,7 +115,5 @@
 
     </div>
 
-    <div class="text-center mt-4">
-        <button type="submit" class="btn btn-success btn-lg">Use This Profile</button>
-    </div>
+    
 </form>

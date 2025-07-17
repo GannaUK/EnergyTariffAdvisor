@@ -7,7 +7,7 @@ using EnergyTariffAdvisor.OctopusApi;
 
 namespace EnergyTariffAdvisor.OctopusApi
 {
-    public class OctopusTariffService
+    public class OctopusTariffService : IOctopusTariffProvider
     {
         private readonly HttpClient _httpClient;
 
