@@ -1,5 +1,98 @@
 ﻿@page
 @model EnergyTariffAdvisor.Pages.TestTariffModel
 
-<h2>Fixed Tariff Calculation</h2>
+<h2>Fixed Tariff Calculation for North Scotland</h2>
+<p class="text-left">
+    <a href="https://www.ofgem.gov.uk/get-energy-price-cap-standing-charges-and-unit-rates-region" target="_blank">
+        View rates by region (Ofgem)
+    </a>
+</p>
+<p>
+    Standing charge (inc VAT)	£0.5869 / Day
+</p>
+<p>
+    Unit rate (inc VAT)	£0.2579 / kWh
+</p>
+
+<h5>Test Consumption Profile (30-minute intervals)</h5>
+
+<div class="d-flex flex-row gap-3 overflow-auto pb-2">
+
+    <!-- Ночная зона -->
+    <div class="card border-success bg-light" style="min-width: 250px;">
+        <div class="card-header bg-success bg-opacity-25 text-center">
+            Night<br />(00:00–07:00)
+        </div>
+        <div class="card-body">
+            @for (int i = 0; i < 14; i++)
+            {
+                var hour = i / 2;
+                var minute = i % 2 == 0 ? "00" : "30";
+                <div>@($"{hour:D2}:{minute}") — @Model.Profile.Consumption[i] kWh</div>
+            }
+        </div>
+    </div>
+
+    <!-- Утренний пик -->
+    <div class="card border-danger bg-light" style="min-width: 200px;">
+        <div class="card-header bg-danger bg-opacity-25 text-center">
+            Morning Peak<br />(07:00–10:00)
+        </div>
+        <div class="card-body">
+            @for (int i = 14; i < 20; i++)
+            {
+                var hour = i / 2;
+                var minute = i % 2 == 0 ? "00" : "30";
+                <div>@($"{hour:D2}:{minute}") — @Model.Profile.Consumption[i] kWh</div>
+            }
+        </div>
+    </div>
+
+    <!-- Дневная зона -->
+    <div class="card border-secondary bg-light" style="min-width: 200px;">
+        <div class="card-header bg-secondary bg-opacity-25 text-center">
+            Day<br />(10:00–16:00)
+        </div>
+        <div class="card-body">
+            @for (int i = 20; i < 32; i++)
+            {
+                var hour = i / 2;
+                var minute = i % 2 == 0 ? "00" : "30";
+                <div>@($"{hour:D2}:{minute}") — @Model.Profile.Consumption[i] kWh</div>
+            }
+        </div>
+    </div>
+
+    <!-- Вечерний пик -->
+    <div class="card border-danger bg-light" style="min-width: 200px;">
+        <div class="card-header bg-danger bg-opacity-25 text-center">
+            Evening Peak<br />(16:00–20:00)
+        </div>
+        <div class="card-body">
+            @for (int i = 32; i < 40; i++)
+            {
+                var hour = i / 2;
+                var minute = i % 2 == 0 ? "00" : "30";
+                <div>@($"{hour:D2}:{minute}") — @Model.Profile.Consumption[i] kWh</div>
+            }
+        </div>
+    </div>
+
+    <!-- Поздний вечер -->
+    <div class="card border-info bg-light" style="min-width: 200px;">
+        <div class="card-header bg-info bg-opacity-25 text-center">
+            Late Evening<br />(20:00–00:00)
+        </div>
+        <div class="card-body">
+            @for (int i = 40; i < 48; i++)
+            {
+                var hour = i / 2;
+                var minute = i % 2 == 0 ? "00" : "30";
+                <div>@($"{hour:D2}:{minute}") — @Model.Profile.Consumption[i] kWh</div>
+            }
+        </div>
+    </div>
+
+</div>
+
 <p>Total cost: @Model.Cost pence</p>

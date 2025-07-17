@@ -8,9 +8,11 @@ namespace EnergyTariffAdvisor.Pages
     {
         public decimal Cost { get; set; }
 
+        public HalfHourlyConsumptionProfile Profile { get; set; }
+
         public void OnGet()
         {
-            var profile = new HalfHourlyConsumptionProfile
+            Profile = new HalfHourlyConsumptionProfile
             {
                 Consumption = new List<decimal>()
             };
@@ -18,22 +20,22 @@ namespace EnergyTariffAdvisor.Pages
             // Наполним профайл потребления 48 значениями (по 0.5 кВт·ч)
             for (int i = 0; i < 48; i++)
             {
-                profile.Consumption.Add(0.5m);
+                Profile.Consumption.Add(0.5m);
             }
 
             var tariff = new FixedTariff
             {
-                TariffCode = "TEST-001",
-                TariffName = "Fixed Demo",
-                ProductName = "Test Product",
-                SupplierName = "Test Energy",
-                Description = "Demo Fixed Tariff",
+                TariffCode = "SCOT-NORTH-FIXED-2025",
+                TariffName = "North Scotland Default Tariff",
+                ProductName = "Default Tariff Cap",
+                SupplierName = "Generic Supplier",
+                Description = "Based on Ofgem price cap for North Scotland",
                 TariffType = TariffType.Fixed,
-                UnitRate = 15.0m, // 15p/kWh
-                StandingChargeDaily = 45.0m // 45p/day
+                StandingChargeDaily = 0.5869m, // в фунтах
+                UnitRate = 0.2579m       // в фунтах
             };
 
-            Cost = tariff.CalculateCost(profile); // должен вернуть: (0.5 * 48 * 15) + 45 = 405 + 45 = 450p = £4.50
+            Cost = tariff.CalculateCost(Profile); 
         }
     }
 }
