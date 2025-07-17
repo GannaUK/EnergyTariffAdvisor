@@ -14,5 +14,6 @@ namespace EnergyTariffAdvisor.Models
         public decimal StandingChargeDaily { get; set; } = 0;
         // Абстрактный метод для расчёта стоимости по профилю потребления
         public abstract decimal CalculateCost(HalfHourlyConsumptionProfile profile);
+        public abstract string GetUnitRateDisplay();
     }
 }

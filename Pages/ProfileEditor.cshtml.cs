@@ -39,7 +39,7 @@ namespace EnergyTariffAdvisor.Pages
             //TempData["Profile"] = System.Text.Json.JsonSerializer.Serialize(Profile);
             HttpContext.Session.SetObject("UserProfile", Profile);
 
-            return RedirectToPage("/SelectTariffs");
+            return RedirectToPage("/CompareTariffs");
         }
     }
 }

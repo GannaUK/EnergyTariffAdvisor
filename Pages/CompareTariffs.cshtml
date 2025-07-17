@@ -1,0 +1,67 @@
+﻿@page
+@model EnergyTariffAdvisor.Pages.CompareTariffsModel
+@using EnergyTariffAdvisor.Models
+@{
+}
+<h2> Compare Energy Tariffs</h2>
+
+<h4 class="mt-4">1. Enter Your Current Tariff (optional)</h4>
+<!-- Простая форма для фиксированного или интервального тарифа -->
+<form method="post" asp-page-handler="AddManualTariff">
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Tariff Name</label>
+            <input type="text" class="form-control" name="ManualTariffName" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Unit Rate (p/kWh)</label>
+            <input type="number" step="0.01" class="form-control" name="ManualUnitRate" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Standing Charge (p/day)</label>
+            <input type="number" step="0.01" class="form-control" name="ManualStandingCharge" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Add Tariff</button>
+</form>
+
+<hr />
+
+<h4 class="mt-4">2. Choose Tariffs to Compare</h4>
+
+<form method="post" asp-page-handler="Calculate">
+    @if (Model.AvailableTariffs.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Tariff Name</th>
+                    <th>Supplier</th>
+                    <th>Unit Rate (p/kWh)</th>
+                    <th>Standing Charge (p/day)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.AvailableTariffs.Count; i++)
+                {
+                    var tariff = Model.AvailableTariffs[i];
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="SelectedTariffs" value="@i" />
+                        </td>
+                        <td>@tariff.TariffName</td>
+                        <td>@tariff.SupplierName</td>
+                        <td>@tariff.GetUnitRateDisplay()</td>
+                        <td>@tariff.StandingChargeDaily.ToString("0.##")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-success">Calculate</button>
+    }
+        else
+    {
+        <p>No tariffs available.</p>
+    }
+</form>

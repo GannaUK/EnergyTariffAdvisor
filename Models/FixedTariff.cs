@@ -22,5 +22,10 @@ namespace EnergyTariffAdvisor.Models
 
             return energyCost + StandingChargeDaily;
         }
+
+        public override string GetUnitRateDisplay()
+        {
+            return $"{UnitRate.ToString("0.###")} p/kWh";
+        }
     }
 }

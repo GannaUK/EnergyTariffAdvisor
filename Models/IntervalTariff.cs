@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace EnergyTariffAdvisor.Models
 {
@@ -30,6 +31,14 @@ namespace EnergyTariffAdvisor.Models
             totalCost += StandingChargeDaily;
 
             return totalCost;
+        }
+        public override string GetUnitRateDisplay()
+        {
+            if (UnitRatesPerInterval == null || UnitRatesPerInterval.Count == 0)
+                return "n/a";
+
+            decimal average = UnitRatesPerInterval.Sum() / UnitRatesPerInterval.Count;
+            return $"{average.ToString("0.###")} p/kWh (avg)";
         }
     }
 }
