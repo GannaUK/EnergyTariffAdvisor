@@ -1,6 +1,7 @@
 ﻿using EnergyTariffAdvisor.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace EnergyTariffAdvisor.Pages
 {
@@ -12,11 +13,22 @@ namespace EnergyTariffAdvisor.Pages
 
         public void OnGet()
         {
-            Profile = new HalfHourlyConsumptionProfile
-            {
-                Consumption = new List<decimal>()
-            };
+            //Profile = new HalfHourlyConsumptionProfile
+            //{
+            //    Consumption = new List<decimal>()
+            //};
 
+            Profile = HttpContext.Session.GetObject<HalfHourlyConsumptionProfile>("UserProfile");
+
+            // Если данных нет — создаём заглушку
+            if (Profile == null)
+            {
+                Profile = new HalfHourlyConsumptionProfile();
+                for (int i = 0; i < 48; i++)
+                {
+                    Profile.Consumption.Add(0.5m); // или 0
+                }
+            }
             // Наполним профайл потребления 48 значениями (по 0.5 кВт·ч)
             for (int i = 0; i < 48; i++)
             {

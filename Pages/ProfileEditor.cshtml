@@ -1,0 +1,115 @@
+﻿@page
+@model EnergyTariffAdvisor.Pages.ProfileEditorModel
+@using System.Globalization
+
+<h2 class="mb-4">Edit Your Consumption Profile</h2>
+
+<form method="post">
+    <div class="d-flex flex-row gap-3 overflow-auto pb-2">
+
+        <!-- Ночная зона -->
+        <div class="card border-success bg-light" style="min-width: 250px;">
+            <div class="card-header bg-success bg-opacity-25 text-center">
+                Night<br />(00:00–07:00)
+            </div>
+            <div class="card-body">
+                @for (int i = 0; i < 14; i++)
+                {
+                    var hour = i / 2;
+                    var minute = i % 2 == 0 ? "00" : "30";
+                    <div class="mb-2 d-flex align-items-center gap-2">
+                        <label class="form-label mb-0 me-2" style="min-width: 60px;">@($"{hour:D2}:{minute}")</label>
+                        <input type="number" step="0.1" class="form-control"
+                               name="Profile.Consumption[@i]"
+                               value="@Model.Profile.Consumption[i].ToString(CultureInfo.InvariantCulture)" />
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Утренний пик -->
+        <div class="card border-danger bg-light" style="min-width: 220px;">
+            <div class="card-header bg-danger bg-opacity-25 text-center">
+                Morning Peak<br />(07:00–10:00)
+            </div>
+            <div class="card-body">
+                @for (int i = 14; i < 20; i++)
+                {
+                    var hour = i / 2;
+                    var minute = i % 2 == 0 ? "00" : "30";
+                    <div class="mb-2 d-flex align-items-center gap-2">
+                        <label class="form-label mb-0 me-2" style="min-width: 60px;">@($"{hour:D2}:{minute}")</label>
+                        <input type="number" step="0.1" class="form-control"
+                               name="Profile.Consumption[@i]"
+                               value="@Model.Profile.Consumption[i].ToString(CultureInfo.InvariantCulture)" />
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Дневная зона -->
+        <div class="card border-secondary bg-light" style="min-width: 220px;">
+            <div class="card-header bg-secondary bg-opacity-25 text-center">
+                Day<br />(10:00–16:00)
+            </div>
+            <div class="card-body">
+                @for (int i = 20; i < 32; i++)
+                {
+                    var hour = i / 2;
+                    var minute = i % 2 == 0 ? "00" : "30";
+                    <div class="mb-2 d-flex align-items-center gap-2">
+                        <label class="form-label mb-0 me-2" style="min-width: 60px;">@($"{hour:D2}:{minute}")</label>
+                        <input type="number" step="0.1" class="form-control"
+                               name="Profile.Consumption[@i]"
+                               value="@Model.Profile.Consumption[i].ToString(CultureInfo.InvariantCulture)" />
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Вечерний пик -->
+        <div class="card border-danger bg-light" style="min-width: 220px;">
+            <div class="card-header bg-danger bg-opacity-25 text-center">
+                Evening Peak<br />(16:00–20:00)
+            </div>
+            <div class="card-body">
+                @for (int i = 32; i < 40; i++)
+                {
+                    var hour = i / 2;
+                    var minute = i % 2 == 0 ? "00" : "30";
+                    <div class="mb-2 d-flex align-items-center gap-2">
+                        <label class="form-label mb-0 me-2" style="min-width: 60px;">@($"{hour:D2}:{minute}")</label>
+                        <input type="number" step="0.1" class="form-control"
+                               name="Profile.Consumption[@i]"
+                               value="@Model.Profile.Consumption[i].ToString(CultureInfo.InvariantCulture)" />
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Поздний вечер -->
+        <div class="card border-info bg-light" style="min-width: 220px;">
+            <div class="card-header bg-info bg-opacity-25 text-center">
+                Late Evening<br />(20:00–00:00)
+            </div>
+            <div class="card-body">
+                @for (int i = 40; i < 48; i++)
+                {
+                    var hour = i / 2;
+                    var minute = i % 2 == 0 ? "00" : "30";
+                    <div class="mb-2 d-flex align-items-center gap-2">
+                        <label class="form-label mb-0 me-2" style="min-width: 60px;">@($"{hour:D2}:{minute}")</label>
+                        <input type="number" step="0.1" class="form-control"
+                               name="Profile.Consumption[@i]"
+                               value="@Model.Profile.Consumption[i].ToString(CultureInfo.InvariantCulture)" />
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success btn-lg">Use This Profile</button>
+    </div>
+</form>

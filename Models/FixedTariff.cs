@@ -6,7 +6,7 @@ namespace EnergyTariffAdvisor.Models
     {
         // Постоянная ставка за кВт·ч (включая VAT)
         public decimal UnitRate { get; set; }
-
+        
         public override decimal CalculateCost(HalfHourlyConsumptionProfile profile)
         {
             decimal totalConsumption = 0;
@@ -18,9 +18,9 @@ namespace EnergyTariffAdvisor.Models
             decimal energyCost = totalConsumption * UnitRate;
 
             // Стоимость за подключение (стоимость за каждый день, если профайл — на сутки)
-            decimal standingCharge = StandingChargeDaily;
+            //decimal standingCharge = StandingChargeDaily;
 
-            return energyCost + standingCharge;
+            return energyCost + StandingChargeDaily;
         }
     }
 }
