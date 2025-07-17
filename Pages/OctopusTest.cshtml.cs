@@ -21,20 +21,24 @@ namespace EnergyTariffAdvisor.Pages
 
         public async Task OnGetAsync()
         {
-            // Шаг 1: Получаем список всех продуктов от Octopus Energy
             var response = await _octopusService.GetProductsAsync();
             if (response != null && response.Results != null)
             {
-                Products = response.Results;
+                // 1. Оставляем только продукты с IMPORT и без business
+                var filteredProducts = new List<ProductDto>();
+                foreach (var product in response.Results)
+                {
+                    if (product.Direction == "IMPORT" && product.IsBusiness == false)
+                    {
+                        filteredProducts.Add(product);
+                    }
+                }
 
-                // Инициализируем словари, чтобы избежать ошибок повторной загрузки
-                TariffsByProduct = new Dictionary<string, List<TariffDetailsDto>>();
-                UnitRatesByTariff = new Dictionary<string, List<StandardUnitRateDto>>();
+                Products = filteredProducts;
 
-                // Шаг 2: Для каждого продукта загружаем детальную информацию
+                // 2. Обрабатываем каждый отфильтрованный продукт
                 foreach (var product in Products)
                 {
-                    // Ищем ссылку с rel="self", чтобы получить полные данные о продукте
                     LinkDto selfLink = null;
                     foreach (var link in product.Links)
                     {
@@ -48,32 +52,35 @@ namespace EnergyTariffAdvisor.Pages
                     if (selfLink != null)
                     {
                         var fullProduct = await _octopusService.GetProductDetailsByUrlAsync(selfLink.Href);
-
-                        // Шаг 3: Извлекаем тарифы из fullProduct
                         if (fullProduct != null && fullProduct.SingleRegisterElectricityTariffs != null)
                         {
                             var allTariffs = new List<TariffDetailsDto>();
 
-                            // Проходим по регионам (например, "_A", "_B" и т.п.)
+                            // 3. Перебираем тарифы только для региона "_H"
                             foreach (var regionEntry in fullProduct.SingleRegisterElectricityTariffs)
                             {
-                                var methodsDict = regionEntry.Value;
+                                string regionCode = regionEntry.Key;
+                                if (regionCode != "_H")
+                                {
+                                    continue; // Пропускаем другие регионы
+                                }
 
-                                // Проходим по способам оплаты (например, "direct_debit_monthly")
+                                var methodsDict = regionEntry.Value;
                                 foreach (var methodEntry in methodsDict)
                                 {
+                                    string paymentMethod = methodEntry.Key;
                                     var tariff = methodEntry.Value;
+
                                     allTariffs.Add(tariff);
 
-                                    // Шаг 4: Загружаем ставки (standard-unit-rates) по ссылке из tariff.Links
+                                    // 4. Загружаем стандартные ставки по ссылке
                                     if (tariff.Links != null)
                                     {
-                                        foreach (var link in tariff.Links)
+                                        foreach (var tariffLink in tariff.Links)
                                         {
-                                            if (link.Rel == "standard_unit_rates")
+                                            if (tariffLink.Rel == "standard_unit_rates")
                                             {
                                                 var unitRatesResponse = await _octopusService.GetStandardUnitRatesAsync(fullProduct.Code, tariff.Code);
-
                                                 if (unitRatesResponse != null && unitRatesResponse.Results != null)
                                                 {
                                                     UnitRatesByTariff[tariff.Code] = unitRatesResponse.Results;
@@ -84,7 +91,6 @@ namespace EnergyTariffAdvisor.Pages
                                 }
                             }
 
-                            // Шаг 5: Сохраняем все тарифы, связанные с продуктом
                             TariffsByProduct[product.Code] = allTariffs;
                         }
                     }
