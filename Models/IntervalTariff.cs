@@ -8,7 +8,7 @@ namespace EnergyTariffAdvisor.Models
         // Список тарифных ставок по интервалам (48 значений за сутки) перенесла в общий класс
         //public List<decimal> UnitRatesPerInterval { get; set; } = new List<decimal>();
 
-        public decimal UnitRate { get; set; }
+        //public decimal UnitRate { get; set; }
 
         // Переопределяем метод расчёта стоимости по профилю
         public override decimal CalculateCost(HalfHourlyConsumptionProfile profile)

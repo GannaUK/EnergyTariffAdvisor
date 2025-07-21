@@ -15,7 +15,7 @@ namespace EnergyTariffAdvisor.Models
         public string Description { get; set; }
         public TariffType TariffType { get; set; }
         public decimal StandingChargeDaily { get; set; } = 0;
-        
+        public decimal UnitRate { get; set; }
         //пробую перенести код в общий класс
         public List<decimal> UnitRatesPerInterval { get; set; } = new List<decimal>();
 
