@@ -7,15 +7,14 @@ namespace EnergyTariffAdvisor.Models
     {
         public string TariffCode { get; set; }
 
-        //Это в будущем уберу, как только отлажу код
-        //public string TariffName { get; set; }
-
         public string ProductName { get; set; }
         public string SupplierName { get; set; }
         public string Description { get; set; }
         public TariffType TariffType { get; set; }
         public decimal StandingChargeDaily { get; set; } = 0;
         public decimal UnitRate { get; set; }
+
+        public decimal AdditionalFee { get; set; } = 0;
         //пробую перенести код в общий класс
         public List<decimal> UnitRatesPerInterval { get; set; } = new List<decimal>();
 

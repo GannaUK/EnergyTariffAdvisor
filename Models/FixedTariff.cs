@@ -4,8 +4,6 @@ namespace EnergyTariffAdvisor.Models
 {
     public class FixedTariff : TariffBase
     {
-        // Постоянная ставка за кВт·ч (включая VAT)
-        public decimal UnitRate { get; set; }
         
         public override decimal CalculateCost(HalfHourlyConsumptionProfile profile)
         {
