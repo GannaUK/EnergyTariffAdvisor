@@ -4,26 +4,22 @@ namespace EnergyTariffAdvisor.Models
 {
     public class FixedTariff : TariffBase
     {
-        
-        public override decimal CalculateCost(HalfHourlyConsumptionProfile profile)
+        public FixedTariff(decimal unitRate, decimal standingChargeDaily = 0, decimal additionalFee = 0)
         {
-            decimal totalConsumption = 0;
-            for (int i = 0; i < profile.Consumption.Count; i++)
-            {
-                totalConsumption += profile.Consumption[i];
-            }
+            UnitRate = unitRate;
+            StandingChargeDaily = standingChargeDaily;
+            AdditionalFee = additionalFee;
 
-            decimal energyCost = totalConsumption * UnitRate;
+            // Заполняем 48 интервалов одной ставкой
+            UnitRatesPerInterval = Enumerable.Repeat(unitRate, 48).ToList();
 
-            // Стоимость за подключение (стоимость за каждый день, если профайл — на сутки)
-            //decimal standingCharge = StandingChargeDaily;
-
-            return energyCost + StandingChargeDaily;
+            TariffType = TariffType.Fixed; 
         }
+
 
         public override string GetUnitRateDisplay()
         {
-            return $"{UnitRate.ToString("0.###")} p/kWh";
+            return $"{UnitRate.ToString("0.###")} pounds/kWh";
         }
     }
 }

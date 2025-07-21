@@ -30,21 +30,21 @@ namespace EnergyTariffAdvisor.Pages
                 }
             }
             // Наполним профайл потребления 48 значениями (по 0.5 кВт·ч)
-            for (int i = 0; i < 48; i++)
-            {
-                Profile.Consumption.Add(0.5m);
-            }
+            //for (int i = 0; i < 48; i++)
+            //{
+            //    Profile.Consumption.Add(0.5m);
+            //}
 
-            var tariff = new FixedTariff
+            var tariff = new FixedTariff(0.2579m,0.5869m)
             {
                 TariffCode = "SCOT-NORTH-FIXED-2025",
                 //TariffName = "North Scotland Default Tariff",
                 ProductName = "Default Tariff Cap",
                 SupplierName = "Generic Supplier",
                 Description = "Based on Ofgem price cap for North Scotland",
-                TariffType = TariffType.Fixed,
-                StandingChargeDaily = 0.5869m, // в фунтах
-                UnitRate = 0.2579m       // в фунтах
+                TariffType = TariffType.Fixed
+                //StandingChargeDaily = 0.5869m, // в фунтах
+                //UnitRate = 0.2579m       // в фунтах
             };
 
             Cost = tariff.CalculateCost(Profile); 

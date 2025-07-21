@@ -49,17 +49,26 @@ namespace EnergyTariffAdvisor.Pages
             var storedTariffs = HttpContext.Session.GetObject<List<TariffBase>>("AvailableTariffs") ?? new List<TariffBase>();
 
             // Создаем фиксированный тариф вручную
-            var manualTariff = new FixedTariff
+            var manualTariff = new FixedTariff(decimal.Parse(ManualUnitRate.ToString()),
+                                                decimal.Parse(ManualStandingCharge.ToString()))
             {
-                //TariffName = ManualTariffName,
                 SupplierName = "My Current Supplier",
                 TariffCode = "MANUAL",
                 ProductName = "Manual Entry",
                 Description = "User entered manually",
-                TariffType = TariffType.Fixed,
-                StandingChargeDaily = ManualStandingCharge,
-                UnitRate = ManualUnitRate
+                TariffType = TariffType.Fixed                
             };
+
+            //{
+            //    //TariffName = ManualTariffName,
+            //    SupplierName = "My Current Supplier",
+            //    TariffCode = "MANUAL",
+            //    ProductName = "Manual Entry",
+            //    Description = "User entered manually",
+            //    TariffType = TariffType.Fixed,
+            //    StandingChargeDaily = ManualStandingCharge,
+            //    UnitRate = ManualUnitRate
+            //};
 
             storedTariffs.Add(manualTariff);
 
@@ -113,7 +122,7 @@ namespace EnergyTariffAdvisor.Pages
                 var productDetails = await _octopusService.GetProductDetailsByUrlAsync(selfLink);
                 if (productDetails == null)
                     continue;
-                
+
 
                 // Метод для обработки словаря тарифов (чтобы не повторять код)
                 async Task ProcessTariffDictionary(Dictionary<string, Dictionary<string, TariffDetailsDto>> tariffsDict)
@@ -174,7 +183,7 @@ namespace EnergyTariffAdvisor.Pages
                                 TariffType = TariffType.Flexible
                             };
 
-                            if (tariffDetails.StandardUnitRateIncVat>0)
+                            if (tariffDetails.StandardUnitRateIncVat > 0)
                             {
                                 intervalTariff.UnitRate = tariffDetails.StandardUnitRateIncVat;
                             }

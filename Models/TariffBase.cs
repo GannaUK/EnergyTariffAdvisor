@@ -18,8 +18,32 @@ namespace EnergyTariffAdvisor.Models
         //пробую перенести код в общий класс
         public List<decimal> UnitRatesPerInterval { get; set; } = new List<decimal>();
 
-        // Абстрактный метод для расчёта стоимости по профилю потребления
-        public abstract decimal CalculateCost(HalfHourlyConsumptionProfile profile);
+        //// Абстрактный метод для расчёта стоимости по профилю потребления
+        //public abstract decimal CalculateCost(HalfHourlyConsumptionProfile profile);
+        //public abstract string GetUnitRateDisplay();
+
+        // Расчёт стоимости — общий для всех тарифов
+        // calculate cost — common for all tariffs
+        public decimal CalculateCost(HalfHourlyConsumptionProfile profile)
+        {
+            if (profile == null || profile.Consumption == null)
+                throw new ArgumentException("Invalid consumption profile");
+
+            if (profile.Consumption.Count != UnitRatesPerInterval.Count)
+                throw new InvalidOperationException("Mismatch between consumption and tariff intervals");
+
+            decimal totalCost = StandingChargeDaily + AdditionalFee;
+
+            for (int i = 0; i < 48; i++)
+            {
+                totalCost += profile.Consumption[i] * UnitRatesPerInterval[i];
+            }
+
+            return totalCost;
+        }
+
+        // Отображение тарифов — индивидуально для каждого тарифа
+        // Display of rates — individually for each tariff
         public abstract string GetUnitRateDisplay();
     }
 }
