@@ -3,7 +3,8 @@
     public enum TariffType
     {
         Fixed,
-        Night,
-        Flexible
+        DayNight,
+        Flexible,
+        Tracker
     }
 }

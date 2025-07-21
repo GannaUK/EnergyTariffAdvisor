@@ -1,8 +1,11 @@
+п»їusing EnergyTariffAdvisor.Models;
+using EnergyTariffAdvisor.OctopusApi;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using EnergyTariffAdvisor.Models;
+using SQLitePCL;
 using System.Collections.Generic;
-using EnergyTariffAdvisor.OctopusApi;
+using System.Diagnostics;
+using System.Linq;
 
 namespace EnergyTariffAdvisor.Pages
 {
@@ -16,10 +19,10 @@ namespace EnergyTariffAdvisor.Pages
             _octopusService = octopusService;
         }
 
-        // Все доступные тарифы (Octopus, Ofgem, ручные)
+        // Р’СЃРµ РґРѕСЃС‚СѓРїРЅС‹Рµ С‚Р°СЂРёС„С‹ (Octopus, Ofgem, СЂСѓС‡РЅС‹Рµ)
         public List<TariffBase> AvailableTariffs { get; set; } = new();
 
-        // Эти поля принимают данные из формы ручного ввода
+        // Р­С‚Рё РїРѕР»СЏ РїСЂРёРЅРёРјР°СЋС‚ РґР°РЅРЅС‹Рµ РёР· С„РѕСЂРјС‹ СЂСѓС‡РЅРѕРіРѕ РІРІРѕРґР°
         [BindProperty]
         public string ManualTariffName { get; set; }
 
@@ -37,7 +40,7 @@ namespace EnergyTariffAdvisor.Pages
 
         public void OnGet()
         {
-            // Подгружаем тарифы из Session или временного хранилища
+            // РџРѕРґРіСЂСѓР¶Р°РµРј С‚Р°СЂРёС„С‹ РёР· Session РёР»Рё РІСЂРµРјРµРЅРЅРѕРіРѕ С…СЂР°РЅРёР»РёС‰Р°
             var storedTariffs = HttpContext.Session.GetObject<List<TariffBase>>("AvailableTariffs");
             if (storedTariffs != null)
                 AvailableTariffs = storedTariffs;
@@ -45,10 +48,10 @@ namespace EnergyTariffAdvisor.Pages
 
         public IActionResult OnPostAddManualTariff()
         {
-            // Считываем текущий список
+            // РЎС‡РёС‚С‹РІР°РµРј С‚РµРєСѓС‰РёР№ СЃРїРёСЃРѕРє
             var storedTariffs = HttpContext.Session.GetObject<List<TariffBase>>("AvailableTariffs") ?? new List<TariffBase>();
 
-            // Создаем фиксированный тариф вручную
+            // РЎРѕР·РґР°РµРј С„РёРєСЃРёСЂРѕРІР°РЅРЅС‹Р№ С‚Р°СЂРёС„ РІСЂСѓС‡РЅСѓСЋ
             var manualTariff = new FixedTariff(decimal.Parse(ManualUnitRate.ToString()),
                                                 decimal.Parse(ManualStandingCharge.ToString()))
             {
@@ -56,26 +59,17 @@ namespace EnergyTariffAdvisor.Pages
                 TariffCode = "MANUAL",
                 ProductName = "Manual Entry",
                 Description = "User entered manually",
-                TariffType = TariffType.Fixed                
+                TariffType = TariffType.Fixed
             };
 
-            //{
-            //    //TariffName = ManualTariffName,
-            //    SupplierName = "My Current Supplier",
-            //    TariffCode = "MANUAL",
-            //    ProductName = "Manual Entry",
-            //    Description = "User entered manually",
-            //    TariffType = TariffType.Fixed,
-            //    StandingChargeDaily = ManualStandingCharge,
-            //    UnitRate = ManualUnitRate
-            //};
+
 
             storedTariffs.Add(manualTariff);
 
-            // Сохраняем обратно
+            // РЎРѕС…СЂР°РЅСЏРµРј РѕР±СЂР°С‚РЅРѕ
             HttpContext.Session.SetObject("AvailableTariffs", storedTariffs);
 
-            return RedirectToPage(); // Перезагружаем страницу
+            return RedirectToPage(); // РџРµСЂРµР·Р°РіСЂСѓР¶Р°РµРј СЃС‚СЂР°РЅРёС†Сѓ
         }
 
         public IActionResult OnPostCalculate()
@@ -91,14 +85,15 @@ namespace EnergyTariffAdvisor.Pages
                     selected.Add(storedTariffs[index]);
             }
 
-            // Сохраняем выбранные тарифы для дальнейшего анализа
+            // РЎРѕС…СЂР°РЅСЏРµРј РІС‹Р±СЂР°РЅРЅС‹Рµ С‚Р°СЂРёС„С‹ РґР»СЏ РґР°Р»СЊРЅРµР№С€РµРіРѕ Р°РЅР°Р»РёР·Р°
             HttpContext.Session.SetObject("SelectedTariffs", selected);
 
-            // Переход к странице результатов
+            // РџРµСЂРµС…РѕРґ Рє СЃС‚СЂР°РЅРёС†Рµ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ
             return RedirectToPage("ComparisonResults");
         }
         public async Task<IActionResult> OnPostLoadOctopusAsync()
         {
+            //step 1 - РџРѕР»СѓС‡Р°РµРј РІСЃРµ РїСЂРѕРґСѓРєС‚С‹
             var productsResponse = await _octopusService.GetProductsAsync();
             if (productsResponse == null || productsResponse.Results == null)
                 return Page();
@@ -107,24 +102,25 @@ namespace EnergyTariffAdvisor.Pages
 
             foreach (var product in productsResponse.Results)
             {
-                // Пропускаем продукты, которые не являются импортными или бизнес-тарифами
+                // РџСЂРѕРїСѓСЃРєР°РµРј РїСЂРѕРґСѓРєС‚С‹, РєРѕС‚РѕСЂС‹Рµ РЅРµ СЏРІР»СЏСЋС‚СЃСЏ РёРјРїРѕСЂС‚РЅС‹РјРё РёР»Рё Р±РёР·РЅРµСЃ-С‚Р°СЂРёС„Р°РјРё
                 if (product.Direction != "IMPORT" || product.IsBusiness)
                     continue;
-                // Пропускаем продукты, которые не имеют кода
+                // РџСЂРѕРїСѓСЃРєР°РµРј РїСЂРѕРґСѓРєС‚С‹, РєРѕС‚РѕСЂС‹Рµ РЅРµ РёРјРµСЋС‚ РєРѕРґР°
                 if (string.IsNullOrEmpty(product.Code))
                     continue;
 
-                // Получаем ссылку self
+                // РџРѕР»СѓС‡Р°РµРј СЃСЃС‹Р»РєСѓ self
                 var selfLink = product.Links?.FirstOrDefault(l => l.Rel == "self")?.Href;
                 if (string.IsNullOrEmpty(selfLink))
                     continue;
 
+                // step 2 - РџРѕР»СѓС‡Р°РµРј РґРµС‚Р°Р»Рё РїСЂРѕРґСѓРєС‚Р° РїРѕ СЃСЃС‹Р»РєРµ self
                 var productDetails = await _octopusService.GetProductDetailsByUrlAsync(selfLink);
                 if (productDetails == null)
                     continue;
 
 
-                // Метод для обработки словаря тарифов (чтобы не повторять код)
+                // РњРµС‚РѕРґ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё СЃР»РѕРІР°СЂСЏ С‚Р°СЂРёС„РѕРІ (С‡С‚РѕР±С‹ РЅРµ РїРѕРІС‚РѕСЂСЏС‚СЊ РєРѕРґ)
                 async Task ProcessTariffDictionary(Dictionary<string, Dictionary<string, TariffDetailsDto>> tariffsDict)
                 {
                     if (tariffsDict == null)
@@ -132,7 +128,7 @@ namespace EnergyTariffAdvisor.Pages
 
                     foreach (var outerEntry in tariffsDict)
                     {
-                        // Пропускаем тарифы, которые не относятся к региону "H"
+                        // РџСЂРѕРїСѓСЃРєР°РµРј С‚Р°СЂРёС„С‹, РєРѕС‚РѕСЂС‹Рµ РЅРµ РѕС‚РЅРѕСЃСЏС‚СЃСЏ Рє СЂРµРіРёРѕРЅСѓ "H"
                         if (outerEntry.Key != "_H")
                             continue;
 
@@ -149,9 +145,8 @@ namespace EnergyTariffAdvisor.Pages
                             }
                             catch (Exception ex)
                             {
-                                Console.WriteLine($"Ошибка при загрузке ставок тарифа. product.Code: {product.Code}, tariffCode: {tariffCode}");
-                                Console.WriteLine($"Сообщение об ошибке: {ex.Message}");
-                                continue; // переходит к следующему тарифу
+                                Console.WriteLine($"Error loading standard unit rates for {product.Code}, {tariffCode}: {ex.Message}");
+                                continue; // РїРµСЂРµС…РѕРґРёС‚ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ С‚Р°СЂРёС„Сѓ
                             }
 
                             if (ratesResponse?.Results == null || ratesResponse.Results.Count == 0)
@@ -172,59 +167,118 @@ namespace EnergyTariffAdvisor.Pages
                             if (ratesResponse?.Results == null)
                                 continue;
 
-                            var intervalTariff = new IntervalTariff
+                            TariffBase selectedTariff;
+                            //РµСЃР»Рё tariff_code СЃРѕРґРµСЂР¶РёС‚ AGILE в†’ agile
+                            //РµСЃР»Рё is_tracker == true в†’ tracker
+                            //РµСЃР»Рё tariff_code СЃРѕРґРµСЂР¶РёС‚ 2R в†’ daynight
+                            //РёРЅР°С‡Рµ в†’ static
+                            if (tariffDetails.Code.Contains("AGILE"))
                             {
-                                TariffCode = tariffCode,
+                                selectedTariff = new IntervalTariff
+                                {
+                                    TariffCode = tariffCode,
 
-                                //TariffName = tariffDetails.Code,
-                                ProductName = product.FullName ?? "",
-                                SupplierName = "Octopus Energy",
-                                Description = product.Description ?? "",
-                                TariffType = TariffType.Flexible
-                            };
+                                    ProductName = product.FullName ?? "",
+                                    SupplierName = "Octopus Energy",
+                                    Description = product.Description ?? "",
+                                    TariffType = TariffType.Flexible,
+                                    Href = selfLink ?? ""
+                                };
+
+                                var ratesSorted = new List<StandardUnitRateDto>(ratesResponse.Results);
+                                ratesSorted.Sort((a, b) => a.ValidFrom.CompareTo(b.ValidFrom));
+
+                                selectedTariff.UnitRatesPerInterval.Clear();
+
+                                for (int i = 0; i < 48; i++)
+                                {
+                                    if (i < ratesSorted.Count)
+                                        selectedTariff.UnitRatesPerInterval.Add(ratesSorted[i].ValueIncVat);
+                                    else
+                                        selectedTariff.UnitRatesPerInterval.Add(0m);
+                                }
+                            }
+                            else if (product.IsTracker)
+                            {
+                                // TODO: implement TrackerTariff
+                                selectedTariff = new IntervalTariff
+                                {
+                                    TariffCode = tariffCode,
+
+                                    ProductName = product.FullName ?? "",
+                                    SupplierName = "Octopus Energy",
+                                    Description = product.Description ?? "",
+                                    TariffType = TariffType.Tracker,
+                                    Href = selfLink ?? ""
+                                };
+                            }
+                            else if (tariffCode.Contains("GO"))
+                            {
+                                // TODO: implement DayNightTariff
+                                var results = ratesResponse.Results;
+
+                                decimal nightRate = 0m;
+                                decimal dayRate = 0m;
+                                List<decimal> uniqueRates = new List<decimal>();
+
+                                foreach (var rate in results)
+                                {
+                                    uniqueRates.Add(rate.ValueIncVat);
+                                }
+
+                                nightRate = uniqueRates.Min();
+                                dayRate = uniqueRates.Max();
+
+
+                                selectedTariff = new DayNightTariff(
+                                                    dayRate: dayRate,   
+                                                    nightRate: nightRate
+                                                  )
+                                {
+                                    TariffCode = tariffCode,
+
+                                    ProductName = product.FullName ?? "",
+                                    SupplierName = "Octopus Energy",
+                                    Description = product.Description ?? "",
+                                    TariffType = TariffType.DayNight,
+                                    Href = selfLink ?? ""
+                                };
+                            }
+                            else
+                            {
+                                // TODO: change to Fixed Tariff
+                                selectedTariff = new IntervalTariff
+                                {
+                                    TariffCode = tariffCode,
+
+                                    ProductName = product.FullName ?? "",
+                                    SupplierName = "Octopus Energy",
+                                    Description = product.Description ?? "",
+                                    TariffType = TariffType.Fixed,
+                                    Href = selfLink ?? ""
+                                };
+                            }
 
                             if (tariffDetails.StandardUnitRateIncVat > 0)
                             {
-                                intervalTariff.UnitRate = tariffDetails.StandardUnitRateIncVat;
+                                selectedTariff.UnitRate = tariffDetails.StandardUnitRateIncVat;
                             }
-                            //else
-                            //{
-                            //    intervalTariff.UnitRate = ratesResponse.Results[0].ValueIncVat; // Берем первую ставку как базовую
-                            //}
+                            
+                            selectedTariff.StandingChargeDaily = tariffDetails.StandingChargeIncVat;
 
-                            if (standingChargeResponse?.Results != null)
-                            {
-                                foreach (var charge in standingChargeResponse.Results)
-                                {
-                                    dailyStandingCharge += charge.ValueIncVat;
-                                }
-                            }
-                            intervalTariff.StandingChargeDaily = dailyStandingCharge;
 
-                            var ratesSorted = new List<StandardUnitRateDto>(ratesResponse.Results);
-                            ratesSorted.Sort((a, b) => a.ValidFrom.CompareTo(b.ValidFrom));
 
-                            intervalTariff.UnitRatesPerInterval.Clear();
-
-                            for (int i = 0; i < 48; i++)
-                            {
-                                if (i < ratesSorted.Count)
-                                    intervalTariff.UnitRatesPerInterval.Add(ratesSorted[i].ValueIncVat);
-                                else
-                                    intervalTariff.UnitRatesPerInterval.Add(0m);
-                            }
-
-                            loadedTariffs.Add(intervalTariff);
+                            loadedTariffs.Add(selectedTariff);
                         }
                     }
                 }
-                // Обрабатываем все три словаря тарифов
+                // РћР±СЂР°Р±Р°С‚С‹РІР°РµРј РІСЃРµ С‚СЂРё СЃР»РѕРІР°СЂСЏ С‚Р°СЂРёС„РѕРІ
                 await ProcessTariffDictionary(productDetails.SingleRegisterElectricityTariffs);
                 await ProcessTariffDictionary(productDetails.DualRegisterElectricityTariffs);
                 await ProcessTariffDictionary(productDetails.ThreeRateElectricityTariffs);
             }
 
-            // Сохраняем загруженные тарифы в сессии
+            // РЎРѕС…СЂР°РЅСЏРµРј Р·Р°РіСЂСѓР¶РµРЅРЅС‹Рµ С‚Р°СЂРёС„С‹ РІ СЃРµСЃСЃРёРё
             HttpContext.Session.SetObject("AvailableTariffs", loadedTariffs);
             AvailableTariffs = loadedTariffs;
 

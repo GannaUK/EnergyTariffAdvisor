@@ -15,13 +15,12 @@ namespace EnergyTariffAdvisor.Models
         public decimal UnitRate { get; set; }
 
         public decimal AdditionalFee { get; set; } = 0;
+        public string Href { get; set; } = string.Empty;
+
         //пробую перенести код в общий класс
         public List<decimal> UnitRatesPerInterval { get; set; } = new List<decimal>();
 
-        //// Абстрактный метод для расчёта стоимости по профилю потребления
-        //public abstract decimal CalculateCost(HalfHourlyConsumptionProfile profile);
-        //public abstract string GetUnitRateDisplay();
-
+      
         // Расчёт стоимости — общий для всех тарифов
         // calculate cost — common for all tariffs
         public decimal CalculateCost(HalfHourlyConsumptionProfile profile)

@@ -19,7 +19,7 @@ namespace EnergyTariffAdvisor.Models
 
         public override string GetUnitRateDisplay()
         {
-            return $"{UnitRate.ToString("0.###")} pounds/kWh";
+            return $"{UnitRate.ToString("0.###")} p/kWh";
         }
     }
 }
