@@ -38,7 +38,7 @@ namespace EnergyTariffAdvisor.Pages
             var tariff = new FixedTariff
             {
                 TariffCode = "SCOT-NORTH-FIXED-2025",
-                TariffName = "North Scotland Default Tariff",
+                //TariffName = "North Scotland Default Tariff",
                 ProductName = "Default Tariff Cap",
                 SupplierName = "Generic Supplier",
                 Description = "Based on Ofgem price cap for North Scotland",

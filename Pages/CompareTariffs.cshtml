@@ -42,7 +42,7 @@
                 <tr>
                     <th>Select</th>
                     <th>Details</th>
-                    <th>Tariff Name</th>
+                    <th>Tariff Type</th>
                     <th>Supplier</th>
                     <th>Unit Rate (p/kWh)</th>
                     <th>Standing Charge (p/day)</th>
@@ -63,7 +63,7 @@
                                 Details
                             </a>
                         </td>
-                        <td>@tariff.TariffName</td>
+                        <td>@tariff.TariffType</td>
                         <td>@tariff.SupplierName</td>
                         <td>@tariff.GetUnitRateDisplay()</td>
                         <td>@tariff.StandingChargeDaily.ToString("0.##")</td>

@@ -51,7 +51,7 @@ namespace EnergyTariffAdvisor.Pages
             // Создаем фиксированный тариф вручную
             var manualTariff = new FixedTariff
             {
-                TariffName = ManualTariffName,
+                //TariffName = ManualTariffName,
                 SupplierName = "My Current Supplier",
                 TariffCode = "MANUAL",
                 ProductName = "Manual Entry",
@@ -166,7 +166,8 @@ namespace EnergyTariffAdvisor.Pages
                             var intervalTariff = new IntervalTariff
                             {
                                 TariffCode = tariffCode,
-                                TariffName = tariffDetails.Code,
+
+                                //TariffName = tariffDetails.Code,
                                 ProductName = product.FullName ?? "",
                                 SupplierName = "Octopus Energy",
                                 Description = product.Description ?? "",

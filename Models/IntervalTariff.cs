@@ -5,8 +5,8 @@ namespace EnergyTariffAdvisor.Models
 {
     public class IntervalTariff : TariffBase
     {
-        // Список тарифных ставок по интервалам (48 значений за сутки)
-        public List<decimal> UnitRatesPerInterval { get; set; } = new List<decimal>();
+        // Список тарифных ставок по интервалам (48 значений за сутки) перенесла в общий класс
+        //public List<decimal> UnitRatesPerInterval { get; set; } = new List<decimal>();
 
         public decimal UnitRate { get; set; }
 

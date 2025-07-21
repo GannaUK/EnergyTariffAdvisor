@@ -18,7 +18,8 @@
             @foreach (var result in Model.Results)
             {
                 <tr>
-                    <td>@result.Tariff.TariffName</td>
+
+                    <td>@result.Tariff.TariffCode</td>
                     <td>@result.Tariff.SupplierName</td>
                     <td>@result.Tariff.TariffType</td>
                     <td>@result.Cost.ToString("0.00")</td>
