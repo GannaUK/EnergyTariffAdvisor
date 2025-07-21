@@ -8,7 +8,7 @@ namespace EnergyTariffAdvisor.Models
         public string TariffCode { get; set; }
 
         //Это в будущем уберу, как только отлажу код
-        public string TariffName { get; set; }
+        //public string TariffName { get; set; }
 
         public string ProductName { get; set; }
         public string SupplierName { get; set; }
