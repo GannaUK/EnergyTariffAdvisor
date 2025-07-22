@@ -38,12 +38,24 @@ namespace EnergyTariffAdvisor.Pages
         [BindProperty]
         public int Index { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            // Подгружаем тарифы из Session или временного хранилища
+            var sessionProfile = HttpContext.Session.GetObject<HalfHourlyConsumptionProfile>("UserProfile");
+
+            if (sessionProfile == null)
+            {
+                // Подставляем примерный профиль
+                sessionProfile = HalfHourlyConsumptionProfile.GenerateExample();
+                HttpContext.Session.SetObject("UserProfile", sessionProfile);
+
+                TempData["ProfileInfo"] = "Using a sample profile. For personalised results, please define your own profile.";
+            }
+
             var storedTariffs = HttpContext.Session.GetObject<List<TariffBase>>("AvailableTariffs");
             if (storedTariffs != null)
                 AvailableTariffs = storedTariffs;
+
+            return Page();
         }
 
         public IActionResult OnPostAddManualTariff()
@@ -231,7 +243,7 @@ namespace EnergyTariffAdvisor.Pages
 
 
                                 selectedTariff = new DayNightTariff(
-                                                    dayRate: dayRate,   
+                                                    dayRate: dayRate,
                                                     nightRate: nightRate
                                                   )
                                 {
@@ -263,7 +275,7 @@ namespace EnergyTariffAdvisor.Pages
                             {
                                 selectedTariff.UnitRate = tariffDetails.StandardUnitRateIncVat;
                             }
-                            
+
                             selectedTariff.StandingChargeDaily = tariffDetails.StandingChargeIncVat;
 
 
@@ -314,6 +326,6 @@ namespace EnergyTariffAdvisor.Pages
             HttpContext.Session.SetObject("AvailableTariffs", storedTariffs);
             return RedirectToPage(); // Перезагружаем страницу
         }
-       
+
     }
 }

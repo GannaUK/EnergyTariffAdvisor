@@ -4,7 +4,12 @@
 @{
 }
 <h2>Compare Energy Tariffs</h2>
-
+@if (TempData["ProfileInfo"] != null)
+{
+    <div class="alert alert-info">
+        Using a sample profile. <a href="/ProfileEditor" class="alert-link">Edit your profile</a> for more accurate results.
+    </div>
+}
 
 
 <hr />

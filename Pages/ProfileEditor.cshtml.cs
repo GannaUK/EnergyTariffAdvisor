@@ -17,13 +17,13 @@ namespace EnergyTariffAdvisor.Pages
                 Profile = sessionProfile;
             }
 
-            // ≈сли профиль пуст, инициализируем тестовым значением (например, 0.5 на каждый интервал)
+            // ≈сли профиль пуст, инициализируем тестовым значением (например, 1 на каждый интервал)
             if (Profile.Consumption == null || Profile.Consumption.Count != 48)
             {
                 Profile.Consumption = new List<decimal>();
                 for (int i = 0; i < 48; i++)
                 {
-                    Profile.Consumption.Add(0.5m);
+                    Profile.Consumption.Add(1m);
                 }
             }
         }

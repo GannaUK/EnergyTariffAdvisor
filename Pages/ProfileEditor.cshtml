@@ -3,7 +3,12 @@
 @using System.Globalization
 
 <h2 class="mb-4">Edit Your Consumption Profile</h2>
-
+@if (TempData["ProfileWarning"] != null)
+{
+    <div class="alert alert-warning">
+        @TempData["ProfileWarning"]
+    </div>
+}
 <form method="post">
     <div class="text-center mb-3">
         <button type="submit" name="action" value="reset" class="btn btn-outline-secondary me-2">Reset All to Zero</button>
