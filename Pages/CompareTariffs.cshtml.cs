@@ -316,7 +316,8 @@ namespace EnergyTariffAdvisor.Pages
                 ProductName = "Ofgem Default Tariff",
                 SupplierName = "Ofgem",
                 Description = "Based on Ofgem price cap for North Scotland",
-                TariffType = TariffType.Fixed
+                TariffType = TariffType.Fixed,
+                Href = "https://www.ofgem.gov.uk/get-energy-price-cap-standing-charges-and-unit-rates-region"
             };
             // Считываем текущий список тарифов из сессии
             var storedTariffs = HttpContext.Session.GetObject<List<TariffBase>>("AvailableTariffs") ?? new List<TariffBase>();
