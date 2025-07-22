@@ -247,7 +247,7 @@ namespace EnergyTariffAdvisor.Pages
                             else
                             {
                                 // TODO: change to Fixed Tariff
-                                selectedTariff = new IntervalTariff
+                                selectedTariff = new FixedTariff(tariffDetails.StandardUnitRateIncVat, tariffDetails.StandingChargeIncVat, tariffDetails.ExitFeesIncVat)
                                 {
                                     TariffCode = tariffCode,
 
