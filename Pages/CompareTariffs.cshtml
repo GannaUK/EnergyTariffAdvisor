@@ -62,12 +62,38 @@
     }
 </form>
 
-<h4 class="mt-4">2. Add Your Current Tariff (optional)</h4>
+<h4 class="mt-4">3. Add Official Tariff from OFGEM (optional)</h4>
+<p>
+    What is a default Ofgem’s price cap?
+    A default tariff (also known as a standard variable tariff) is the type of energy plan customers are automatically placed on if they do not choose a specific deal. 
+    All energy suppliers are required to offer this type of tariff, and its prices are protected by the government through Ofgem’s price cap. 
+    This means suppliers cannot charge more than the maximum rates set by the regulator.
+
+    <br />
+<form method="post" asp-page-handler="AddOFGEMTariff">
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Tariff Name</label>
+            <input type="text" class="form-control" name="OFGEMTariffName" value="OFGEN-DEFAULT-2025" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Unit Rate (p/kWh)</label>
+            <input type="number" step="0.01" class="form-control" name="OFGEMUnitRate" value="27.35" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Standing Charge (p/day)</label>
+            <input type="number" step="0.01" class="form-control" name="OFGEMStandingCharge" value="58.69" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Add Tariff</button>
+</form>
+
+<h4 class="mt-4">4. Add Your Current Tariff (optional)</h4>
 <form method="post" asp-page-handler="AddManualTariff">
     <div class="row">
         <div class="col-md-4">
             <label class="form-label">Tariff Name</label>
-            <input type="text" class="form-control" name="ManualTariffName" />
+            <input type="text" class="form-control" name="ManualTariffName" value="My Current Tariff"/>
         </div>
         <div class="col-md-4">
             <label class="form-label">Unit Rate (p/kWh)</label>

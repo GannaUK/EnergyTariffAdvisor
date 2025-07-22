@@ -295,5 +295,25 @@ namespace EnergyTariffAdvisor.Pages
 
             return RedirectToPage("TariffDetails");
         }
+        public IActionResult OnPostAddOfgemTariff()
+        {
+            // Создаем Ofgem тариф хардкодом
+            var ofgemTariff = new FixedTariff(25.79m, 58.69m)
+            {
+                TariffCode = "OFGEM-Energy-Price-Cap",
+                ProductName = "Ofgem Default Tariff",
+                SupplierName = "Ofgem",
+                Description = "Based on Ofgem price cap for North Scotland",
+                TariffType = TariffType.Fixed
+            };
+            // Считываем текущий список тарифов из сессии
+            var storedTariffs = HttpContext.Session.GetObject<List<TariffBase>>("AvailableTariffs") ?? new List<TariffBase>();
+            // Добавляем новый тариф в список
+            storedTariffs.Add(ofgemTariff);
+            // Сохраняем обновленный список обратно в сессию
+            HttpContext.Session.SetObject("AvailableTariffs", storedTariffs);
+            return RedirectToPage(); // Перезагружаем страницу
+        }
+       
     }
 }
