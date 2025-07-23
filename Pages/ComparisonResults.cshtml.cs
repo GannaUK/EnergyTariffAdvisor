@@ -20,6 +20,8 @@ namespace EnergyTariffAdvisor.Pages
 
             Results.Clear();
 
+            var comparisonTariffs = new List<TariffBase>();
+
             foreach (var tariff in tariffs)
             {
                 decimal cost = tariff.CalculateCost(Profile);
@@ -28,17 +30,21 @@ namespace EnergyTariffAdvisor.Pages
                     Tariff = tariff,
                     Cost = cost
                 });
+                comparisonTariffs.Add(tariff);
             }
 
-            // Сортируем по стоимости
+            // Сортируем по стоимости - sorted results and comparison tariffs by cost
             Results.Sort((a, b) => a.Cost.CompareTo(b.Cost));
+            comparisonTariffs.Sort((a, b) => a.CalculateCost(Profile).CompareTo(b.CalculateCost(Profile)));
+
+            HttpContext.Session.SetObject("ComparisonTariffs", comparisonTariffs);
         }
 
-        // Добавляем обработчик для кнопки Details
+        // Добавляем обработчик для кнопки Details - add handler for Details button
         public IActionResult OnGetViewDetails(int index)
         {
-            // TODO: Используем те же тарифы, что отображаются в результатах сравнения,здесь ошибка! Надо использовать те, что были выбраны на предыдущей странице!!!
-            var storedTariffs = HttpContext.Session.GetObject<List<TariffBase>>("SelectedTariffs");
+            
+            var storedTariffs = HttpContext.Session.GetObject<List<TariffBase>>("ComparisonTariffs");
             if (storedTariffs == null || index < 0 || index >= storedTariffs.Count)
                 return RedirectToPage();
 
