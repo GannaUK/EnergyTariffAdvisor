@@ -8,6 +8,7 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
+                <th>Details</th>
                 <th>Tariff</th>
                 <th>Supplier</th>
                 <th>Type</th>
@@ -15,10 +16,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var result in Model.Results)
+            @for (int i = 0; i < Model.Results.Count; i++)
             {
-                <tr>
-
+                var result = Model.Results[i];
+                <tr class="@(result.Tariff.TariffCode.StartsWith("OFGEM") ? "table-danger" :
+                                  result.Tariff.TariffCode == "MANUAL" ? "table-info" : "")">
+                    <td>
+                        <a asp-page-handler="ViewDetails"
+                           asp-route-index="@i"
+                           class="btn btn-sm btn-info"
+                           target="_blank">
+                            Details
+                        </a>
+                    </td>
                     <td>@result.Tariff.TariffCode</td>
                     <td>@result.Tariff.SupplierName</td>
                     <td>@result.Tariff.TariffType</td>

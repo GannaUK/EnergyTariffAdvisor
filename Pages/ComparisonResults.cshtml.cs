@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using EnergyTariffAdvisor.Models;
 using Microsoft.AspNetCore.Http;
@@ -13,10 +14,11 @@ namespace EnergyTariffAdvisor.Pages
         public void OnGet()
         {
             Profile = HttpContext.Session.GetObject<HalfHourlyConsumptionProfile>("UserProfile");
-            //var tariffs = HttpContext.Session.GetObject<List<TariffBase>>("AvailableTariffs");
             var tariffs = HttpContext.Session.GetObject<List<TariffBase>>("SelectedTariffs");
             if (Profile == null || tariffs == null)
                 return;
+
+            Results.Clear();
 
             foreach (var tariff in tariffs)
             {
@@ -28,19 +30,22 @@ namespace EnergyTariffAdvisor.Pages
                 });
             }
 
-            // Отсортировать по стоимости 
-            for (int i = 0; i < Results.Count - 1; i++)
-            {
-                for (int j = i + 1; j < Results.Count; j++)
-                {
-                    if (Results[j].Cost < Results[i].Cost)
-                    {
-                        var temp = Results[i];
-                        Results[i] = Results[j];
-                        Results[j] = temp;
-                    }
-                }
-            }
+            // Сортируем по стоимости
+            Results.Sort((a, b) => a.Cost.CompareTo(b.Cost));
+        }
+
+        // Добавляем обработчик для кнопки Details
+        public IActionResult OnGetViewDetails(int index)
+        {
+            // TODO: Используем те же тарифы, что отображаются в результатах сравнения,здесь ошибка! Надо использовать те, что были выбраны на предыдущей странице!!!
+            var storedTariffs = HttpContext.Session.GetObject<List<TariffBase>>("SelectedTariffs");
+            if (storedTariffs == null || index < 0 || index >= storedTariffs.Count)
+                return RedirectToPage();
+
+            var selectedTariff = storedTariffs[index];
+            HttpContext.Session.SetObject("TariffDetails", selectedTariff);
+
+            return RedirectToPage("TariffDetails");
         }
     }
 

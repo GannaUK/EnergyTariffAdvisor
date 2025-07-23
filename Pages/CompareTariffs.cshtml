@@ -142,7 +142,7 @@
                 {
                     var tariff = Model.AvailableTariffs[i];
                     <tr class="@(tariff.TariffCode.StartsWith("OFGEM") ? "table-danger" :
-                                                                                     tariff.TariffCode == "MANUAL" ? "table-info" : "")">
+                                  tariff.TariffCode == "MANUAL" ? "table-info" : "")">
                 <td><input type="checkbox" value="@i" name="SelectedTariffs" /></td>
                 <td>
                     <a asp-page-handler="ViewDetails"

@@ -5,96 +5,102 @@
 
 @if (Model.Products.Any())
 {
-    <div id="products-list">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
         @foreach (var product in Model.Products)
         {
-            <details style="margin-bottom: 1rem;" id="product-@product.Code">
-                <summary style="cursor: pointer; font-weight: bold;">
-                    @product.DisplayName (@product.Code)
-                </summary>
-                <ul style="margin-top: 0.5rem;">
+            <div class="col">
+                <div class="card shadow-sm h-100 border-0">
+                    <div class="card-header text-white fw-bold
+                @(product.Code.Contains("AGILE") ? "bg-purple" :
+                                   product.Code.Contains("GO") ? "bg-dark" :
+                                   "bg-secondary")">
+                @product.DisplayName (@product.Code)
+            </div>
+                    <div class="card-body">
+                <ul class="list-unstyled">
                     <li><strong>Direction:</strong> @product.Direction</li>
                     <li><strong>Green:</strong> @(product.IsGreen ? "Yes" : "No")</li>
                     <li><strong>Variable:</strong> @(product.IsVariable ? "Yes" : "No")</li>
                     <li><strong>Available from:</strong> @product.AvailableFrom.ToShortDateString()</li>
                     <li><strong>Description:</strong> @product.Description</li>
                 </ul>
-                @if (product.Links != null && product.Links.Any())
-                {
-                    <p><strong>API Links:</strong></p>
-                    <ul>
-                        @foreach (var link in product.Links)
-                        {
-                            <li><a href="@link.Href" target="_blank">@link.Href</a></li>
-                        }
-                    </ul>
-                }
-                @if (Model.TariffsByProduct.ContainsKey(product.Code))
-                {
-                    <div style="margin-left: 1rem; margin-top: 1rem;">
-                        <h5>Tariffs:</h5>
-                        <ul style="list-style-type:none; padding-left: 0;">
-                            @foreach (var tariff in Model.TariffsByProduct[product.Code])
-                            {
-                                <li style="
-                                                        margin-bottom: 1rem;
-                                                        padding: 1rem;
-                                                        border: 1px solid #ddd;
-                                                        border-radius: 8px;
-                                                        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-                                                        background-color: #f9f9f9;">
-                                    <p><strong>Code:</strong> @tariff.Code</p>
-                                    <p><strong>Standing Charge (inc VAT):</strong> @tariff.StandingChargeIncVat.ToString("0.###") p/day</p>
-                                    <p><strong>Unit Rate (inc VAT):</strong> @tariff.StandardUnitRateIncVat.ToString("0.###") p/kWh</p>
-                                    <p><strong>Exit Fees Type:</strong> @tariff.ExitFeesType</p>
 
-                                   
-                                        @if (Model.UnitRatesByTariff.ContainsKey(tariff.Code))
-                                        {
-                                            <details style="margin-top: 0.5rem;">
-                                                <summary style="cursor:pointer;">View unit rates</summary>
-                                                <ul style="padding-left: 1rem;">
-                                                    @{
-                                                        var average = tariff.StandardUnitRateIncVat;
-                                                        var allRates = Model.UnitRatesByTariff[tariff.Code];
-                                                    }
-                                                    @foreach (var currentRate in allRates)
-                                                    {
-                                                        string color = "black";
-                                                        if (currentRate.ValueIncVat > average * 1.1m)
-                                                        {
-                                                            color = "red";
-                                                        }
-                                                        else if (currentRate.ValueIncVat < average * 0.9m)
-                                                        {
-                                                            color = "green";
-                                                        }
-                                                        <li style="color:@color;">
-                                                            <strong>@currentRate.ValidFrom.ToString("dd.MM.yyyy HH:mm")</strong> —
-                                                            @currentRate.ValueIncVat.ToString("0.###") p/kWh
-                                                        </li>
-                                                    }
-                                                </ul>
-                                            </details>
-                                        }
-                                    else
-                                    {
-                                        <p style="font-style: italic; color: gray;">No unit rates loaded.</p>
-                                    }
-                                </li>
-                            }
-                        </ul>
+                        @if (product.Links != null && product.Links.Any())
+                        {
+                            <p class="mt-2 mb-1"><strong>API Links:</strong></p>
+                            <ul class="list-unstyled">
+                                @foreach (var link in product.Links)
+                                {
+                                    <li><a href="@link.Href" target="_blank">@link.Href</a></li>
+                                }
+                            </ul>
+                        }
+
+                        @if (Model.TariffsByProduct.ContainsKey(product.Code))
+                        {
+                            <hr />
+                            <h6>Tariffs:</h6>
+                            <div class="accordion accordion-flush" id="accordion-@product.Code">
+                                @foreach (var tariff in Model.TariffsByProduct[product.Code])
+                                {
+                                    var tariffId = $"tariff-{product.Code}-{tariff.Code}";
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading-@tariffId">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@tariffId" aria-expanded="false" aria-controls="collapse-@tariffId">
+                                                @tariff.Code
+                                            </button>
+                                        </h2>
+                                        <div id="collapse-@tariffId" class="accordion-collapse collapse" aria-labelledby="heading-@tariffId" data-bs-parent="#accordion-@product.Code">
+                                            <div class="accordion-body">
+                                                <p><strong>Standing Charge:</strong> @tariff.StandingChargeIncVat.ToString("0.###") p/day</p>
+                                                <p><strong>Unit Rate:</strong> @tariff.StandardUnitRateIncVat.ToString("0.###") p/kWh</p>
+                                                <p><strong>Exit Fees:</strong> @tariff.ExitFeesType</p>
+
+                                                @if (Model.UnitRatesByTariff.ContainsKey(tariff.Code))
+                                                {
+                                                    var average = tariff.StandardUnitRateIncVat;
+                                                    var allRates = Model.UnitRatesByTariff[tariff.Code];
+
+                                                    <details>
+                                                        <summary style="cursor:pointer;">View unit rates</summary>
+                                                        <ul class="list-unstyled mt-2">
+                                                            @foreach (var currentRate in allRates)
+                                                            {
+                                                                string color = "text-body";
+                                                                if (currentRate.ValueIncVat > average * 1.1m)
+                                                                    color = "text-danger";
+                                                                else if (currentRate.ValueIncVat < average * 0.9m)
+                                                                    color = "text-success";
+
+                                                                <li class="@color">
+                                                                    <strong>@currentRate.ValidFrom.ToString("dd.MM.yyyy HH:mm")</strong> —
+                                                                    @currentRate.ValueIncVat.ToString("0.###") p/kWh
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </details>
+                                                }
+                                                else
+                                                {
+                                                    <p class="text-muted fst-italic">No unit rates loaded.</p>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-muted fst-italic mt-2">No tariff details loaded yet.</p>
+                        }
                     </div>
-                }
-                else
-                {
-                    <p>No tariff details loaded yet.</p>
-                }
-            </details>
+                </div>
+            </div>
         }
     </div>
 }
 else
 {
-    <p>Loading or no data available.</p>
+    <p class="text-muted">Loading or no data available.</p>
 }
