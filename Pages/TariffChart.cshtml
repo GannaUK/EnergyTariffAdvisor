@@ -1,0 +1,176 @@
+﻿@page
+@model EnergyTariffAdvisor.Pages.TariffChartModel
+@using EnergyTariffAdvisor.Models
+@{
+    ViewData["Title"] = "Tariff and Consumption Visualisation";
+}
+
+<h2 class="mb-4">Tariff and Consumption Analysis</h2>
+
+@if (Model.Tariff == null || Model.Profile == null)
+{
+    <div class="alert alert-danger">
+        Tariff or consumption profile not found. Please return and try again.
+    </div>
+}
+else
+{
+    <div class="card mb-4 shadow-sm rounded-3 border-0">
+        <div class="card-header text-white bg-primary text-center fw-bold fs-5">
+            @Model.Tariff.TariffCode
+        </div>
+        <div class="card-body">
+            <p class="mb-2"><strong>Supplier:</strong> @Model.Tariff.SupplierName</p>
+            <p class="mb-2"><strong>Tariff Type:</strong> @Model.Tariff.TariffType</p>
+            <p class="mb-2"><strong>Standing Charge:</strong> @Model.Tariff.StandingChargeDaily.ToString("0.##") p/day</p>
+            <p class="mb-0"><strong>Unit Rate:</strong> @Model.Tariff.UnitRate.ToString("0.##") p/kWh</p>
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Unit Rate vs Consumption</h5>
+                        <canvas id="overlayChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Cost per Interval</h5>
+                        <canvas id="costChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const costs = @Html.Raw(Json.Serialize(Model.IntervalChartData.Select(d => d.Cost)));
+        const unitRates = @Html.Raw(Json.Serialize(Model.IntervalChartData.Select(d => d.UnitRate)));
+        const usage = @Html.Raw(Json.Serialize(Model.IntervalChartData.Select(d => d.Consumption)));
+
+            const labels = [
+                "00:00", "00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30",
+                "04:00", "04:30", "05:00", "05:30", "06:00", "06:30", "07:00", "07:30",
+                "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+                "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
+                "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30",
+                "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30"
+            ];
+
+        
+
+                new Chart(document.getElementById('overlayChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Consumption (kWh)',
+                        type: 'bar',
+                        data: usage,
+                        backgroundColor: 'rgba(25, 135, 84, 0.6)', // green bars
+                        yAxisID: 'y',
+                    },
+                    {
+                        label: 'Unit Rate (p/kWh)',
+                        type: 'line',
+                        data: unitRates,
+                        borderColor: '#dc3545', // red
+                        backgroundColor: 'rgba(220, 53, 69, 0.2)',
+                        fill: false,
+                        yAxisID: 'y1',
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                stacked: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Tariff vs Consumption Overlay'
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Consumption (kWh)'
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Unit Rate (p/kWh)'
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    }
+                }
+            }
+        });
+         new Chart(document.getElementById('costChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Cost per Interval (p)',
+                    backgroundColor: '#0d6efd',
+                    data: costs
+                }]
+            }
+        });
+    </script>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">Detailed Cost Breakdown</h5>
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Interval</th>
+                        <th>Time</th>
+                        <th>Unit Rate (p/kWh)</th>
+                        <th>Consumption (kWh)</th>
+                        <th>Cost (p)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < 48; i++)
+                    {
+                        var rate = Model.Tariff.GetUnitRateForInterval(i);
+                        var usage = Model.Profile.Consumption[i];
+                        var cost = rate * usage;
+                        <tr>
+                            <td>@i</td>
+                            <td>@Model.IntervalToTime(i)</td>
+                            <td>@rate.ToString("0.###")</td>
+                            <td>@usage.ToString("0.###")</td>
+                            <td>@cost.ToString("0.###")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+   
+}

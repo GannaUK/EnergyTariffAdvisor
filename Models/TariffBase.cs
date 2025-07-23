@@ -50,5 +50,10 @@ namespace EnergyTariffAdvisor.Models
         // Отображение тарифов — индивидуально для каждого тарифа
         // Display of rates — individually for each tariff
         public abstract string GetUnitRateDisplay();
+
+        internal decimal GetUnitRateForInterval(int i)
+        {
+            return i >= 0 && i < UnitRatesPerInterval.Count ? UnitRatesPerInterval[i] : throw new IndexOutOfRangeException("Interval index out of range");
+        }
     }
 }
