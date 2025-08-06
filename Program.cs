@@ -1,6 +1,7 @@
+using EnergyTariffAdvisor.Models;
 using EnergyTariffAdvisor.OctopusApi;
-using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,11 @@ builder.Services.AddRazorPages();
 builder.Services.AddHttpClient<IOctopusTariffProvider, OctopusTariffService>();
 
 builder.Services.AddSession();
+
+// Регистрация сервиса для работы с CSV файлами
+// added singleton to ensure only one instance is used throughout the app
+builder.Services.AddSingleton<HouseholdSurveyCsvService>();
+
 
 // без этого путает точки с запятыми в числах
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
