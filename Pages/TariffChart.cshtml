@@ -167,7 +167,20 @@ else
                             <td>@cost.ToString("0.###")</td>
                         </tr>
                     }
-                </tbody>
+                    
+                    <tr class="table-secondary fw-bold">
+                        <td colspan="3">Total by intervals (£) </td>
+                        <td>@Model.totalUsage.ToString("0.###")</td>
+                        <td>@Model.totalCost.ToString("0.###")</td>
+                    </tr>
+                    <tr class="table-info">
+                        <td colspan="4">Daily standing charge (£)</td>
+                        <td>@Model.Tariff.StandingChargeDaily.ToString("0.###")</td>
+                    </tr>
+                    <tr class="table-success fw-bold">
+                        <td colspan="4">Total (£)</td>
+                        <td>@Model.grandTotalCost.ToString("0.###")</td>
+                    </tr>
             </table>
         </div>
     </div>

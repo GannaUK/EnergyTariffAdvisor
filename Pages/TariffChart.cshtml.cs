@@ -14,6 +14,10 @@ namespace EnergyTariffAdvisor.Pages
 
         public List<IntervalData> IntervalChartData { get; set; } = new();
 
+        public decimal totalUsage => Profile?.Consumption != null ? Math.Round(Profile.Consumption.Sum(), 2) : 0;
+        public decimal totalCost => Tariff != null && Profile?.Consumption != null ? Math.Round(Tariff.CalculateCost(Profile), 2) : 0;
+        public decimal grandTotalCost => totalCost + Tariff?.StandingChargeDaily / 100 ?? 0; // Convert pence to pounds
+
         public IActionResult OnGet()
         {
             Tariff = HttpContext.Session.GetObject<TariffBase>("TariffDetails");

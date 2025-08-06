@@ -1,6 +1,7 @@
+using EnergyTariffAdvisor.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using EnergyTariffAdvisor.Models;
+using System.Globalization;
 
 namespace EnergyTariffAdvisor.Pages
 {
@@ -28,7 +29,7 @@ namespace EnergyTariffAdvisor.Pages
             }
         }
 
-        public IActionResult OnPost(string action)
+        public IActionResult OnPost(string action, IFormFile? csvFile)
         {
             if (action == "reset")
             {
@@ -49,7 +50,53 @@ namespace EnergyTariffAdvisor.Pages
 
                 return Page();
             }
+            else if (action == "upload")
+            {
+                if (csvFile == null || csvFile.Length == 0)
+                {
+                    TempData["ProfileWarning"] = "Please select a CSV file.";
+                    return Page();
+                }
 
+                try
+                {
+                    using var reader = new StreamReader(csvFile.OpenReadStream());
+                    var content = reader.ReadToEnd();
+
+                    // Разделение на числа, поддержка как запятой, так и новой строки
+                    var values = content
+                        .Trim()
+                        .Split(new[] { ',', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    if (values.Length != 48)
+                    {
+                        TempData["ProfileWarning"] = "CSV file must contain exactly 48 values.";
+                        return Page();
+                    }
+
+                    var newConsumption = new List<decimal>();
+                    foreach (var val in values)
+                    {
+                        if (!decimal.TryParse(val, NumberStyles.Any, CultureInfo.InvariantCulture, out var d))
+                        {
+                            TempData["ProfileWarning"] = $"Invalid number in CSV: '{val}'.";
+                            return Page();
+                        }
+                        // Преобразуем показания счетчика в кВт·ч, предполагая, что в CSV указано в Вт
+                        // turn this into kWh from W
+                        //newConsumption.Add(d * 0.001m);
+                        newConsumption.Add(d * 0.001m * (5m / 60m));
+                    }
+
+                    Profile.Consumption = newConsumption;
+                }
+                catch (Exception ex)
+                {
+                    TempData["ProfileWarning"] = "Error reading CSV file: " + ex.Message;
+                }
+
+                return Page();
+            }
             // Основное сохранение — если нажата кнопка "Use This Profile"
             if (!ModelState.IsValid)
             {

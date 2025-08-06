@@ -256,7 +256,12 @@ namespace EnergyTariffAdvisor.Pages
                                     Href = selfLink ?? ""
                                 };
                             }
+                            //else if (tariffCode.Contains("FIX"))
+                            //{
+                            //    continue; // Пропускаем тарифы, которые не подходят под известные типы
+                            //}
                             else
+
                             {
                                 // TODO: change to Fixed Tariff
                                 selectedTariff = new FixedTariff(tariffDetails.StandardUnitRateIncVat, tariffDetails.StandingChargeIncVat, tariffDetails.ExitFeesIncVat)
@@ -270,7 +275,6 @@ namespace EnergyTariffAdvisor.Pages
                                     Href = selfLink ?? ""
                                 };
                             }
-
                             if (tariffDetails.StandardUnitRateIncVat > 0)
                             {
                                 selectedTariff.UnitRate = tariffDetails.StandardUnitRateIncVat;
