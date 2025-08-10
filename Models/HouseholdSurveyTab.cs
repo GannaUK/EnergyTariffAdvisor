@@ -7,7 +7,7 @@ namespace EnergyTariffAdvisor.Models
     public class HouseholdSurveyTab
     {
         [Name("ID")]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public int? A1 { get; set; }
         public int? A2a { get; set; }
         public int? A2b { get; set; }

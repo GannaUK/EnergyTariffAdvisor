@@ -10,7 +10,7 @@ namespace EnergyTariffAdvisor.Models
 {
     public class HouseholdSurveyCsvService
     {
-        public HouseholdSurveyTab? LoadSurveyById(string csvPath, int id)
+        public HouseholdSurveyTab? LoadSurveyById(string csvPath, string householdId)
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
@@ -25,7 +25,10 @@ namespace EnergyTariffAdvisor.Models
             using (var csv = new CsvReader(reader, config))
             {
                 var records = csv.GetRecords<HouseholdSurveyTab>();
-                return records.FirstOrDefault(r => r.Id == id);
+                // householdId expected format: "household_<ID>"
+
+                return records.FirstOrDefault(r => r.Id == householdId);
+
             }
         }
 
@@ -40,5 +43,6 @@ namespace EnergyTariffAdvisor.Models
                 writer.WriteLine();
             }
         }
+
     }
 }

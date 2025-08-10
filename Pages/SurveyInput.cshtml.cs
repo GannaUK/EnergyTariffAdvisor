@@ -41,7 +41,7 @@ namespace EnergyTariffAdvisor.Pages
 
             if (LoadId.HasValue)
             {
-                var loaded = _csvService.LoadSurveyById("csv/survey_only.csv", LoadId.Value);
+                var loaded = _csvService.LoadSurveyById("csv/survey_only.csv", ("household_" + LoadId.Value));
                 if (loaded != null)
                     Survey = loaded;
             }
@@ -51,7 +51,7 @@ namespace EnergyTariffAdvisor.Pages
         public IActionResult OnPostSave()
         {
             SurveyProperties = new List<PropertyInfo>(typeof(HouseholdSurveyTab).GetProperties());
-            _csvService.SaveSurvey("csv/survey_only.csv", Survey);
+            //_csvService.SaveSurvey("csv/survey_only.csv", Survey);
             return RedirectToPage();
         }
     }
