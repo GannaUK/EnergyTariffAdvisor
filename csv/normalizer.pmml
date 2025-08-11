@@ -1,0 +1,1338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMML version="4.2" xmlns="http://www.dmg.org/PMML-4_2">
+  <Header copyright="DELL">
+    <Application name="KNIME" version="5.5.0"/>
+  </Header>
+  <DataDictionary numberOfFields="168">
+    <DataField name="HouseholdID" optype="categorical" dataType="string"/>
+    <DataField name="Interval_0" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="406.0814527918779" rightMargin="7556.861151683566"/>
+    </DataField>
+    <DataField name="Interval_1" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="399.09580360406125" rightMargin="7332.726211683565"/>
+    </DataField>
+    <DataField name="Interval_2" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="303.24979147540984" rightMargin="4915.30389809331"/>
+    </DataField>
+    <DataField name="Interval_3" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="333.65906819672125" rightMargin="4034.1197127586206"/>
+    </DataField>
+    <DataField name="Interval_4" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="409.4650634179359" rightMargin="9675.60897507771"/>
+    </DataField>
+    <DataField name="Interval_5" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="422.77803917089665" rightMargin="14713.074260751297"/>
+    </DataField>
+    <DataField name="Interval_6" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="361.9266397227362" rightMargin="12752.38502821244"/>
+    </DataField>
+    <DataField name="Interval_7" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="451.2574819672132" rightMargin="8637.355290673573"/>
+    </DataField>
+    <DataField name="Interval_8" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="472.7571463636364" rightMargin="12953.926693843749"/>
+    </DataField>
+    <DataField name="Interval_9" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="388.9310642365985" rightMargin="8489.249999896367"/>
+    </DataField>
+    <DataField name="Interval_10" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="376.6043990163934" rightMargin="14390.490107499989"/>
+    </DataField>
+    <DataField name="Interval_11" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="489.2350067213112" rightMargin="18916.312128947386"/>
+    </DataField>
+    <DataField name="Interval_12" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="745.3288828395064" rightMargin="10476.825095604392"/>
+    </DataField>
+    <DataField name="Interval_13" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="778.1400406885248" rightMargin="11485.790762637362"/>
+    </DataField>
+    <DataField name="Interval_14" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="825.9325084262294" rightMargin="13149.150700367649"/>
+    </DataField>
+    <DataField name="Interval_15" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="692.6931559672132" rightMargin="15146.408081940299"/>
+    </DataField>
+    <DataField name="Interval_16" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="913.1647913939399" rightMargin="16447.369252631575"/>
+    </DataField>
+    <DataField name="Interval_17" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="845.4115921212119" rightMargin="7638.11252775"/>
+    </DataField>
+    <DataField name="Interval_18" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="763.1271790909091" rightMargin="7198.745419444442"/>
+    </DataField>
+    <DataField name="Interval_19" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="705.5737072727272" rightMargin="6932.644987683398"/>
+    </DataField>
+    <DataField name="Interval_20" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="828.8930931803278" rightMargin="6713.937439473684"/>
+    </DataField>
+    <DataField name="Interval_21" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="704.133051454712" rightMargin="6656.040087434208"/>
+    </DataField>
+    <DataField name="Interval_22" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="718.7276556820696" rightMargin="6648.124221068888"/>
+    </DataField>
+    <DataField name="Interval_23" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="659.9265058391867" rightMargin="10385.43759474027"/>
+    </DataField>
+    <DataField name="Interval_24" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="738.9450976377077" rightMargin="11222.092431818186"/>
+    </DataField>
+    <DataField name="Interval_25" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="583.3104045619225" rightMargin="6959.231836752138"/>
+    </DataField>
+    <DataField name="Interval_26" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="532.0146957375227" rightMargin="7187.297160526315"/>
+    </DataField>
+    <DataField name="Interval_27" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="566.3742730499083" rightMargin="6173.147314895753"/>
+    </DataField>
+    <DataField name="Interval_28" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="603.825192730129" rightMargin="8595.63909652382"/>
+    </DataField>
+    <DataField name="Interval_29" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="676.6545746136777" rightMargin="20545.76691165412"/>
+    </DataField>
+    <DataField name="Interval_30" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="801.7271127272728" rightMargin="13571.241794025978"/>
+    </DataField>
+    <DataField name="Interval_31" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="587.6301572727273" rightMargin="12290.339543993508"/>
+    </DataField>
+    <DataField name="Interval_32" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="958.5396860064938" rightMargin="10862.769961233762"/>
+    </DataField>
+    <DataField name="Interval_33" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="912.463160909091" rightMargin="10990.362531830524"/>
+    </DataField>
+    <DataField name="Interval_34" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="1435.2205053246755" rightMargin="12740.174028947373"/>
+    </DataField>
+    <DataField name="Interval_35" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="1577.6303729885053" rightMargin="10930.468060526315"/>
+    </DataField>
+    <DataField name="Interval_36" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="1564.0680408021105" rightMargin="10902.444392307692"/>
+    </DataField>
+    <DataField name="Interval_37" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="1533.3907702781094" rightMargin="12090.161697802196"/>
+    </DataField>
+    <DataField name="Interval_38" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="1755.843941524955" rightMargin="13976.326424175828"/>
+    </DataField>
+    <DataField name="Interval_39" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="1703.1992362063886" rightMargin="10134.376250549447"/>
+    </DataField>
+    <DataField name="Interval_40" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="1521.623893628465" rightMargin="10579.230557564937"/>
+    </DataField>
+    <DataField name="Interval_41" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="1524.6656496968583" rightMargin="10403.375697405067"/>
+    </DataField>
+    <DataField name="Interval_42" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="1246.0059733671744" rightMargin="9535.340820479136"/>
+    </DataField>
+    <DataField name="Interval_43" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="967.6374643993229" rightMargin="9258.55031452991"/>
+    </DataField>
+    <DataField name="Interval_44" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="675.7085771742809" rightMargin="10489.523353846158"/>
+    </DataField>
+    <DataField name="Interval_45" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="542.9704957021994" rightMargin="12289.731342175317"/>
+    </DataField>
+    <DataField name="Interval_46" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="454.24572901861274" rightMargin="8498.498878636361"/>
+    </DataField>
+    <DataField name="Interval_47" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="428.01806409475455" rightMargin="7931.457951440168"/>
+    </DataField>
+    <DataField name="Iteration" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="214.0"/>
+    </DataField>
+    <DataField name="A1" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="5.0"/>
+    </DataField>
+    <DataField name="A2a" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="8.0"/>
+    </DataField>
+    <DataField name="A2b" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A3" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A4" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="6.0"/>
+    </DataField>
+    <DataField name="A5" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A7_GAS" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A7_ELECT" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A7_OIL" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A7t_LPG" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A7_COAL" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A7_WOODBIO" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_boil_more_10" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_boil_average" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_boil_condensing" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_boil_new" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_boil_unknown" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_boil_automatic" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_modern_storage" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_old_storage" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_roomheaters" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_oil_coal_heaters" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_wood_bio_stove" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_openfire" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A8_heatingsystem_other" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A9" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="9.0"/>
+    </DataField>
+    <DataField name="A10" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="6.0"/>
+    </DataField>
+    <DataField name="A11" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A12" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A13" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A14" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A15" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A15_GAS" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="5.0"/>
+    </DataField>
+    <DataField name="A15_GASBP" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1224.0"/>
+    </DataField>
+    <DataField name="A15_GASkw" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="53708.0"/>
+    </DataField>
+    <DataField name="A15_ELECTRICITY" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="5.0"/>
+    </DataField>
+    <DataField name="A15_ELEBP" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1248.0"/>
+    </DataField>
+    <DataField name="A15_ELEkw" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="37917.0"/>
+    </DataField>
+    <DataField name="A15_OIL" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="4.0"/>
+    </DataField>
+    <DataField name="A15_OILBP" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="4500.0"/>
+    </DataField>
+    <DataField name="A15_OILL" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="4000.0"/>
+    </DataField>
+    <DataField name="A15_LPG" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="4.0"/>
+    </DataField>
+    <DataField name="A15_LGPBP" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1500.0"/>
+    </DataField>
+    <DataField name="A15_LPGL" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="2786.0"/>
+    </DataField>
+    <DataField name="A15_COAL" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="4.0"/>
+    </DataField>
+    <DataField name="A15_COLBP" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1100.0"/>
+    </DataField>
+    <DataField name="A15_COLkg" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="50.0"/>
+    </DataField>
+    <DataField name="A15_WOOD_BIOMASS" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="4.0"/>
+    </DataField>
+    <DataField name="A15_BIOBP" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="500.0"/>
+    </DataField>
+    <DataField name="A15_BIOkg" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1500.0"/>
+    </DataField>
+    <DataField name="A16" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A17_renewa_solar" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A17_renewa_photovolt" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A17_renewa_groundheatpump" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A17_renewa_woodbio" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A17_renewa_hydropow" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A17_renewa_airheatpump" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A17_renewa_idont" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A18_Loft" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A18_Loft_thickness" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="9.0"/>
+    </DataField>
+    <DataField name="A18_Cavitywall" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A18_Solidwall" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A18_Underfloor" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A18_Draughtexclusion" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A18_Doubleglazing" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A18_Doubleglazingpercent" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="4.0"/>
+    </DataField>
+    <DataField name="A18_Idontknow" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A19" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="2.0" rightMargin="100.0"/>
+    </DataField>
+    <DataField name="A20" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="70.0"/>
+    </DataField>
+    <DataField name="A21" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="7.0"/>
+    </DataField>
+    <DataField name="A22_numberfridgefreezer" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A22_agefridgefreezer" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A22_efficiencyfridgfreez" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="10.0"/>
+    </DataField>
+    <DataField name="t1_numberfridge" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A22_agefridge" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A22_efficiencyfridge" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="10.0"/>
+    </DataField>
+    <DataField name="t1_numberfreezer" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A22_agefreezer" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A22_efficiencyfreezer" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="10.0"/>
+    </DataField>
+    <DataField name="t1_numberdishwasher" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A22_agedishwashers" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="4.0"/>
+    </DataField>
+    <DataField name="A22_efficiencydishwasher" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="10.0"/>
+    </DataField>
+    <DataField name="t1_dryer" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A22_agedryer" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A22_efficiencydryer" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="10.0"/>
+    </DataField>
+    <DataField name="t1_washingmachine" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A22_agewashingmachine" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A22_efficiencywashing" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="10.0"/>
+    </DataField>
+    <DataField name="A23" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="4.0"/>
+    </DataField>
+    <DataField name="A24" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A25" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A26" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="20.0"/>
+    </DataField>
+    <DataField name="A27" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A28" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="7.0"/>
+    </DataField>
+    <DataField name="A29" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A30" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A31" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="10.0"/>
+    </DataField>
+    <DataField name="A32" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="35.0"/>
+    </DataField>
+    <DataField name="A33" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="50.0"/>
+    </DataField>
+    <DataField name="A34_TVst" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="22.0"/>
+    </DataField>
+    <DataField name="A34_TVlcd" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="6.0"/>
+    </DataField>
+    <DataField name="A34_Tvpla" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A34_Sat" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="7.0"/>
+    </DataField>
+    <DataField name="A34_Cabl" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="A34_Freev" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="6.0"/>
+    </DataField>
+    <DataField name="A34_DVD" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="5.0"/>
+    </DataField>
+    <DataField name="A34_VCR" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A34_PVR" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="3.0"/>
+    </DataField>
+    <DataField name="A34_PC" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="4.0"/>
+    </DataField>
+    <DataField name="A34_LapPC" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="6.0"/>
+    </DataField>
+    <DataField name="A34_Inkj" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A34_Lasr" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A34_Scan" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="2.0"/>
+    </DataField>
+    <DataField name="A34_Mobch" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="5.0"/>
+    </DataField>
+    <DataField name="A34_Othch" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="15.0"/>
+    </DataField>
+    <DataField name="A35" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="4.0"/>
+    </DataField>
+    <DataField name="A36" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="4.0"/>
+    </DataField>
+    <DataField name="A37" optype="continuous" dataType="integer">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="18.0"/>
+    </DataField>
+  </DataDictionary>
+  <TransformationDictionary>
+    <DerivedField displayName="A1" name="A1*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A1">
+        <LinearNorm orig="0.0" norm="-0.25"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A2a" name="A2a*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A2a">
+        <LinearNorm orig="0.0" norm="-0.14285714285714285"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A2b" name="A2b*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A2b">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.5"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A3" name="A3*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A3">
+        <LinearNorm orig="0.0" norm="-1.0"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A4" name="A4*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A4">
+        <LinearNorm orig="0.0" norm="-0.2"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A5" name="A5*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A5">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A7_GAS" name="A7_GAS*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A7_GAS">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A7_ELECT" name="A7_ELECT*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A7_ELECT">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A7_OIL" name="A7_OIL*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A7_OIL">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A7t_LPG" name="A7t_LPG*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A7t_LPG">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A7_COAL" name="A7_COAL*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A7_COAL">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A7_WOODBIO" name="A7_WOODBIO*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A7_WOODBIO">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_boil_more_10" name="A8_boil_more_10*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_boil_more_10">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_boil_average" name="A8_boil_average*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_boil_average">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_boil_condensing" name="A8_boil_condensing*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_boil_condensing">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_boil_new" name="A8_boil_new*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_boil_new">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_boil_unknown" name="A8_boil_unknown*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_boil_unknown">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_boil_automatic" name="A8_boil_automatic*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_boil_automatic">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_modern_storage" name="A8_modern_storage*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_modern_storage">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_old_storage" name="A8_old_storage*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_old_storage">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_roomheaters" name="A8_roomheaters*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_roomheaters">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_oil_coal_heaters" name="A8_oil_coal_heaters*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_oil_coal_heaters">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_wood_bio_stove" name="A8_wood_bio_stove*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_wood_bio_stove">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_openfire" name="A8_openfire*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_openfire">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A8_heatingsystem_other" name="A8_heatingsystem_other*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A8_heatingsystem_other">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A9" name="A9*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A9">
+        <LinearNorm orig="0.0" norm="-0.125"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A10" name="A10*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A10">
+        <LinearNorm orig="0.0" norm="-0.2"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A11" name="A11*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A11">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A12" name="A12*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A12">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A13" name="A13*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A13">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A14" name="A14*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A14">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15" name="A15*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15">
+        <LinearNorm orig="0.0" norm="-1.0"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_GAS" name="A15_GAS*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_GAS">
+        <LinearNorm orig="0.0" norm="-0.25"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_GASBP" name="A15_GASBP*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_GASBP">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="8.169934640522876E-4"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_GASkw" name="A15_GASkw*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_GASkw">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.861920011916288E-5"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_ELECTRICITY" name="A15_ELECTRICITY*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_ELECTRICITY">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.2"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_ELEBP" name="A15_ELEBP*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_ELEBP">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="8.012820512820513E-4"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_ELEkw" name="A15_ELEkw*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_ELEkw">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="2.637339451960862E-5"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_OIL" name="A15_OIL*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_OIL">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.25"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_OILBP" name="A15_OILBP*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_OILBP">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="2.2222222222222223E-4"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_OILL" name="A15_OILL*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_OILL">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="3.846153846153846E-4"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_LPG" name="A15_LPG*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_LPG">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.3333333333333333"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_LGPBP" name="A15_LGPBP*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_LGPBP">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.002"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_LPGL" name="A15_LPGL*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_LPGL">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_COAL" name="A15_COAL*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_COAL">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.25"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_COLBP" name="A15_COLBP*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_COLBP">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="9.090909090909091E-4"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_COLkg" name="A15_COLkg*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_COLkg">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.02"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_WOOD_BIOMASS" name="A15_WOOD_BIOMASS*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_WOOD_BIOMASS">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.25"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_BIOBP" name="A15_BIOBP*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_BIOBP">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.002"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A15_BIOkg" name="A15_BIOkg*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A15_BIOkg">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="6.666666666666666E-4"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A16" name="A16*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A16">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A17_renewa_solar" name="A17_renewa_solar*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A17_renewa_solar">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A17_renewa_photovolt" name="A17_renewa_photovolt*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A17_renewa_photovolt">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A17_renewa_groundheatpump" name="A17_renewa_groundheatpump*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A17_renewa_groundheatpump">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A17_renewa_woodbio" name="A17_renewa_woodbio*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A17_renewa_woodbio">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A17_renewa_hydropow" name="A17_renewa_hydropow*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A17_renewa_hydropow">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A17_renewa_airheatpump" name="A17_renewa_airheatpump*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A17_renewa_airheatpump">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A17_renewa_idont" name="A17_renewa_idont*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A17_renewa_idont">
+        <LinearNorm orig="0.0" norm="-1.0"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A18_Loft" name="A18_Loft*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A18_Loft">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A18_Loft_thickness" name="A18_Loft_thickness*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A18_Loft_thickness">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.1111111111111111"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A18_Cavitywall" name="A18_Cavitywall*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A18_Cavitywall">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A18_Solidwall" name="A18_Solidwall*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A18_Solidwall">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A18_Underfloor" name="A18_Underfloor*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A18_Underfloor">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A18_Draughtexclusion" name="A18_Draughtexclusion*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A18_Draughtexclusion">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A18_Doubleglazing" name="A18_Doubleglazing*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A18_Doubleglazing">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A18_Doubleglazingpercent" name="A18_Doubleglazingpercent*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A18_Doubleglazingpercent">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.3333333333333333"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A18_Idontknow" name="A18_Idontknow*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A18_Idontknow">
+        <LinearNorm orig="0.0" norm="-1.0"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A19" name="A19*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A19">
+        <LinearNorm orig="0.0" norm="-0.05263157894736842"/>
+        <LinearNorm orig="1.0" norm="-0.042105263157894736"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A20" name="A20*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A20">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.014285714285714285"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A21" name="A21*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A21">
+        <LinearNorm orig="0.0" norm="-0.16666666666666666"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_numberfridgefreezer" name="A22_numberfridgefreezer*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_numberfridgefreezer">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.5"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_agefridgefreezer" name="A22_agefridgefreezer*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_agefridgefreezer">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_efficiencyfridgfreez" name="A22_efficiencyfridgfreez*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_efficiencyfridgfreez">
+        <LinearNorm orig="0.0" norm="-0.1111111111111111"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="t1_numberfridge" name="t1_numberfridge*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="t1_numberfridge">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.5"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_agefridge" name="A22_agefridge*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_agefridge">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_efficiencyfridge" name="A22_efficiencyfridge*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_efficiencyfridge">
+        <LinearNorm orig="0.0" norm="-0.1111111111111111"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="t1_numberfreezer" name="t1_numberfreezer*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="t1_numberfreezer">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.5"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_agefreezer" name="A22_agefreezer*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_agefreezer">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_efficiencyfreezer" name="A22_efficiencyfreezer*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_efficiencyfreezer">
+        <LinearNorm orig="0.0" norm="-0.25"/>
+        <LinearNorm orig="1.0" norm="-0.125"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="t1_numberdishwasher" name="t1_numberdishwasher*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="t1_numberdishwasher">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_agedishwashers" name="A22_agedishwashers*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_agedishwashers">
+        <LinearNorm orig="0.0" norm="-0.3333333333333333"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_efficiencydishwasher" name="A22_efficiencydishwasher*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_efficiencydishwasher">
+        <LinearNorm orig="0.0" norm="-0.1111111111111111"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="t1_dryer" name="t1_dryer*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="t1_dryer">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.5"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_agedryer" name="A22_agedryer*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_agedryer">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_efficiencydryer" name="A22_efficiencydryer*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_efficiencydryer">
+        <LinearNorm orig="0.0" norm="-0.1111111111111111"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="t1_washingmachine" name="t1_washingmachine*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="t1_washingmachine">
+        <LinearNorm orig="0.0" norm="-1.0"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_agewashingmachine" name="A22_agewashingmachine*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_agewashingmachine">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A22_efficiencywashing" name="A22_efficiencywashing*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A22_efficiencywashing">
+        <LinearNorm orig="0.0" norm="-0.1111111111111111"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A23" name="A23*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A23">
+        <LinearNorm orig="0.0" norm="-0.3333333333333333"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A24" name="A24*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A24">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A25" name="A25*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A25">
+        <LinearNorm orig="0.0" norm="-1.0"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A26" name="A26*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A26">
+        <LinearNorm orig="0.0" norm="-0.05263157894736842"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A27" name="A27*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A27">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A28" name="A28*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A28">
+        <LinearNorm orig="0.0" norm="-0.16666666666666666"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A29" name="A29*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A29">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A30" name="A30*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A30">
+        <LinearNorm orig="0.0" norm="-0.5"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A31" name="A31*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A31">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.1"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A32" name="A32*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A32">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.02857142857142857"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A33" name="A33*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A33">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.02"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_TVst" name="A34_TVst*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_TVst">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.045454545454545456"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_TVlcd" name="A34_TVlcd*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_TVlcd">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.2"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_Tvpla" name="A34_Tvpla*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_Tvpla">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.5"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_Sat" name="A34_Sat*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_Sat">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.14285714285714285"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_Cabl" name="A34_Cabl*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_Cabl">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_Freev" name="A34_Freev*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_Freev">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.16666666666666666"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_DVD" name="A34_DVD*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_DVD">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.2"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_VCR" name="A34_VCR*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_VCR">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.5"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_PVR" name="A34_PVR*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_PVR">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="1.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_PC" name="A34_PC*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_PC">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.25"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_LapPC" name="A34_LapPC*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_LapPC">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.16666666666666666"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_Inkj" name="A34_Inkj*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_Inkj">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.5"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_Lasr" name="A34_Lasr*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_Lasr">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.5"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_Scan" name="A34_Scan*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_Scan">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.5"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_Mobch" name="A34_Mobch*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_Mobch">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.2"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A34_Othch" name="A34_Othch*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A34_Othch">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.06666666666666667"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A35" name="A35*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A35">
+        <LinearNorm orig="0.0" norm="-0.3333333333333333"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A36" name="A36*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A36">
+        <LinearNorm orig="0.0" norm="-0.3333333333333333"/>
+        <LinearNorm orig="1.0" norm="0.0"/>
+      </NormContinuous>
+    </DerivedField>
+    <DerivedField displayName="A37" name="A37*" optype="continuous" dataType="double">
+      <Extension name="summary" extender="KNIME" value="Min/Max (0.0, 1) normalization on 118 column(s)"/>
+      <NormContinuous field="A37">
+        <LinearNorm orig="0.0" norm="0.0"/>
+        <LinearNorm orig="1.0" norm="0.05555555555555555"/>
+      </NormContinuous>
+    </DerivedField>
+  </TransformationDictionary>
+</PMML>
