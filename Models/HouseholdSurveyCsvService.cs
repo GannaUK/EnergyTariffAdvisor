@@ -34,8 +34,7 @@ namespace EnergyTariffAdvisor.Models
 
         public void SaveSurvey(string csvPath, HouseholdSurveyTab survey)
         {
-            // Пример: добавить/заменить строку анкеты с нужным ID
-            // Для простоты: можно сериализовать весь список, либо только одну строку (для новых файлов)
+           
             using (var writer = new StreamWriter(csvPath, append: true))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {

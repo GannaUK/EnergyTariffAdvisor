@@ -12,7 +12,7 @@
         <link href="~/css/site.css" rel="stylesheet" />
     </head>
     <body>
-        <h2 class="mb-4">Edit Your Consumption Profile</h2>
+        <h2 class="mb-4">Edit Your Consumption Profile (kWt)</h2>
         @if (TempData["ProfileWarning"] != null)
         {
             <div class="alert alert-warning">
@@ -20,16 +20,30 @@
             </div>
         }
         <form method="post" enctype="multipart/form-data">
-            <div class="text-center mb-6">
-                <label class="form-label">Upload a CSV file to set your profile:</label>
-                @* TODO - fix russian in chrome *@
-            <label for="csvFile">Choose file</label>
-            <input type="file" id="csvFile" name="csvFile" accept=".csv,text/csv" class="form-control" />
-                <button type="submit" name="action" value="upload" class="btn btn-outline-primary me-2">Upload Csv Profile</button>
-                <button type="submit" name="action" value="reset" class="btn btn-outline-secondary me-2">Reset All to Zero</button>
-                <button type="submit" name="action" value="random" class="btn btn-outline-info me-2">Randomise</button>
-                <button type="submit" name="action" value="save" class="btn btn-success">Use This Profile</button>
+        <div class="text-center mb-6">
+            <label class="form-label">Upload a CSV file to set your profile:</label>
+            @* Fixed: custom file input to avoid browser localization issues (e.g., Russian in Chrome) *@
+            <div class="input-group mb-3" style="position:relative;">
+                <input type="file" class="form-control" id="csvFile" name="csvFile"
+                       accept=".csv,text/csv"
+                       aria-describedby="inputGroupFileAddon"
+                       aria-label="Choose file">              
+                
             </div>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <button type="submit" name="action" value="upload" class="btn btn-outline-primary">Upload Csv Profile</button>
+                <a href="@Url.Page("SurveyInput")" class="btn btn-secondary">Get AI Profile Prediction</a>
+                <button type="submit" name="action" value="reset" class="btn btn-outline-secondary">Reset All to Zero</button>
+                <button type="submit" name="action" value="random" class="btn btn-outline-info">Randomise</button>
+                <button type="submit" name="action" value="save" class="btn btn-success">Use This Profile</button>
+                
+            </div>
+        </div>
+
+        <div class="text-left mb-4">
+            <label class="form-label">Check your consumption profile:</label>
+        </div>
+
             <div class="d-flex flex-row gap-3 overflow-auto pb-2">
                 <!-- Ночная зона -->
                 <div class="card border-success bg-light" style="min-width: 250px;">

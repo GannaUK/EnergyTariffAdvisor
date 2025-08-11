@@ -40,8 +40,9 @@ namespace EnergyTariffAdvisor.Pages
 
         public IActionResult OnPostLoad()
         {
-
-            SurveyProperties = typeof(HouseholdSurveyTab).GetProperties().ToList();
+            try
+            {
+                SurveyProperties = typeof(HouseholdSurveyTab).GetProperties().ToList();
             QuestionLabels = HouseholdSurveyQuestionLabels.GetLabels();
 
             if (LoadId.HasValue)
@@ -51,6 +52,12 @@ namespace EnergyTariffAdvisor.Pages
                     Survey = loaded;
             }
             return Page();
+            }
+            catch (Exception ex)
+            {                
+                
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPostSaveAsync()
@@ -60,7 +67,7 @@ namespace EnergyTariffAdvisor.Pages
             // Plan:
             // - When collecting featureValues, replace any nulls with 0.
             // - Use Select to check for null and substitute 0 for int?/double? properties.
-            // TODO: normalization!
+            // normalization
             var normalizer = new Normalizer();
 
 
