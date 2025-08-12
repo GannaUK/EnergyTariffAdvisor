@@ -210,6 +210,20 @@ namespace EnergyTariffAdvisor.Pages
                                         selectedTariff.UnitRatesPerInterval.Add(0m);
                                 }
                             }
+                            if (tariffDetails.Code.Contains("COSY"))
+                            {
+                                selectedTariff = new CosyTariff(ratesResponse.Results)
+                                {
+                                    TariffCode = tariffCode,
+                                    ProductName = product.FullName ?? "",
+                                    SupplierName = "Octopus Energy",
+                                    Description = product.Description ?? "",
+                                    TariffType = TariffType.Cosy,
+                                    Href = selfLink ?? ""
+                                };                              
+
+                                
+                            }
                             else if (product.IsTracker)
                             {
                                 // TODO: implement TrackerTariff
@@ -224,7 +238,7 @@ namespace EnergyTariffAdvisor.Pages
                                     Href = selfLink ?? ""
                                 };
                             }
-                            else if (tariffCode.Contains("GO"))
+                            else if (tariffCode.Contains("GO") || tariffCode.Contains("INTELLI-FIX") || tariffCode.Contains("INTELLI-VAR"))
                             {
                                 // TODO: implement DayNightTariff
                                 var results = ratesResponse.Results;

@@ -60,7 +60,7 @@ namespace EnergyTariffAdvisor.Pages
         }
         public string IntervalToTime(int interval)
         {
-            // »нтервалы по 30 минут, 0 Ч это 00:00, 1 Ч 00:30 и т.д. - intervals of 30 minutes, 0 is 00:00, 1 is 00:30, etc.
+            // intervals of 30 minutes, 0 is 00:00, 1 is 00:30, etc.
             int totalMinutes = interval * 30;
             int hours = totalMinutes / 60;
             int minutes = totalMinutes % 60;

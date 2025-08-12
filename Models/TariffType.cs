@@ -5,6 +5,7 @@
         Fixed,
         DayNight,
         Flexible,
-        Tracker
+        Tracker,
+        Cosy
     }
 }

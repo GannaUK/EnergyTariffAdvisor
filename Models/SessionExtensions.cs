@@ -46,6 +46,9 @@ namespace EnergyTariffAdvisor.Models
                 polymorphismOptions.DerivedTypes.Add(
                     new JsonDerivedType(typeof(DayNightTariff), "daynight"));
 
+                polymorphismOptions.DerivedTypes.Add(
+                    new JsonDerivedType(typeof(CosyTariff), "cosy"));
+
                 typeInfo.PolymorphismOptions = polymorphismOptions;
             }
         }
