@@ -210,7 +210,7 @@ namespace EnergyTariffAdvisor.Pages
                                         selectedTariff.UnitRatesPerInterval.Add(0m);
                                 }
                             }
-                            if (tariffDetails.Code.Contains("COSY"))
+                            else if(tariffDetails.Code.Contains("COSY"))
                             {
                                 selectedTariff = new CosyTariff(ratesResponse.Results)
                                 {

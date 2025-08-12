@@ -3,6 +3,7 @@
 
 <h2>Comparison Results</h2>
 
+
 @if (Model.Results.Any())
 {
     <table class="table table-bordered table-striped">
@@ -12,8 +13,12 @@
                 <th>Tariff</th>
                 <th>Supplier</th>
                 <th>Type</th>
-                <th>Electricity Cost (£) per day <br />
-                    (excluding standing charge)</th>
+                <th>
+                    Electricity Cost (£) per day <br />
+                    (excluding standing charge)
+                </th>
+                <th>Standing Charge (£) per day</th>
+                <th>Total Cost (£) per day</th>
             </tr>
         </thead>
         <tbody>
@@ -21,21 +26,23 @@
             {
                 var result = Model.Results[i];
                 <tr class="@(result.Tariff.TariffCode.StartsWith("OFGEM") ? "table-danger" :
-                                  result.Tariff.TariffCode == "MANUAL" ? "table-info" : "")">
-                    <td>
-                        <a asp-page-handler="ViewDetails"
-                           asp-route-index="@i"
-                           class="btn btn-sm btn-info"
-                           target="_blank">
-                            Details
-                        </a>
-                    </td>
-                    <td>@result.Tariff.TariffCode</td>
-                    <td>@result.Tariff.SupplierName</td>
-                    <td>@result.Tariff.TariffType</td>
-                    <td>@result.Cost.ToString("0.00")</td>
-                </tr>
-            }
+                                                      result.Tariff.TariffCode == "MANUAL" ? "table-info" : "")">
+            <td>
+                <a asp-page-handler="ViewDetails"
+                   asp-route-index="@i"
+                   class="btn btn-sm btn-info"
+                   target="_blank">
+                    Details
+                </a>
+            </td>
+            <td><strong>@result.Tariff.TariffCode</strong> <br /> @result.Tariff.Description </td>
+            <td>@result.Tariff.SupplierName</td>
+            <td>@result.Tariff.TariffType</td>
+            <td>@result.Cost.ToString("0.00")</td>
+            <td>@result.StandingCharge.ToString("0.00")</td>
+            <td>@result.TotalCost.ToString("0.00")</td>
+        </tr>
+                }
         </tbody>
     </table>
 }

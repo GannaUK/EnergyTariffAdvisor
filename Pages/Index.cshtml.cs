@@ -14,7 +14,9 @@ namespace EnergyTariffAdvisor.Pages
 
         public void OnGet()
         {
-
+            HttpContext.Session.Remove("AvailableTariffs");
+            HttpContext.Session.Remove("SelectedTariff");
+            
         }
     }
 }

@@ -29,12 +29,13 @@ namespace EnergyTariffAdvisor.Pages
                 {
                     Tariff = tariff,
                     Cost = cost
+                    
                 });
                 comparisonTariffs.Add(tariff);
             }
 
-            // Сортируем по стоимости - sorted results and comparison tariffs by cost
-            Results.Sort((a, b) => a.Cost.CompareTo(b.Cost));
+            // Сортируем по стоимости - sorted results and comparison tariffs by TotalCost
+            Results.Sort((a, b) => a.TotalCost.CompareTo(b.TotalCost));
             comparisonTariffs.Sort((a, b) => a.CalculateCost(Profile).CompareTo(b.CalculateCost(Profile)));
 
             HttpContext.Session.SetObject("ComparisonTariffs", comparisonTariffs);
@@ -59,5 +60,8 @@ namespace EnergyTariffAdvisor.Pages
     {
         public TariffBase Tariff { get; set; }
         public decimal Cost { get; set; }
+        public decimal StandingCharge => Tariff.StandingChargeDaily / 100; // Convert pence to pounds   
+        public decimal TotalCost => Cost + StandingCharge; // Total cost including standing charge
+
     }
 }
