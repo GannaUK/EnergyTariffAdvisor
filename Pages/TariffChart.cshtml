@@ -149,7 +149,7 @@ else
                         <th>Interval</th>
                         <th>Time</th>
                         <th>Unit Rate (p/kWh)</th>
-                        <th>Consumption (kWh)</th>
+                        <th>Consumption (kWh/30 min)</th>
                         <th>Cost (p)</th>
                     </tr>
                 </thead>
@@ -175,7 +175,7 @@ else
                     </tr>
                     <tr class="table-info">
                         <td colspan="4">Daily standing charge (£)</td>
-                        <td>@Model.Tariff.StandingChargeDaily.ToString("0.###")</td>
+                        <td>@Model.standingCharge.ToString("0.###")</td>
                     </tr>
                     <tr class="table-success fw-bold">
                         <td colspan="4">Total (£)</td>
