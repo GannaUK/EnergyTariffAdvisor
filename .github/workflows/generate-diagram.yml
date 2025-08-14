@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PATH: ${{ env.PATH }}:$HOME/.dotnet/tools
 
     steps:
       - name: Checkout repository
