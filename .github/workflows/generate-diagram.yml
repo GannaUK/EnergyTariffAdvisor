@@ -26,7 +26,7 @@ jobs:
         run: |
           export PATH="$HOME/.dotnet/tools:$PATH"
           mkdir -p docs
-          puml-gen EnergyTariffAdvisor docs -dir -createAssociation -allInOne
+          puml-gen . docs -dir -createAssociation -allInOne
           mv docs/include.puml docs/class-diagram.puml
 
       - name: Install Java
