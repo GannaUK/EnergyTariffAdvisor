@@ -24,8 +24,10 @@ jobs:
 
       - name: Generate .puml from C#
         run: |
+          export PATH="$HOME/.dotnet/tools:$PATH"
           mkdir -p docs
-          pcdg -a EnergyTariffAdvisor docs/class-diagram.puml
+          puml-gen EnergyTariffAdvisor docs -dir -createAssociation -allInOne
+          mv docs/include.puml docs/class-diagram.puml
 
       - name: Install Java
         uses: actions/setup-java@v3
