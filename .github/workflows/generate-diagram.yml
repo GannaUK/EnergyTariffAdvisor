@@ -24,6 +24,7 @@ jobs:
 
       - name: Generate .puml from C#
         run: |
+          export PATH="$PATH:$HOME/.dotnet/tools"
           mkdir -p docs
           pcldg -r EnergyTariffAdvisor -o docs/class-diagram.puml
 
