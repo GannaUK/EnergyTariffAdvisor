@@ -25,7 +25,7 @@ jobs:
       - name: Generate .puml from C#
         run: |
           mkdir -p docs
-          pcldg -r <your-source-folder> -o docs/class-diagram.puml
+          pcldg -r EnergyTariffAdvisor -o docs/class-diagram.puml
 
       - name: Install Java
         uses: actions/setup-java@v3
