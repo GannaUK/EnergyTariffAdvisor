@@ -25,8 +25,7 @@ jobs:
       - name: Generate .puml from C#
         run: |
           mkdir -p docs
-          cd src
-          pcldg -r . -o ../docs/class-diagram.puml
+          pcldg -r <your-source-folder> -o docs/class-diagram.puml
 
       - name: Install Java
         uses: actions/setup-java@v3
