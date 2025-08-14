@@ -9,8 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PATH: ${{ env.PATH }}:$HOME/.dotnet/tools
 
     steps:
       - name: Checkout repository
@@ -22,31 +20,33 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Install PlantUmlClassDiagramGenerator
-        run: |
-          export PATH="$PATH:$HOME/.dotnet/tools"
-          dotnet tool install --global PlantUmlClassDiagramGenerator
+        run: dotnet tool install --global PlantUmlClassDiagramGenerator
 
       - name: Generate .puml from C#
         run: |
-          export PATH="$PATH:$HOME/.dotnet/tools"
           mkdir -p docs
-          pcldg -r EnergyTariffAdvisor -o docs/class-diagram.puml
+          pcdg -a EnergyTariffAdvisor docs/class-diagram.puml
 
       - name: Install Java
         uses: actions/setup-java@v3
         with:
           java-version: '17'
+          distribution: 'temurin'
 
       - name: Download PlantUML jar
-        run: curl -L -o plantuml.jar https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar
+        run: curl -L -o plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 
       - name: Convert .puml to PNG
-        run: java -jar plantuml.jar docs/class-diagram.puml -o docs
+        run: java -jar plantuml.jar docs/class-diagram.puml
 
-      - name: Commit and push diagram
+      - name: Commit and push diagram if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/class-diagram.*
-          git commit -m "Update class diagram"
-          git push
+          git add docs/class-diagram.puml docs/class-diagram.png || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Update class diagram [skip ci]"
+            git push
+          else
+            echo "No changes to commit"
+          fi
