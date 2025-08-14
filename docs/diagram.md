@@ -1,11 +1,13 @@
 ```mermaid
 classDiagram
-    %% --- API classes ---
+    %% --- API Service Block ---
     class OctopusTariffService {
-        +GetProductsAsync()
-        +GetProductDetailsByUrlAsync(productUrl)
-        +GetStandardUnitRatesAsync(productCode, tariffCode, regionCode)
+        +GetProductsAsync("GET: api.octopus.energy/v1/")
+        +GetProductDetailsByUrlAsync("GET: api.../products/E-1R-AGILE-24-10-01-A")
+        +GetStandardUnitRatesAsync("GET: api.../standard-unit-rates/")
     }
+    note for OctopusTariffService "Other APIes can be added"
+
     class ProductDto
 
     %% --- Tariff block ---
@@ -20,7 +22,7 @@ classDiagram
     class FixedTariff
     class IntervalTariff
 
-    %% --- Inheritance ---
+    %% --- Inheritance Tariffs ---
     CosyTariff --|> TariffBase
     DayNightTariff --|> TariffBase
     FixedTariff --|> TariffBase
@@ -34,8 +36,5 @@ classDiagram
     TariffType --> FixedTariff : selects
     TariffType --> IntervalTariff : selects
 
-    %% --- Notes ---
     note for TariffBase "Tariffs can be added"
-
-    %% Слегка разнесено для лучшей читаемости
 ```
