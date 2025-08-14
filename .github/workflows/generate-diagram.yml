@@ -1,96 +1,48 @@
-## Class Diagram
-
 name: Generate Class Diagram
 
 on:
   push:
-    branches: [ "master" ]   
-  workflow_dispatch:        # позволит запустить вручную
-
-permissions:
-  contents: write           # нужно, чтобы воркфлоу мог коммитить PNG обратно в репо
+    branches:
+      - master
+  workflow_dispatch:
 
 jobs:
-  diagram:
+  build:
     runs-on: ubuntu-latest
-    env:
-      PROJECT_DIR: '.'     
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v3
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
 
       - name: Install PlantUmlClassDiagramGenerator
-        run: |
-          dotnet tool install --global PlantUmlClassDiagramGenerator
-          echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
-
-      - name: Ensure docs folder
-        run: mkdir -p docs
+        run: dotnet tool install --global PlantUmlClassDiagramGenerator
 
       - name: Generate .puml from C#
         run: |
-          pcldg -r "$PROJECT_DIR" -o docs/class-diagram.puml
+          mkdir -p docs
+          cd src
+          pcldg -r . -o ../docs/class-diagram.puml
 
-      # Добавляем тему (skinparam) в начало .puml
-      - name: Add theme to .puml
-        run: |
-          cat > plantuml-theme.puml <<'EOF'
-' ===========================
-
-skinparam backgroundColor #fdfdfd
-skinparam classBackgroundColor #f4faff
-skinparam classBorderColor #1e88e5
-skinparam classBorderThickness 1.5
-skinparam classFontColor #0d47a1
-skinparam classFontSize 14
-skinparam classFontName Arial
-
-skinparam stereotypeCBackgroundColor #bbdefb
-skinparam stereotypeABackgroundColor #ffe0b2
-
-skinparam arrowColor #1e88e5
-skinparam arrowThickness 1.2
-
-skinparam shadowing true
-skinparam roundCorner 8
-skinparam dpi 150
-EOF
-          awk 'NR==1{print; system("cat plantuml-theme.puml"); next} {print}' docs/class-diagram.puml > docs/class-diagram.themed.puml
-          mv docs/class-diagram.themed.puml docs/class-diagram.puml
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
+      - name: Install Java
+        uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
           java-version: '17'
-
-      - name: Install Graphviz (required by PlantUML)
-        run: sudo apt-get update && sudo apt-get install -y graphviz
 
       - name: Download PlantUML jar
         run: curl -L -o plantuml.jar https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar
 
-      - name: Render PNG
-        run: |
-          # PNG появится в той же папке, что и .puml (docs/)
-          java -jar plantuml.jar -tpng docs/class-diagram.puml
+      - name: Convert .puml to PNG
+        run: java -jar plantuml.jar docs/class-diagram.puml -o docs
 
       - name: Commit and push diagram
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/class-diagram.puml docs/class-diagram.png
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "Update class diagram"
-            git push
-          
-
+          git add docs/class-diagram.*
+          git commit -m "Update class diagram"
+          git push
