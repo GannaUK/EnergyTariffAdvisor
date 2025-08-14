@@ -20,7 +20,9 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Install PlantUmlClassDiagramGenerator
-        run: dotnet tool install --global PlantUmlClassDiagramGenerator
+        run: |
+          export PATH="$PATH:$HOME/.dotnet/tools"
+          dotnet tool install --global PlantUmlClassDiagramGenerator
 
       - name: Generate .puml from C#
         run: |
