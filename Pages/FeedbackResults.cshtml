@@ -3,31 +3,132 @@
 @{
     ViewData["Title"] = "Feedback Responses";
 }
-<h2>Feedback Responses</h2>
-<table>
-    <thead>
-        <tr>
-            <th>N</th>
-            <th>Do you live in the UK?</th>
-            <th>Do you find the project idea relevant to your lifestyle?</th>
-            <th>Do you think AI predicted your consumption profile accurately?</th>
-            <th>What questions could improve the survey and prediction quality?</th>
-            <th>Did our calculator offer a more suitable tariff than your current one?</th>
-            <th>Дата</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var response in Model.FeedbackResponses)
-        {
-            <tr>
-                <td>@response.Id</td>
-                <td>@response.LiveInUK</td>
-                <td>@response.ProjectRelevant</td>
-                <td>@response.AIProfileAccurate</td>
-                <td>@response.Suggestions</td>
-                <td>@response.CalculatorBetter</td>
-                <td>@response.SubmittedAt</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<body>
+
+
+    <h2>Survey Results </h2>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card h-100 border-info">
+                <div class="card-header bg-info bg-opacity-10 text-info fw-semibold text-center">
+                    Is the Project Relevant?
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100 border-success">
+                <div class="card-header bg-success bg-opacity-10 text-success fw-semibold text-center">
+                    How Accurate Is the AI? How Helpful Is the Calculator?
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4 shadow">
+        <div class="card-body">
+            <table class="table table-bordered table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>N</th>
+                        <th>Do you live in the UK?</th>
+                        <th>Do you consider this project useful for your lifestyle?</th>
+                        <th>Do you think AI predicted your consumption profile accurately?</th>
+                        <th>What questions could improve the survey and prediction quality?</th>
+                        <th>Did our calculator help you find a more appropriate tariff for your needs?</th>
+                        @* <th>Date</th> *@
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var response in Model.FeedbackResponses)
+                    {
+                        <tr>
+                            <td>@response.Id</td>
+                            <td>@response.LiveInUK</td>
+                            <td>@response.ProjectRelevant</td>
+                            <td>@response.AIProfileAccurate</td>
+                            <td>@response.Suggestions</td>
+                            <td>@response.CalculatorBetter</td>
+                            @* <td>@response.SubmittedAt</td> *@
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @{
+        // "Live in the UK?"
+        var liveInUKYes = Model.FeedbackResponses.Count(r => r.LiveInUK == true);
+        var liveInUKNo = Model.FeedbackResponses.Count(r => r.LiveInUK == false);
+        // ProjectRelevant
+        var projectRelevantYes = Model.FeedbackResponses.Count(r => r.ProjectRelevant == true);
+        var projectRelevantNo = Model.FeedbackResponses.Count(r => r.ProjectRelevant == false);
+
+        // Consider relevant (all countries)
+        var relevant = Model.FeedbackResponses.Count(r => r.ProjectRelevant == true);
+
+        // Do not consider relevant, live in UK
+        var notRelevant_UK = Model.FeedbackResponses.Count(r => r.ProjectRelevant == false && r.LiveInUK == true);
+
+        // Do not consider relevant, do NOT live in UK (e.g., Ukrainians)
+        var notRelevant_nonUK = Model.FeedbackResponses.Count(r => r.ProjectRelevant == false && r.LiveInUK == false);
+    
+        // "AI predicted profile accurately?"
+        var aiYes = Model.FeedbackResponses.Count(r => r.AIProfileAccurate == true);
+        var aiNo = Model.FeedbackResponses.Count(r => r.AIProfileAccurate == false);
+        // "Calculator offered better tariff?"
+        var calcYes = Model.FeedbackResponses.Count(r => r.CalculatorBetter == true && r.LiveInUK == true);
+        var calcNo = Model.FeedbackResponses.Count(r => r.CalculatorBetter == false && r.LiveInUK == true);
+        
+    }
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+            const pieData = {
+            labels: [
+                'Consider relevant',
+                'Do not consider relevant (UK)',
+                'Do not consider relevant (non-UK)'
+            ],
+            datasets: [{
+                data: [@relevant, @notRelevant_UK, @notRelevant_nonUK],
+                backgroundColor: ['#36A2EB', '#FF6384', '#AAAAAA'],
+            }]
+        };
+        new Chart(document.getElementById('pieChart'), {
+            type: 'pie',
+            data: pieData,
+            options: {
+                responsive: false,
+                maintainAspectRatio: false,
+                animation: false,
+                plugins: { title: { display: true, text: 'Perception of Project Relevance' } },
+                interaction: { mode: 'nearest' }
+            }
+        });
+
+             // BarChart: ML quality and usefulness
+        const barData = {
+            labels: ['AI accurate', 'AI not accurate', 'Calculator useful', 'Calculator not useful'],
+            datasets: [{
+                label: 'Count',
+                data: [@aiYes, @aiNo, @calcYes, @calcNo],
+                backgroundColor: ['#4BC0C0', '#FFCE56', '#36A2EB', '#FF6384'],
+            }]
+        };
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: barData,
+            options: {
+                plugins: { title: { display: true, text: 'Quality of AI & Calculator' } },
+                interaction: { mode: 'nearest' },
+                animation: false,   
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    </script>
+</body>

@@ -8,9 +8,9 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<div class="container mt-5">
+<div class="container mt-5 mb-4">
     <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
+        <div class="col-md-8 col-lg-6 mb-4">
             <div class="card shadow">
                 <div class="card-body">
                     <h3 class="card-title mb-4 text-center">Feedback Survey / Опитування</h3>
@@ -35,7 +35,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">2. Do you find the project idea relevant to your lifestyle? <br /><span class="text-muted">Вважаєте ідею проекту актуальною для вашого способу життя?</span></label>
+                                <label class="form-label">2. Do you consider this project useful for your lifestyle? <br /><span class="text-muted">Вважаєте ідею проекту актуальною для вашого способу життя?</span></label>
                                 <div>
                                     <input type="radio" asp-for="Response.ProjectRelevant" value="true" class="btn-check" id="relYes" autocomplete="off">
                                     <label class="btn btn-outline-primary me-2" for="relYes">Yes / Так</label>
@@ -60,7 +60,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">5. Did our calculator offer a more suitable tariff than your current one? <br /><span class="text-muted">Чи був наш калькулятор тарифів більш відповідним, ніж ваш поточний тариф?</span></label>
+                                <label class="form-label">5. Did our calculator help you find a more appropriate tariff for your needs? <br /><span class="text-muted">Чи був наш калькулятор тарифів більш відповідним, ніж ваш поточний тариф?</span></label>
                                 <div>
                                     <input type="radio" asp-for="Response.CalculatorBetter" value="true" class="btn-check" id="calcYes" autocomplete="off">
                                     <label class="btn btn-outline-primary me-2" for="calcYes">Yes / Так</label>
@@ -69,7 +69,8 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-success w-100">Submit / Надіслати</button>
+                            <button type="submit" class="btn btn-success w-100 mb-4">Submit / Надіслати</button>
+                            <br />
                         </form>
                     }
                 </div>
