@@ -5,9 +5,1794 @@
     Layout = "_Layout";
 }
 
+<div class="container py-4" style="background: #faf4e8;">
+    <form method="post" class="mb-5">
+        <div class="card shadow-sm mb-4 p-4">
+            <h3 class="mb-4" style="color: #253873;">A. Your Home</h3>
+
+            <!-- 1. How many people regularly live in your household? -->
+            <div class="mb-4 pb-2 border-bottom">
+                <label class="form-label fw-semibold">
+                    How many people regularly live in your household?
+                </label>
+                <input asp-for="Survey.A1" type="number" class="form-control d-inline-block" style="width:100px;" />
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header text-left-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6;">
+                    What type of home do you live in?
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A2a" value="1" id="A2a_1" />
+                            <label class="form-check-label" for="A2a_1">Bungalow (detached)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A2a" value="2" id="A2a_2" />
+                            <label class="form-check-label" for="A2a_2">Bungalow (semi-detached)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A2a" value="3" id="A2a_3" />
+                            <label class="form-check-label" for="A2a_3">Flat/Maisonette</label>
+                        </div>
+                        <div class="card mb-4" style="border: 1.5px solid #bfbfbf; border-radius: 7px;">
+                            <div class="card-header py-2" style="background-color: #ededed; border-bottom: 1px solid #bfbfbf; text-align: left;">
+                                Is the flat on the top floor?
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" asp-for="Survey.A2b" value="1" id="A2b_1" />
+                                        <label class="form-check-label" for="A2b_1">Yes</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" asp-for="Survey.A2b" value="2" id="A2b_2" />
+                                        <label class="form-check-label" for="A2b_2">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A2a" value="4" id="A2a_4" />
+                            <label class="form-check-label" for="A2a_4">House (detached)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A2a" value="5" id="A2a_5" />
+                            <label class="form-check-label" for="A2a_5">House (semi-detached)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A2a" value="6" id="A2a_6" />
+                            <label class="form-check-label" for="A2a_6">House (mid-terrace)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A2a" value="7" id="A2a_7" />
+                            <label class="form-check-label" for="A2a_7">House (end-terrace)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A2a" value="8" id="A2a_8" />
+                            <label class="form-check-label " for="A2a_8">Other</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you own or rent your property?
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A3" value="1" id="A3_1" />
+                            <label class="form-check-label" for="A3_1">Own</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A3" value="2" id="A3_2" />
+                            <label class="form-check-label" for="A3_2">Rent</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How many bedrooms are there in your property?
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A4" value="1" id="A4_1" />
+                            <label class="form-check-label" for="A4_1">1</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A4" value="2" id="A4_2" />
+                            <label class="form-check-label" for="A4_2">2</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A4" value="3" id="A4_3" />
+                            <label class="form-check-label" for="A4_3">3</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A4" value="4" id="A4_4" />
+                            <label class="form-check-label" for="A4_4">4</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A4" value="5" id="A4_5" />
+                            <label class="form-check-label" for="A4_5">5</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A4" value="6" id="A4_6" />
+                            <label class="form-check-label" for="A4_6">More than 5</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How old is your property?
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A5" value="1" id="A5_1" />
+                            <label class="form-check-label" for="A5_1">Pre 1930</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A5" value="2" id="A5_2" />
+                            <label class="form-check-label" for="A5_2">1930-1995</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A5" value="3" id="A5_3" />
+                            <label class="form-check-label" for="A5_3">post 1995</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How do you primarily heat your home?
+                </div>
+                <div class="card-body">
+                    <div class="mb-2">
+                        <label class="fw-semibold">Gas</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A7_GAS" value="1" id="A7_GAS_Yes" />
+                            <label class="form-check-label" for="A7_GAS_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A7_GAS" value="2" id="A7_GAS_No" />
+                            <label class="form-check-label" for="A7_GAS_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Electricity</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A7_ELECT" value="1" id="A7_ELECT_Yes" />
+                            <label class="form-check-label" for="A7_ELECT_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A7_ELECT" value="2" id="A7_ELECT_No" />
+                            <label class="form-check-label" for="A7_ELECT_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Oil</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A7_OIL" value="1" id="A7_OIL_Yes" />
+                            <label class="form-check-label" for="A7_OIL_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A7_OIL" value="2" id="A7_OIL_No" />
+                            <label class="form-check-label" for="A7_OIL_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">LPG</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A7t_LPG" value="1" id="A7t_LPG_Yes" />
+                            <label class="form-check-label" for="A7t_LPG_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A7t_LPG" value="2" id="A7t_LPG_No" />
+                            <label class="form-check-label" for="A7t_LPG_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Coal</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A7_COAL" value="1" id="A7_COAL_Yes" />
+                            <label class="form-check-label" for="A7_COAL_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A7_COAL" value="2" id="A7_COAL_No" />
+                            <label class="form-check-label" for="A7_COAL_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Wood/Biomass</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A7_WOODBIO" value="1" id="A7_WOODBIO_Yes" />
+                            <label class="form-check-label" for="A7_WOODBIO_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A7_WOODBIO" value="2" id="A7_WOODBIO_No" />
+                            <label class="form-check-label" for="A7_WOODBIO_No">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    What type of heating system do you have?
+                </div>
+                <div class="card-body">
+                    <div class="mb-2">
+                        <label class="fw-semibold">Old Boiler</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_boil_more_10" value="1" id="A8_boil_more_10_Yes" />
+                            <label class="form-check-label" for="A8_boil_more_10_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_boil_more_10" value="2" id="A8_boil_more_10_No" />
+                            <label class="form-check-label" for="A8_boil_more_10_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Average Boiler</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_boil_average" value="1" id="A8_boil_average_Yes" />
+                            <label class="form-check-label" for="A8_boil_average_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_boil_average" value="2" id="A8_boil_average_No" />
+                            <label class="form-check-label" for="A8_boil_average_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Condensing Boiler</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_boil_condensing" value="1" id="A8_boil_condensing_Yes" />
+                            <label class="form-check-label" for="A8_boil_condensing_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_boil_condensing" value="2" id="A8_boil_condensing_No" />
+                            <label class="form-check-label" for="A8_boil_condensing_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">New Boiler</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_boil_new" value="1" id="A8_boil_new_Yes" />
+                            <label class="form-check-label" for="A8_boil_new_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_boil_new" value="2" id="A8_boil_new_No" />
+                            <label class="form-check-label" for="A8_boil_new_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Unknown Age Boiler</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_boil_unknown" value="1" id="A8_boil_unknown_Yes" />
+                            <label class="form-check-label" for="A8_boil_unknown_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_boil_unknown" value="2" id="A8_boil_unknown_No" />
+                            <label class="form-check-label" for="A8_boil_unknown_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Automatic/Gravity Feed Boiler</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_boil_automatic" value="1" id="A8_boil_automatic_Yes" />
+                            <label class="form-check-label" for="A8_boil_automatic_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_boil_automatic" value="2" id="A8_boil_automatic_No" />
+                            <label class="form-check-label" for="A8_boil_automatic_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Modern Storage Heaters</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_modern_storage" value="1" id="A8_modern_storage_Yes" />
+                            <label class="form-check-label" for="A8_modern_storage_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_modern_storage" value="2" id="A8_modern_storage_No" />
+                            <label class="form-check-label" for="A8_modern_storage_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Old Storage Heaters</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_old_storage" value="1" id="A8_old_storage_Yes" />
+                            <label class="form-check-label" for="A8_old_storage_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_old_storage" value="2" id="A8_old_storage_No" />
+                            <label class="form-check-label" for="A8_old_storage_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Room Heaters</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_roomheaters" value="1" id="A8_roomheaters_Yes" />
+                            <label class="form-check-label" for="A8_roomheaters_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_roomheaters" value="2" id="A8_roomheaters_No" />
+                            <label class="form-check-label" for="A8_roomheaters_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Oil/Coal Room Heaters</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_oil_coal_heaters" value="1" id="A8_oil_coal_heaters_Yes" />
+                            <label class="form-check-label" for="A8_oil_coal_heaters_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_oil_coal_heaters" value="2" id="A8_oil_coal_heaters_No" />
+                            <label class="form-check-label" for="A8_oil_coal_heaters_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Wood/Biomass Stove</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_wood_bio_stove" value="1" id="A8_wood_bio_stove_Yes" />
+                            <label class="form-check-label" for="A8_wood_bio_stove_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_wood_bio_stove" value="2" id="A8_wood_bio_stove_No" />
+                            <label class="form-check-label" for="A8_wood_bio_stove_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Open Fire</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_openfire" value="1" id="A8_openfire_Yes" />
+                            <label class="form-check-label" for="A8_openfire_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_openfire" value="2" id="A8_openfire_No" />
+                            <label class="form-check-label" for="A8_openfire_No">No</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="fw-semibold">Other</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_heatingsystem_other" value="1" id="A8_heatingsystem_other_Yes" />
+                            <label class="form-check-label" for="A8_heatingsystem_other_Yes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A8_heatingsystem_other" value="2" id="A8_heatingsystem_other_No" />
+                            <label class="form-check-label" for="A8_heatingsystem_other_No">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    What do you think is the average temperature of your living room during daytime?
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A9" value="1" id="A9_1" />
+                            <label class="form-check-label" for="A9_1">Less than 18°C</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A9" value="2" id="A9_2" />
+                            <label class="form-check-label" for="A9_2">18°C</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A9" value="3" id="A9_3" />
+                            <label class="form-check-label" for="A9_3">19°C</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A9" value="4" id="A9_4" />
+                            <label class="form-check-label" for="A9_4">20°C</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A9" value="5" id="A9_5" />
+                            <label class="form-check-label" for="A9_5">21°C</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A9" value="6" id="A9_6" />
+                            <label class="form-check-label" for="A9_6">22°C</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A9" value="7" id="A9_7" />
+                            <label class="form-check-label" for="A9_7">23°C</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A9" value="8" id="A9_8" />
+                            <label class="form-check-label" for="A9_8">24°C</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A9" value="9" id="A9_9" />
+                            <label class="form-check-label" for="A9_9">25°C</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Survey.A9" value="10" id="A9_10" />
+                            <label class="form-check-label" for="A9_10">More than 25°C</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How do you heat up warm water in your household?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A10" value="1" id="A10_1" />
+                        <label class="form-check-label" for="A10_1">Using electricity</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A10" value="2" id="A10_2" />
+                        <label class="form-check-label" for="A10_2">Water heater or boiler running on natural gas, oil or coal</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A10" value="3" id="A10_3" />
+                        <label class="form-check-label" for="A10_3">District heating</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A10" value="4" id="A10_4" />
+                        <label class="form-check-label" for="A10_4">Solar thermal system</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A10" value="5" id="A10_5" />
+                        <label class="form-check-label" for="A10_5">I don't know</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A10" value="6" id="A10_6" />
+                        <label class="form-check-label" for="A10_6">Other</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you lower your heaters’ settings during the night?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A11" value="1" id="A11_1" />
+                        <label class="form-check-label" for="A11_1">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A11" value="2" id="A11_2" />
+                        <label class="form-check-label" for="A11_2">No, leave heating on</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A11" value="3" id="A11_3" />
+                        <label class="form-check-label" for="A11_3">No, turn heating off</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you lower your heaters’ settings when you are away?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A12" value="1" id="A12_1" />
+                        <label class="form-check-label" for="A12_1">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A12" value="2" id="A12_2" />
+                        <label class="form-check-label" for="A12_2">No, leave the heating on</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A12" value="3" id="A12_3" />
+                        <label class="form-check-label" for="A12_3">No, turn the heating off</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you use a green tariff option for your household electricity consumption?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A13" value="1" id="A13_1" />
+                        <label class="form-check-label" for="A13_1">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A13" value="2" id="A13_2" />
+                        <label class="form-check-label" for="A13_2">No</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A13" value="3" id="A13_3" />
+                        <label class="form-check-label" for="A13_3">Don't know</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How many of the shower and water taps in your household are water-saving appliances?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A14" value="1" id="A14_1" />
+                        <label class="form-check-label" for="A14_1">All of them</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A14" value="2" id="A14_2" />
+                        <label class="form-check-label" for="A14_2">Some of them</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A14" value="3" id="A14_3" />
+                        <label class="form-check-label" for="A14_3">None</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you have your energy bills to hand, or know how much you pay on average for your energy usage?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15" value="1" id="A15_1" />
+                        <label class="form-check-label" for="A15_1">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15" value="2" id="A15_2" />
+                        <label class="form-check-label" for="A15_2">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    What kind of GAS payments do you make?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_GAS" value="1" id="A15_GAS_1" />
+                        <label class="form-check-label" for="A15_GAS_1">Not applicable</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_GAS" value="2" id="A15_GAS_2" />
+                        <label class="form-check-label" for="A15_GAS_2">Monthly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_GAS" value="3" id="A15_GAS_3" />
+                        <label class="form-check-label" for="A15_GAS_3">Quarterly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_GAS" value="4" id="A15_GAS_4" />
+                        <label class="form-check-label" for="A15_GAS_4">Yearly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_GAS" value="5" id="A15_GAS_5" />
+                        <label class="form-check-label" for="A15_GAS_5">Pre-payment meter</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    GAS Spend (£)
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="number" step="0.01" asp-for="Survey.A15_GASBP" id="A15_GASBP" placeholder="Enter amount in £" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    GAS Usage (kWh)
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="number" step="0.01" asp-for="Survey.A15_GASkw" id="A15_GASkw" placeholder="Enter usage in kWh" />
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    What kind of ELECTRICITY payments do you make?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_ELECTRICITY" value="1" id="A15_ELECTRICITY_1" />
+                        <label class="form-check-label" for="A15_ELECTRICITY_1">Not applicable</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_ELECTRICITY" value="2" id="A15_ELECTRICITY_2" />
+                        <label class="form-check-label" for="A15_ELECTRICITY_2">Monthly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_ELECTRICITY" value="3" id="A15_ELECTRICITY_3" />
+                        <label class="form-check-label" for="A15_ELECTRICITY_3">Quarterly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_ELECTRICITY" value="4" id="A15_ELECTRICITY_4" />
+                        <label class="form-check-label" for="A15_ELECTRICITY_4">Yearly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_ELECTRICITY" value="5" id="A15_ELECTRICITY_5" />
+                        <label class="form-check-label" for="A15_ELECTRICITY_5">Pre-payment meter</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    ELECTRICITY Spend (£)
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="number" step="0.01" asp-for="Survey.A15_ELEBP" id="A15_ELEBP" placeholder="Enter amount in £" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    ELECTRICITY Usage (kWh)
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="number" step="0.01" asp-for="Survey.A15_ELEkw" id="A15_ELEkw" placeholder="Enter usage in kWh" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    What kind of OIL payments do you make?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_OIL" value="1" id="A15_OIL_1" />
+                        <label class="form-check-label" for="A15_OIL_1">Not applicable</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_OIL" value="2" id="A15_OIL_2" />
+                        <label class="form-check-label" for="A15_OIL_2">Monthly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_OIL" value="3" id="A15_OIL_3" />
+                        <label class="form-check-label" for="A15_OIL_3">On delivery</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_OIL" value="4" id="A15_OIL_4" />
+                        <label class="form-check-label" for="A15_OIL_4">Yearly</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    OIL Spend (£)
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="number" step="0.01" asp-for="Survey.A15_OILBP" id="A15_OILBP" placeholder="Enter amount in £" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    OIL Usage (kWh)
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="number" step="0.01" asp-for="Survey.A15_OILL" id="A15_OILL" placeholder="Enter usage in kWh" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    What kind of LPG payments do you make?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_LPG" value="1" id="A15_LPG_1" />
+                        <label class="form-check-label" for="A15_LPG_1">Not applicable</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_LPG" value="2" id="A15_LPG_2" />
+                        <label class="form-check-label" for="A15_LPG_2">Monthly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_LPG" value="3" id="A15_LPG_3" />
+                        <label class="form-check-label" for="A15_LPG_3">On delivery</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_LPG" value="4" id="A15_LPG_4" />
+                        <label class="form-check-label" for="A15_LPG_4">Yearly</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    LPG Spend (£)
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="number" step="0.01" asp-for="Survey.A15_LGPBP" id="A15_LGPBP" placeholder="Enter amount in £" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    LPG Usage (kWh)
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="number" step="0.01" asp-for="Survey.A15_LPGL" id="A15_LPGL" placeholder="Enter usage in kWh" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    What kind of COAL payments do you make?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_COAL" value="1" id="A15_COAL_1" />
+                        <label class="form-check-label" for="A15_COAL_1">Not applicable</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_COAL" value="2" id="A15_COAL_2" />
+                        <label class="form-check-label" for="A15_COAL_2">Monthly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_COAL" value="3" id="A15_COAL_3" />
+                        <label class="form-check-label" for="A15_COAL_3">On delivery</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_COAL" value="4" id="A15_COAL_4" />
+                        <label class="form-check-label" for="A15_COAL_4">Yearly</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    COAL Spend (£)
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="number" step="0.01" asp-for="Survey.A15_COLBP" id="A15_COLBP" placeholder="Enter amount in £" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    COAL Usage (kWh)
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="number" step="0.01" asp-for="Survey.A15_COLkg" id="A15_COLkg" placeholder="Enter usage in kWh" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    What kind of WOOD/BIOMASS payments do you make?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_WOOD_BIOMASS" value="1" id="A15_WOOD_BIOMASS_1" />
+                        <label class="form-check-label" for="A15_WOOD_BIOMASS_1">Not applicable</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_WOOD_BIOMASS" value="2" id="A15_WOOD_BIOMASS_2" />
+                        <label class="form-check-label" for="A15_WOOD_BIOMASS_2">Monthly</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_WOOD_BIOMASS" value="3" id="A15_WOOD_BIOMASS_3" />
+                        <label class="form-check-label" for="A15_WOOD_BIOMASS_3">On delivery</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A15_WOOD_BIOMASS" value="4" id="A15_WOOD_BIOMASS_4" />
+                        <label class="form-check-label" for="A15_WOOD_BIOMASS_4">Yearly</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    WOOD/BIOMASS Spend (£)
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="number" step="0.01" asp-for="Survey.A15_BIOBP" id="A15_BIOBP" placeholder="Enter amount in £" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    WOOD/BIOMASS Usage (kWh)
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="number" step="0.01" asp-for="Survey.A15_BIOkg" id="A15_BIOkg" placeholder="Enter usage in kWh" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you have a real time display?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A16" value="1" id="A16_Yes" />
+                        <label class="form-check-label" for="A16_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A16" value="0" id="A16_No" />
+                        <label class="form-check-label" for="A16_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Solar hot water
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_solar" value="1" id="A17_renewa_solar_Yes" />
+                        <label class="form-check-label" for="A17_renewa_solar_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_solar" value="0" id="A17_renewa_solar_No" />
+                        <label class="form-check-label" for="A17_renewa_solar_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Photovoltaic solar panels
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_photovolt" value="1" id="A17_renewa_photovolt_Yes" />
+                        <label class="form-check-label" for="A17_renewa_photovolt_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_photovolt" value="0" id="A17_renewa_photovolt_No" />
+                        <label class="form-check-label" for="A17_renewa_photovolt_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Ground source heat pump
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_groundheatpump" value="1" id="A17_renewa_groundheatpump_Yes" />
+                        <label class="form-check-label" for="A17_renewa_groundheatpump_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_groundheatpump" value="0" id="A17_renewa_groundheatpump_No" />
+                        <label class="form-check-label" for="A17_renewa_groundheatpump_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Ground source heat pump
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_groundheatpump" value="1" id="A17_renewa_groundheatpump_Yes" />
+                        <label class="form-check-label" for="A17_renewa_groundheatpump_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_groundheatpump" value="0" id="A17_renewa_groundheatpump_No" />
+                        <label class="form-check-label" for="A17_renewa_groundheatpump_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Wood/Biomass heating
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_woodbio" value="1" id="A17_renewa_woodbio_Yes" />
+                        <label class="form-check-label" for="A17_renewa_woodbio_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_woodbio" value="0" id="A17_renewa_woodbio_No" />
+                        <label class="form-check-label" for="A17_renewa_woodbio_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Hydro power
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_hydropow" value="1" id="A17_renewa_hydropow_Yes" />
+                        <label class="form-check-label" for="A17_renewa_hydropow_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_hydropow" value="0" id="A17_renewa_hydropow_No" />
+                        <label class="form-check-label" for="A17_renewa_hydropow_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Air source heat pump
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_airheatpump" value="1" id="A17_renewa_airheatpump_Yes" />
+                        <label class="form-check-label" for="A17_renewa_airheatpump_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_airheatpump" value="0" id="A17_renewa_airheatpump_No" />
+                        <label class="form-check-label" for="A17_renewa_airheatpump_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    I don’t use any of these (renewables)
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_idont" value="1" id="A17_renewa_idont_Yes" />
+                        <label class="form-check-label" for="A17_renewa_idont_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A17_renewa_idont" value="0" id="A17_renewa_idont_No" />
+                        <label class="form-check-label" for="A17_renewa_idont_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you have loft insulation?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Loft" value="1" id="A18_Loft_Yes" />
+                        <label class="form-check-label" for="A18_Loft_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Loft" value="0" id="A18_Loft_No" />
+                        <label class="form-check-label" for="A18_Loft_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How much loft insulation? (approximately)
+                    <br />
+                    <small>(1=12mm, 2=25mm, 3=50mm, 4=75mm, 5=100mm, 6=150mm, 7=200mm, 8=250mm, 9=300mm)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A18_Loft_thickness" id="A18_Loft_thickness">
+                        <option value="">Select thickness</option>
+                        <option value="1">12mm</option>
+                        <option value="2">25mm</option>
+                        <option value="3">50mm</option>
+                        <option value="4">75mm</option>
+                        <option value="5">100mm</option>
+                        <option value="6">150mm</option>
+                        <option value="7">200mm</option>
+                        <option value="8">250mm</option>
+                        <option value="9">300mm</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you have cavity wall insulation?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Cavitywall" value="1" id="A18_Cavitywall_Yes" />
+                        <label class="form-check-label" for="A18_Cavitywall_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Cavitywall" value="0" id="A18_Cavitywall_No" />
+                        <label class="form-check-label" for="A18_Cavitywall_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you have solid wall insulation?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Solidwall" value="1" id="A18_Solidwall_Yes" />
+                        <label class="form-check-label" for="A18_Solidwall_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Solidwall" value="0" id="A18_Solidwall_No" />
+                        <label class="form-check-label" for="A18_Solidwall_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you have underfloor insulation?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Underfloor" value="1" id="A18_Underfloor_Yes" />
+                        <label class="form-check-label" for="A18_Underfloor_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Underfloor" value="0" id="A18_Underfloor_No" />
+                        <label class="form-check-label" for="A18_Underfloor_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you have draught exclusion insulation?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Draughtexclusion" value="1" id="A18_Draughtexclusion_Yes" />
+                        <label class="form-check-label" for="A18_Draughtexclusion_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Draughtexclusion" value="0" id="A18_Draughtexclusion_No" />
+                        <label class="form-check-label" for="A18_Draughtexclusion_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you have double glazing?
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Doubleglazing" value="1" id="A18_Doubleglazing_Yes" />
+                        <label class="form-check-label" for="A18_Doubleglazing_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Doubleglazing" value="0" id="A18_Doubleglazing_No" />
+                        <label class="form-check-label" for="A18_Doubleglazing_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How many of your windows are double glazed?
+                    <br />
+                    <small>(1=100%, 2=75%, 3=50%, 4=25%)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A18_Doubleglazingpercent" id="A18_Doubleglazingpercent">
+                        <option value="">Select percentage</option>
+                        <option value="1">100%</option>
+                        <option value="2">75%</option>
+                        <option value="3">50%</option>
+                        <option value="4">25%</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Insulation [I DON'T KNOW]
+                </div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Idontknow" value="1" id="A18_Idontknow_Yes" />
+                        <label class="form-check-label" for="A18_Idontknow_Yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" asp-for="Survey.A18_Idontknow" value="0" id="A18_Idontknow_No" />
+                        <label class="form-check-label" for="A18_Idontknow_No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Approximately how many lightbulbs does your house have?
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A19" id="A19" min="0" placeholder="Enter number of lightbulbs" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How many of these lights have you swapped for low energy lightbulbs?
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A20" id="A20" min="0" placeholder="Enter number of low energy bulbs" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How often do you turn lights off when nobody is using them?
+                    <br />
+                    <small>(1=Never, 7=Always)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A21" id="A21">
+                        <option value="">Select frequency</option>
+                        <option value="1">1 - Never</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7 - Always</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Fridge-Freezer [NUMBER]
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A22_numberfridgefreezer" id="A22_numberfridgefreezer" min="0" placeholder="Enter number of fridge-freezers" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Fridge-Freezer [AGE]
+                    <br />
+                    <small>(1=1-12 years, 2=over 12 years, 3=I don't know)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A22_agefridgefreezer" id="A22_agefridgefreezer">
+                        <option value="">Select age</option>
+                        <option value="1">1 - 1-12 years</option>
+                        <option value="2">2 - Over 12 years</option>
+                        <option value="3">3 - I don't know</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Fridge-Freezer [EFFICIENCY]
+                    <br />
+                    <small>(1=A++, 2=A+, 3=A, 4=B, 5=C, 6=D, 7=E, 8=F, 9=G)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A22_efficiencyfridgfreez" id="A22_efficiencyfridgfreez">
+                        <option value="">Select efficiency rating</option>
+                        <option value="1">1 - A++</option>
+                        <option value="2">2 - A+</option>
+                        <option value="3">3 - A</option>
+                        <option value="4">4 - B</option>
+                        <option value="5">5 - C</option>
+                        <option value="6">6 - D</option>
+                        <option value="7">7 - E</option>
+                        <option value="8">8 - F</option>
+                        <option value="9">9 - G</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Fridge [NUMBER]
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.t1_numberfridge" id="t1_numberfridge" min="0" placeholder="Enter number of fridges" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Fridge [AGE]
+                    <br />
+                    <small>(1=1-12 years, 2=over 12 years, 3=I don't know)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A22_agefridge" id="A22_agefridge">
+                        <option value="">Select age</option>
+                        <option value="1">1 - 1-12 years</option>
+                        <option value="2">2 - Over 12 years</option>
+                        <option value="3">3 - I don't know</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Fridge [EFFICIENCY]
+                    <br />
+                    <small>(1=A++, 2=A+, 3=A, 4=B, 5=C, 6=D, 7=E, 8=F, 9=G)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A22_efficiencyfridge" id="A22_efficiencyfridge">
+                        <option value="">Select efficiency rating</option>
+                        <option value="1">1 - A++</option>
+                        <option value="2">2 - A+</option>
+                        <option value="3">3 - A</option>
+                        <option value="4">4 - B</option>
+                        <option value="5">5 - C</option>
+                        <option value="6">6 - D</option>
+                        <option value="7">7 - E</option>
+                        <option value="8">8 - F</option>
+                        <option value="9">9 - G</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Freezer [NUMBER]
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.t1_numberfreezer" id="t1_numberfreezer" min="0" placeholder="Enter number of freezers" />
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Freezer [AGE]
+                    <br />
+                    <small>(1=1-12 years, 2=over 12 years, 3=I don't know)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A22_agefreezer" id="A22_agefreezer">
+                        <option value="">Select age</option>
+                        <option value="1">1 - 1-12 years</option>
+                        <option value="2">2 - Over 12 years</option>
+                        <option value="3">3 - I don't know</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Freezer [EFFICIENCY]
+                    <br />
+                    <small>(1=A++, 2=A+, 3=A, 4=B, 5=C, 6=D, 7=E, 8=F, 9=G)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A22_efficiencyfreezer" id="A22_efficiencyfreezer">
+                        <option value="">Select efficiency rating</option>
+                        <option value="1">1 - A++</option>
+                        <option value="2">2 - A+</option>
+                        <option value="3">3 - A</option>
+                        <option value="4">4 - B</option>
+                        <option value="5">5 - C</option>
+                        <option value="6">6 - D</option>
+                        <option value="7">7 - E</option>
+                        <option value="8">8 - F</option>
+                        <option value="9">9 - G</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Dish Washer [NUMBER]
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.t1_numberdishwasher" id="t1_numberdishwasher" min="0" placeholder="Enter number of dishwashers" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Dish Washer [AGE]
+                    <br />
+                    <small>(1=1-2 years, 2=3-5 years, 3=over 5 years, 4=I don't know)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A22_agedishwashers" id="A22_agedishwashers">
+                        <option value="">Select age</option>
+                        <option value="1">1 - 1-2 years</option>
+                        <option value="2">2 - 3-5 years</option>
+                        <option value="3">3 - Over 5 years</option>
+                        <option value="4">4 - I don't know</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Dish Washer [EFFICIENCY]
+                    <br />
+                    <small>(1=A++, 2=A+, 3=A, 4=B, 5=C, 6=D, 7=E, 8=F, 9=G)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A22_efficiencydishwasher" id="A22_efficiencydishwasher">
+                        <option value="">Select efficiency rating</option>
+                        <option value="1">1 - A++</option>
+                        <option value="2">2 - A+</option>
+                        <option value="3">3 - A</option>
+                        <option value="4">4 - B</option>
+                        <option value="5">5 - C</option>
+                        <option value="6">6 - D</option>
+                        <option value="7">7 - E</option>
+                        <option value="8">8 - F</option>
+                        <option value="9">9 - G</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Dryer [NUMBER]
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.t1_dryer" id="t1_dryer" min="0" placeholder="Enter number of dryers" />
+                </div>
+            </div>
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Dryer [AGE]
+                    <br />
+                    <small>(1=1-12 years, 2=over 12 years, 3=I don't know)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A22_agedryer" id="A22_agedryer">
+                        <option value="">Select age</option>
+                        <option value="1">1 - 1-12 years</option>
+                        <option value="2">2 - Over 12 years</option>
+                        <option value="3">3 - I don't know</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Dryer [EFFICIENCY]
+                    <br />
+                    <small>(1=A++, 2=A+, 3=A, 4=B, 5=C, 6=D, 7=E, 8=F, 9=G)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A22_efficiencydryer" id="A22_efficiencydryer">
+                        <option value="">Select efficiency rating</option>
+                        <option value="1">1 - A++</option>
+                        <option value="2">2 - A+</option>
+                        <option value="3">3 - A</option>
+                        <option value="4">4 - B</option>
+                        <option value="5">5 - C</option>
+                        <option value="6">6 - D</option>
+                        <option value="7">7 - E</option>
+                        <option value="8">8 - F</option>
+                        <option value="9">9 - G</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Washing Machine [NUMBER]
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.t1_washingmachine" id="t1_washingmachine" min="0" placeholder="Enter number of washing machines" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Washing Machine [AGE]
+                    <br />
+                    <small>(1=1-12 years, 2=over 12 years, 3=I don't know)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A22_agewashingmachine" id="A22_agewashingmachine">
+                        <option value="">Select age</option>
+                        <option value="1">1 - 1-12 years</option>
+                        <option value="2">2 - Over 12 years</option>
+                        <option value="3">3 - I don't know</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Washing Machine [EFFICIENCY]
+                    <br />
+                    <small>(1=A++, 2=A+, 3=A, 4=B, 5=C, 6=D, 7=E, 8=F, 9=G)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A22_efficiencywashing" id="A22_efficiencywashing">
+                        <option value="">Select efficiency rating</option>
+                        <option value="1">1 - A++</option>
+                        <option value="2">2 - A+</option>
+                        <option value="3">3 - A</option>
+                        <option value="4">4 - B</option>
+                        <option value="5">5 - C</option>
+                        <option value="6">6 - D</option>
+                        <option value="7">7 - E</option>
+                        <option value="8">8 - F</option>
+                        <option value="9">9 - G</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    What type of hob do you have?
+                    <br />
+                    <small>(1=Gas, 2=Standard Electric, 3=Induction Electric, 4=I don't have one)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A23" id="A23">
+                        <option value="">Select hob type</option>
+                        <option value="1">1 - Gas</option>
+                        <option value="2">2 - Standard Electric</option>
+                        <option value="3">3 - Induction Electric</option>
+                        <option value="4">4 - I don't have one</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    What kind of oven do you have?
+                    <br />
+                    <small>(1=Gas, 2=Electric, 3=I don't have one)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A24" id="A24">
+                        <option value="">Select oven type</option>
+                        <option value="1">1 - Gas</option>
+                        <option value="2">2 - Electric</option>
+                        <option value="3">3 - I don't have one</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Do you own a microwave?
+                    <br />
+                    <small>(1=Yes, 2=No)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A25" id="A25">
+                        <option value="">Select an option</option>
+                        <option value="1">1 - Yes</option>
+                        <option value="2">2 - No</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How many loads of washing (laundry) do you do a week?
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A26" id="A26" min="0" placeholder="Enter number of loads per week" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    What is the average temperature setting that you use for washing clothes?
+                    <br />
+                    <small>(1=30 degrees, 2=40 degrees, 3=60 degrees, 4=90 degrees)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A27" id="A27">
+                        <option value="">Select temperature</option>
+                        <option value="1">1 - 30 degrees</option>
+                        <option value="2">2 - 40 degrees</option>
+                        <option value="3">3 - 60 degrees</option>
+                        <option value="4">4 - 90 degrees</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    When the washing machine is used, how often is it full?
+                    <br />
+                    <small>(1=Never, 7=Always)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A28" id="A28">
+                        <option value="">Select frequency</option>
+                        <option value="1">1 - Never</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7 - Always</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How often do you hang your laundry outside to dry?
+                    <br />
+                    <small>(1=Often, 2=Sometimes, 3=Never)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A29" id="A29">
+                        <option value="">Select frequency</option>
+                        <option value="1">1 - Often</option>
+                        <option value="2">2 - Sometimes</option>
+                        <option value="3">3 - Never</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How often do you hang your laundry inside to dry?
+                    <br />
+                    <small>(1=Often, 2=Sometimes, 3=Never)</small>
+                </div>
+                <div class="card-body">
+                    <select class="form-select" asp-for="Survey.A30" id="A30">
+                        <option value="">Select frequency</option>
+                        <option value="1">1 - Often</option>
+                        <option value="2">2 - Sometimes</option>
+                        <option value="3">3 - Never</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How many times a week do you take a bath?
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A31" id="A31" min="0" placeholder="Enter number of times per week" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How many times a week do you take a shower?
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A32" id="A32" min="0" placeholder="Enter number of times per week" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How long do you take to have a shower, on average?
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A33" id="A33" min="0" placeholder="Enter average shower time (minutes)" />
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Standard (CRT) TVs
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_TVst" id="A34_TVst" min="0" placeholder="Enter number of standard (CRT) TVs" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    LCD / Flatscreen TVs
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_TVlcd" id="A34_TVlcd" min="0" placeholder="Enter number of LCD / Flatscreen TVs" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Plasma TVs
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_Tvpla" id="A34_Tvpla" min="0" placeholder="Enter number of Plasma TVs" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Satellite boxes
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_Sat" id="A34_Sat" min="0" placeholder="Enter number of Satellite boxes" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Cable boxes
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_Cabl" id="A34_Cabl" min="0" placeholder="Enter number of Cable boxes" />
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Freeview boxes
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_Freev" id="A34_Freev" min="0" placeholder="Enter number of Freeview boxes" />
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    DVD player / recorder
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_DVD" id="A34_DVD" min="0" placeholder="Enter number of DVD players / recorders" />
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    VCR (video)
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_VCR" id="A34_VCR" min="0" placeholder="Enter number of VCRs" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Personal Video Recorder (with HDD)
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_PVR" id="A34_PVR" min="0" placeholder="Enter number of Personal Video Recorders (with HDD)" />
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Desktop computers
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_PC" id="A34_PC" min="0" placeholder="Enter number of desktop computers" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Laptop computers
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_LapPC" id="A34_LapPC" min="0" placeholder="Enter number of laptop computers" />
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Inkjet printers
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_Inkj" id="A34_Inkj" min="0" placeholder="Enter number of inkjet printers" />
+                </div>
+            </div>
+
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Laser printers
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_Lasr" id="A34_Lasr" min="0" placeholder="Enter number of laser printers" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Scanners
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_Scan" id="A34_Scan" min="0" placeholder="Enter number of scanners" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Mobile phone chargers
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_Mobch" id="A34_Mobch" min="0" placeholder="Enter number of mobile phone chargers" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    Other appliance chargers
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A34_Othch" id="A34_Othch" min="0" placeholder="Enter number of other appliance chargers" />
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How often do you leave your entertainment equipment on standby?
+                </div>
+                <div class="card-body">
+                    <select class="form-control" asp-for="Survey.A35" id="A35">
+                        <option value="">Select an option</option>
+                        <option value="1">All of the time</option>
+                        <option value="2">Most of the time</option>
+                        <option value="3">Some of the time</option>
+                        <option value="4">Never</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How often do you leave computer equipment on when you are not actively using it?
+                </div>
+                <div class="card-body">
+                    <select class="form-control" asp-for="Survey.A36" id="A36">
+                        <option value="">Select an option</option>
+                        <option value="1">All of the time</option>
+                        <option value="2">Most of the time</option>
+                        <option value="3">Some of the time</option>
+                        <option value="4">Never</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card mb-4" style="border: 1.5px solid #6DC5A6; border-radius: 7px;">
+                <div class="card-header py-2" style="background-color: #d6ede5; border-bottom: 1px solid #6DC5A6; text-align: left;">
+                    How many hours of television (on average) do you watch per day?
+                </div>
+                <div class="card-body">
+                    <input type="number" class="form-control" asp-for="Survey.A37" id="A37" min="0" step="0.1" placeholder="Enter average number of hours per day" />
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </form>
+</div>
+
 <div class="container py-4" style="padding-bottom: 100px;">
     <div class="card shadow-sm mb-4 p-3 text-center">
-        <h2 class="mb-0">Household Survey Input (kW)</h2>
+        <h2 class="mb-0">Household Survey Input </h2>
     </div>
 
     <form method="post" class="mb-5">

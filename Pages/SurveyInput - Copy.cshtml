@@ -1,0 +1,59 @@
+﻿@page
+@model EnergyTariffAdvisor.Pages.SurveyInputModel
+@using System.Globalization
+@{
+    Layout = "_Layout";
+}
+
+<div class="container py-4" style="padding-bottom: 100px;">
+    <div class="card shadow-sm mb-4 p-3 text-center">
+        <h2 class="mb-0">Household Survey Input (kW)</h2>
+    </div>
+
+    <form method="post" class="mb-5">
+        <div class="row justify-content-center align-items-end g-3">
+            <div class="col-auto">
+                <label for="LoadId" class="form-label">Load by ID:</label>
+                <input asp-for="LoadId" type="number" class="form-control" style="width:110px;" />
+            </div>
+            <div class="col-auto">
+                <button type="submit" asp-page-handler="Load" class="btn btn-primary px-4">Load Survey</button>
+            </div>
+        </div>
+    </form>
+
+    <form method="post">
+
+        <div class="table-responsive mb-3 border rounded" style="max-height: 50vh;">
+            <table class="table table-striped table-bordered align-middle mb-0 table-hover">
+                <thead class="table-light" style="position: sticky; top: 0;">
+                    <tr>
+                        <th style="width: 90%;">Question</th>
+                        <th style="width: 10%;">Answer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var prop in Model.SurveyProperties)
+                    {
+                        var label = Model.QuestionLabels.ContainsKey(prop.Name) ? Model.QuestionLabels[prop.Name] : prop.Name;
+                        <tr>
+                            <td>
+                                <span class="text-black">@label</span>
+                                <span class="text-muted small">(@prop.Name)</span>
+                            </td>
+                            <td>
+                                <input name="Survey.@prop.Name"
+                                       value="@(prop.GetValue(Model.Survey) ?? "")"
+                                       type="@(prop.PropertyType == typeof(string) ? "text" : "number")"
+                                       class="form-control form-control-sm" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center">
+            <button type="submit" asp-page-handler="Save" class="btn btn-success px-4">Send Survey to AI</button>
+        </div>
+    </form>
+</div>
