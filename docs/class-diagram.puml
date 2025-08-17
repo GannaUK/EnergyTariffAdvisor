@@ -1,0 +1,443 @@
+@startuml
+class "AddHttpClient`2"<T1,T2> {
+}
+class "AddSingleton`1"<T> {
+}
+class LinkDto {
+    + Href : string <<get>> <<set>>
+    + Method : string <<get>> <<set>>
+    + Rel : string <<get>> <<set>>
+}
+interface IOctopusTariffProvider {
+    GetProductsAsync() : Task<ProductsResponse?>
+    GetProductDetailsByUrlAsync(productUrl:string) : Task<ProductDto?>
+    GetStandardUnitRatesAsync(productCode:string, tariffCode:string, regionCode:string) : Task<StandardUnitRatesResponse?>
+    GetStandingChargesAsync(productCode:string, tariffCode:string, regionCode:string) : Task<StandingChargesResponse?>
+}
+class StandardUnitRatesResponse {
+    + Count : int <<get>> <<set>>
+    + Next : string? <<get>> <<set>>
+    + Previous : string? <<get>> <<set>>
+}
+class StandardUnitRateDto {
+    + ValueIncVat : decimal <<get>> <<set>>
+    + ValueExcVat : decimal <<get>> <<set>>
+    + PaymentMethod : string <<get>> <<set>>
+    + PriceAvailability : string <<get>> <<set>>
+    + IsVariable : bool <<get>> <<set>>
+    + IsGreen : bool <<get>> <<set>>
+    + ProductCode : string <<get>> <<set>>
+    + TariffCode : string <<get>> <<set>>
+}
+class "List`1"<T> {
+}
+StandardUnitRatesResponse o-> "Results<StandardUnitRateDto>" "List`1"
+StandardUnitRateDto --> "ValidFrom" DateTime
+StandardUnitRateDto --> "ValidTo" DateTime
+class StandingChargesResponse {
+    + Count : int <<get>> <<set>>
+    + Next : string? <<get>> <<set>>
+    + Previous : string? <<get>> <<set>>
+}
+class StandingChargeDto {
+    + ValueIncVat : decimal <<get>> <<set>>
+    + ValueExcVat : decimal <<get>> <<set>>
+    + PaymentMethod : string <<get>> <<set>>
+    + PriceAvailability : string <<get>> <<set>>
+    + ProductCode : string <<get>> <<set>>
+    + TariffCode : string <<get>> <<set>>
+}
+class "List`1"<T> {
+}
+StandingChargesResponse o-> "Results<StandingChargeDto>" "List`1"
+StandingChargeDto --> "ValidFrom" DateTime
+StandingChargeDto --> "ValidTo" DateTime
+class OctopusTariffService {
+    + OctopusTariffService(httpClient:HttpClient)
+    + <<async>> GetProductsAsync() : Task<ProductsResponse?>
+    + <<async>> GetProductDetailsByUrlAsync(productUrl:string) : Task<ProductDto?>
+    + <<async>> GetStandardUnitRatesAsync(productCode:string, tariffCode:string, regionCode:string) : Task<StandardUnitRatesResponse?>
+    + <<async>> GetStandingChargesAsync(productCode:string, tariffCode:string, regionCode:string) : Task<StandingChargesResponse?>
+}
+IOctopusTariffProvider <|-- OctopusTariffService
+OctopusTariffService --> "_httpClient" HttpClient
+class ProductsResponse {
+    + Count : int <<get>> <<set>>
+    + Next : string? <<get>> <<set>>
+    + Previous : string? <<get>> <<set>>
+}
+class ProductDto <<partial>> {
+    + Code : string <<get>> <<set>>
+    + Direction : string <<get>> <<set>>
+    + FullName : string <<get>> <<set>>
+    + DisplayName : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + IsVariable : bool <<get>> <<set>>
+    + IsGreen : bool <<get>> <<set>>
+    + IsTracker : bool <<get>> <<set>>
+    + IsPrepay : bool <<get>> <<set>>
+    + IsBusiness : bool <<get>> <<set>>
+    + IsRestricted : bool <<get>> <<set>>
+    + Term : int? <<get>> <<set>>
+    + Brand : string <<get>> <<set>>
+}
+class TariffDetailsDto {
+    + Code : string <<get>> <<set>>
+    + StandingChargeExcVat : decimal <<get>> <<set>>
+    + StandingChargeIncVat : decimal <<get>> <<set>>
+    + OnlineDiscountExcVat : decimal <<get>> <<set>>
+    + OnlineDiscountIncVat : decimal <<get>> <<set>>
+    + DualFuelDiscountExcVat : decimal <<get>> <<set>>
+    + DualFuelDiscountIncVat : decimal <<get>> <<set>>
+    + ExitFeesExcVat : decimal <<get>> <<set>>
+    + ExitFeesIncVat : decimal <<get>> <<set>>
+    + ExitFeesType : string <<get>> <<set>>
+    + StandardUnitRateExcVat : decimal <<get>> <<set>>
+    + StandardUnitRateIncVat : decimal <<get>> <<set>>
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+ProductsResponse o-> "Results<ProductDto>" "List`1"
+ProductDto --> "AvailableFrom" DateTime
+ProductDto --> "AvailableTo" DateTime
+ProductDto o-> "Links<LinkDto>" "List`1"
+ProductDto o-> "SingleRegisterElectricityTariffs<string,Dictionary<string, TariffDetailsDto>>" "Dictionary`2"
+ProductDto o-> "DualRegisterElectricityTariffs<string,Dictionary<string, TariffDetailsDto>>" "Dictionary`2"
+ProductDto o-> "ThreeRateElectricityTariffs<string,Dictionary<string, TariffDetailsDto>>" "Dictionary`2"
+TariffDetailsDto o-> "Links<LinkDto>" "List`1"
+class Normalizer {
+    + Normalizer()
+    - LoadPmml(filePath:string) : void
+    + GetNormalizationRules(fieldName:string) : (decimal Min, decimal Max)
+    + Normalize(fieldName:string, value:decimal) : decimal
+}
+class "Dictionary`2"<T1,T2> {
+}
+Normalizer o-> "_normalizationRules<string,(decimal Min, decimal Max)>" "Dictionary`2"
+class CosyTariff {
+    + CosyTariff(RatesList:List<OctopusApi.StandardUnitRateDto>)
+    + <<override>> GetUnitRateDisplay() : string
+}
+class "List`1"<T> {
+}
+TariffBase <|-- CosyTariff
+CosyTariff o-> "RatesList<OctopusApi.StandardUnitRateDto>" "List`1"
+class FixedTariff {
+    + FixedTariff(unitRate:decimal, standingChargeDaily:decimal, additionalFee:decimal)
+    + <<override>> GetUnitRateDisplay() : string
+}
+TariffBase <|-- FixedTariff
+class HouseholdSurveyCsvService {
+    + LoadSurveyById(csvPath:string, householdId:string) : HouseholdSurveyTab?
+    + SaveSurvey(csvPath:string, survey:HouseholdSurveyTab) : void
+}
+abstract class TariffBase {
+    + TariffCode : string <<get>> <<set>>
+    + ProductName : string <<get>> <<set>>
+    + SupplierName : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + StandingChargeDaily : decimal <<get>> <<set>> = 0
+    + UnitRate : decimal <<get>> <<set>>
+    + AdditionalFee : decimal <<get>> <<set>> = 0
+    + Href : string <<get>> <<set>>
+    + CalculateCost(profile:HalfHourlyConsumptionProfile) : decimal
+    + {abstract} GetUnitRateDisplay() : string
+    <<internal>> GetUnitRateForInterval(i:int) : decimal
+}
+class "List`1"<T> {
+}
+TariffBase --> "TariffType" TariffType
+TariffBase o-> "UnitRatesPerInterval<decimal>" "List`1"
+class HouseholdSurveyTab {
+    + Id : string <<get>> <<set>>
+    + A1 : int? <<get>> <<set>>
+    + A2a : int? <<get>> <<set>>
+    + A2b : int? <<get>> <<set>>
+    + A3 : int? <<get>> <<set>>
+    + A4 : int? <<get>> <<set>>
+    + A5 : int? <<get>> <<set>>
+    + A7_GAS : int? <<get>> <<set>>
+    + A7_ELECT : int? <<get>> <<set>>
+    + A7_OIL : int? <<get>> <<set>>
+    + A7t_LPG : int? <<get>> <<set>>
+    + A7_COAL : int? <<get>> <<set>>
+    + A7_WOODBIO : int? <<get>> <<set>>
+    + A8_boil_more_10 : int? <<get>> <<set>>
+    + A8_boil_average : int? <<get>> <<set>>
+    + A8_boil_condensing : int? <<get>> <<set>>
+    + A8_boil_new : int? <<get>> <<set>>
+    + A8_boil_unknown : int? <<get>> <<set>>
+    + A8_boil_automatic : int? <<get>> <<set>>
+    + A8_modern_storage : int? <<get>> <<set>>
+    + A8_old_storage : int? <<get>> <<set>>
+    + A8_roomheaters : int? <<get>> <<set>>
+    + A8_oil_coal_heaters : int? <<get>> <<set>>
+    + A8_wood_bio_stove : int? <<get>> <<set>>
+    + A8_openfire : int? <<get>> <<set>>
+    + A8_heatingsystem_other : int? <<get>> <<set>>
+    + A9 : int? <<get>> <<set>>
+    + A10 : int? <<get>> <<set>>
+    + A11 : int? <<get>> <<set>>
+    + A12 : int? <<get>> <<set>>
+    + A13 : int? <<get>> <<set>>
+    + A14 : int? <<get>> <<set>>
+    + A15 : int? <<get>> <<set>>
+    + A15_GAS : int? <<get>> <<set>>
+    + A15_GASBP : double? <<get>> <<set>>
+    + A15_GASkw : double? <<get>> <<set>>
+    + A15_ELECTRICITY : int? <<get>> <<set>>
+    + A15_ELEBP : double? <<get>> <<set>>
+    + A15_ELEkw : double? <<get>> <<set>>
+    + A15_OIL : int? <<get>> <<set>>
+    + A15_OILBP : double? <<get>> <<set>>
+    + A15_OILL : double? <<get>> <<set>>
+    + A15_LPG : int? <<get>> <<set>>
+    + A15_LGPBP : double? <<get>> <<set>>
+    + A15_LPGL : double? <<get>> <<set>>
+    + A15_COAL : int? <<get>> <<set>>
+    + A15_COLBP : double? <<get>> <<set>>
+    + A15_COLkg : double? <<get>> <<set>>
+    + A15_WOOD_BIOMASS : int? <<get>> <<set>>
+    + A15_BIOBP : double? <<get>> <<set>>
+    + A15_BIOkg : double? <<get>> <<set>>
+    + A16 : int? <<get>> <<set>>
+    + A17_renewa_solar : int? <<get>> <<set>>
+    + A17_renewa_photovolt : int? <<get>> <<set>>
+    + A17_renewa_groundheatpump : int? <<get>> <<set>>
+    + A17_renewa_woodbio : int? <<get>> <<set>>
+    + A17_renewa_hydropow : int? <<get>> <<set>>
+    + A17_renewa_airheatpump : int? <<get>> <<set>>
+    + A17_renewa_idont : int? <<get>> <<set>>
+    + A18_Loft : int? <<get>> <<set>>
+    + A18_Loft_thickness : int? <<get>> <<set>>
+    + A18_Cavitywall : int? <<get>> <<set>>
+    + A18_Solidwall : int? <<get>> <<set>>
+    + A18_Underfloor : int? <<get>> <<set>>
+    + A18_Draughtexclusion : int? <<get>> <<set>>
+    + A18_Doubleglazing : int? <<get>> <<set>>
+    + A18_Doubleglazingpercent : int? <<get>> <<set>>
+    + A18_Idontknow : int? <<get>> <<set>>
+    + A19 : int? <<get>> <<set>>
+    + A20 : int? <<get>> <<set>>
+    + A21 : int? <<get>> <<set>>
+    + A22_numberfridgefreezer : int? <<get>> <<set>>
+    + A22_agefridgefreezer : int? <<get>> <<set>>
+    + A22_efficiencyfridgfreez : int? <<get>> <<set>>
+    + t1_numberfridge : int? <<get>> <<set>>
+    + A22_agefridge : int? <<get>> <<set>>
+    + A22_efficiencyfridge : int? <<get>> <<set>>
+    + t1_numberfreezer : int? <<get>> <<set>>
+    + A22_agefreezer : int? <<get>> <<set>>
+    + A22_efficiencyfreezer : int? <<get>> <<set>>
+    + t1_numberdishwasher : int? <<get>> <<set>>
+    + A22_agedishwashers : int? <<get>> <<set>>
+    + A22_efficiencydishwasher : int? <<get>> <<set>>
+    + t1_dryer : int? <<get>> <<set>>
+    + A22_agedryer : int? <<get>> <<set>>
+    + A22_efficiencydryer : int? <<get>> <<set>>
+    + t1_washingmachine : int? <<get>> <<set>>
+    + A22_agewashingmachine : int? <<get>> <<set>>
+    + A22_efficiencywashing : int? <<get>> <<set>>
+    + A23 : int? <<get>> <<set>>
+    + A24 : int? <<get>> <<set>>
+    + A25 : int? <<get>> <<set>>
+    + A26 : int? <<get>> <<set>>
+    + A27 : int? <<get>> <<set>>
+    + A28 : int? <<get>> <<set>>
+    + A29 : int? <<get>> <<set>>
+    + A30 : int? <<get>> <<set>>
+    + A31 : int? <<get>> <<set>>
+    + A32 : int? <<get>> <<set>>
+    + A33 : int? <<get>> <<set>>
+    + A34_TVst : int? <<get>> <<set>>
+    + A34_TVlcd : int? <<get>> <<set>>
+    + A34_Tvpla : int? <<get>> <<set>>
+    + A34_Sat : int? <<get>> <<set>>
+    + A34_Cabl : int? <<get>> <<set>>
+    + A34_Freev : int? <<get>> <<set>>
+    + A34_DVD : int? <<get>> <<set>>
+    + A34_VCR : int? <<get>> <<set>>
+    + A34_PVR : int? <<get>> <<set>>
+    + A34_PC : int? <<get>> <<set>>
+    + A34_LapPC : int? <<get>> <<set>>
+    + A34_Inkj : int? <<get>> <<set>>
+    + A34_Lasr : int? <<get>> <<set>>
+    + A34_Scan : int? <<get>> <<set>>
+    + A34_Mobch : int? <<get>> <<set>>
+    + A34_Othch : int? <<get>> <<set>>
+    + A35 : int? <<get>> <<set>>
+    + A36 : int? <<get>> <<set>>
+    + A37 : int? <<get>> <<set>>
+}
+enum TariffType {
+    Fixed,
+    DayNight,
+    Flexible,
+    Tracker,
+    Cosy,
+}
+class HouseholdSurveyQuestionLabels <<static>> {
+    + {static} GetLabels() : Dictionary<string, string>
+}
+class DayNightTariff {
+    + DayRate : decimal <<get>> <<set>>
+    + NightRate : decimal <<get>> <<set>>
+    + DayNightTariff(dayRate:decimal, nightRate:decimal)
+    + <<override>> GetUnitRateDisplay() : string
+}
+TariffBase <|-- DayNightTariff
+class HalfHourlyConsumptionProfile {
+    + HalfHourlyConsumptionProfile()
+    + IsValid() : bool
+    + {static} GenerateExample() : HalfHourlyConsumptionProfile
+}
+class "List`1"<T> {
+}
+HalfHourlyConsumptionProfile --> "Consumption<decimal>" "List`1"
+class IntervalTariff {
+    + <<override>> GetUnitRateDisplay() : string
+}
+TariffBase <|-- IntervalTariff
+class SessionExtensions <<static>> {
+    {static} - SessionExtensions()
+    - {static} ConfigurePolymorphism(typeInfo:JsonTypeInfo) : void
+    + {static} SetObject(session:ISession, key:string, value:T) : void
+    + {static} GetObject(session:ISession, key:string) : T?
+}
+SessionExtensions --> "options" JsonSerializerOptions
+class TariffDetailsModel {
+    + OnGet() : void
+}
+PageModel <|-- TariffDetailsModel
+TariffDetailsModel --> "Tariff" TariffBase
+class ErrorModel {
+    + RequestId : string? <<get>> <<set>>
+    + ShowRequestId : bool <<get>>
+    + ErrorModel(logger:ILogger<ErrorModel>)
+    + OnGet() : void
+}
+class "ILogger`1"<T> {
+}
+PageModel <|-- ErrorModel
+ErrorModel --> "_logger<ErrorModel>" "ILogger`1"
+class PrivacyModel {
+    + PrivacyModel(logger:ILogger<PrivacyModel>)
+    + OnGet() : void
+}
+class "ILogger`1"<T> {
+}
+PageModel <|-- PrivacyModel
+PrivacyModel --> "_logger<PrivacyModel>" "ILogger`1"
+class TariffChartModel {
+    + totalUsage : decimal <<get>>
+    + totalCost : decimal <<get>>
+    + grandTotalCost : decimal <<get>>
+    + standingCharge : decimal <<get>>
+    + OnGet() : IActionResult
+    + IntervalToTime(interval:int) : string
+}
+class "List`1"<T> {
+}
+class IntervalData {
+    + Index : int <<get>> <<set>>
+    + Time : string <<get>> <<set>>
+    + UnitRate : decimal <<get>> <<set>>
+    + Consumption : decimal <<get>> <<set>>
+    + Cost : decimal <<get>> <<set>>
+}
+PageModel <|-- TariffChartModel
+TariffChartModel --> "Tariff" TariffBase
+TariffChartModel --> "Profile" HalfHourlyConsumptionProfile
+TariffChartModel o-> "IntervalChartData<IntervalData>" "List`1"
+TariffChartModel +-- IntervalData
+class SurveyInputModel {
+    + SurveyInputModel(csvService:HouseholdSurveyCsvService)
+    + LoadId : int? <<get>> <<set>>
+    + OnGet() : void
+    + OnPostLoad() : IActionResult
+    + <<async>> OnPostSaveAsync() : Task<IActionResult>
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+class PredictionResponse {
+    + Predictions : object? <<get>> <<set>>
+}
+PageModel <|-- SurveyInputModel
+SurveyInputModel --> "_csvService" HouseholdSurveyCsvService
+SurveyInputModel o-> "Survey" HouseholdSurveyTab
+SurveyInputModel o-> "Profile" HalfHourlyConsumptionProfile
+SurveyInputModel o-> "SurveyProperties<PropertyInfo>" "List`1"
+SurveyInputModel o-> "QuestionLabels<string,string>" "Dictionary`2"
+SurveyInputModel +-- PredictionResponse
+class ComparisonResultsModel {
+    + OnGet() : void
+    + OnGetViewDetails(index:int) : IActionResult
+}
+class TariffCostResult {
+    + Cost : decimal <<get>> <<set>>
+    + StandingCharge : decimal <<get>>
+    + TotalCost : decimal <<get>>
+}
+class "List`1"<T> {
+}
+PageModel <|-- ComparisonResultsModel
+ComparisonResultsModel --> "Profile" HalfHourlyConsumptionProfile
+ComparisonResultsModel o-> "Results<TariffCostResult>" "List`1"
+TariffCostResult --> "Tariff" TariffBase
+class CompareTariffsModel {
+    + CompareTariffsModel(octopusService:IOctopusTariffProvider)
+    + ManualTariffName : string <<get>> <<set>>
+    + ManualUnitRate : decimal <<get>> <<set>>
+    + ManualStandingCharge : decimal <<get>> <<set>>
+    + Index : int <<get>> <<set>>
+    + OnGet() : IActionResult
+    + OnPostAddManualTariff() : IActionResult
+    + OnPostCalculate() : IActionResult
+    + <<async>> OnPostLoadOctopusAsync() : Task<IActionResult>
+    + OnGetViewDetails(index:int) : IActionResult
+    + OnPostAddOfgemTariff() : IActionResult
+}
+class "List`1"<T> {
+}
+PageModel <|-- CompareTariffsModel
+CompareTariffsModel --> "_octopusService" IOctopusTariffProvider
+CompareTariffsModel o-> "AvailableTariffs<TariffBase>" "List`1"
+CompareTariffsModel o-> "SelectedTariffs<int>" "List`1"
+class OctopusTestModel {
+    + OctopusTestModel(octopusService:IOctopusTariffProvider)
+    + <<async>> OnGetAsync() : Task
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+PageModel <|-- OctopusTestModel
+OctopusTestModel --> "_octopusService" IOctopusTariffProvider
+OctopusTestModel o-> "Products<ProductDto>" "List`1"
+OctopusTestModel o-> "TariffsByProduct<string,List<TariffDetailsDto>>" "Dictionary`2"
+OctopusTestModel o-> "UnitRatesByTariff<string,List<StandardUnitRateDto>>" "Dictionary`2"
+class ProfileEditorModel {
+    + OnGet() : void
+    + OnPost(action:string, csvFile:IFormFile?) : IActionResult
+}
+PageModel <|-- ProfileEditorModel
+ProfileEditorModel o-> "Profile" HalfHourlyConsumptionProfile
+class TestTariffModel {
+    + Cost : decimal <<get>> <<set>>
+    + OnGet() : void
+}
+PageModel <|-- TestTariffModel
+TestTariffModel --> "Profile" HalfHourlyConsumptionProfile
+class IndexModel {
+    + IndexModel(logger:ILogger<IndexModel>)
+    + OnGet() : void
+}
+class "ILogger`1"<T> {
+}
+PageModel <|-- IndexModel
+IndexModel --> "_logger<IndexModel>" "ILogger`1"
+@enduml
