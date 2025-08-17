@@ -1,8 +1,22 @@
 @startuml
+class "AddDbContext`1"<T> {
+}
 class "AddHttpClient`2"<T1,T2> {
 }
 class "AddSingleton`1"<T> {
 }
+class InitialCreate <<partial>> {
+    # <<override>> BuildTargetModel(modelBuilder:ModelBuilder) : void
+}
+class InitialCreate <<partial>> {
+    # <<override>> Up(migrationBuilder:MigrationBuilder) : void
+    # <<override>> Down(migrationBuilder:MigrationBuilder) : void
+}
+Migration <|-- InitialCreate
+class ApplicationDbContextModelSnapshot <<partial>> {
+    # <<override>> BuildModel(modelBuilder:ModelBuilder) : void
+}
+ModelSnapshot <|-- ApplicationDbContextModelSnapshot
 class LinkDto {
     + Href : string <<get>> <<set>>
     + Method : string <<get>> <<set>>
@@ -278,6 +292,15 @@ enum TariffType {
     Tracker,
     Cosy,
 }
+class FeedbackResponse {
+    + Id : int <<get>> <<set>>
+    + LiveInUK : bool? <<get>> <<set>>
+    + ProjectRelevant : bool? <<get>> <<set>>
+    + AIProfileAccurate : bool? <<get>> <<set>>
+    + Suggestions : string <<get>> <<set>>
+    + CalculatorBetter : bool? <<get>> <<set>>
+}
+FeedbackResponse o-> "SubmittedAt" DateTime
 class HouseholdSurveyQuestionLabels <<static>> {
     + {static} GetLabels() : Dictionary<string, string>
 }
@@ -307,6 +330,23 @@ class SessionExtensions <<static>> {
     + {static} GetObject(session:ISession, key:string) : T?
 }
 SessionExtensions --> "options" JsonSerializerOptions
+class FeedbackModel {
+    + FeedbackModel(context:Data.ApplicationDbContext)
+    + Submitted : bool <<get>> <<set>> = false
+    + <<async>> OnPostAsync() : Task<IActionResult>
+    + OnGet() : void
+}
+PageModel <|-- FeedbackModel
+FeedbackModel o-> "Response" FeedbackResponse
+class FeedbackResultsModel {
+    + FeedbackResultsModel(context:ApplicationDbContext)
+    + <<async>> OnGetAsync() : Task
+}
+class "IList`1"<T> {
+}
+PageModel <|-- FeedbackResultsModel
+FeedbackResultsModel --> "_context" ApplicationDbContext
+FeedbackResultsModel --> "FeedbackResponses<FeedbackResponse>" "IList`1"
 class TariffDetailsModel {
     + OnGet() : void
 }
@@ -440,4 +480,11 @@ class "ILogger`1"<T> {
 }
 PageModel <|-- IndexModel
 IndexModel --> "_logger<IndexModel>" "ILogger`1"
+class ApplicationDbContext {
+    + ApplicationDbContext(options:DbContextOptions<ApplicationDbContext>)
+}
+class "DbSet`1"<T> {
+}
+DbContext <|-- ApplicationDbContext
+ApplicationDbContext --> "FeedbackResponses<FeedbackResponse>" "DbSet`1"
 @enduml
