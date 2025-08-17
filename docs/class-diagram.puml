@@ -338,6 +338,27 @@ class FeedbackModel {
 }
 PageModel <|-- FeedbackModel
 FeedbackModel o-> "Response" FeedbackResponse
+class SurveyInputModel {
+    + SurveyInputModel(csvService:HouseholdSurveyCsvService)
+    + LoadId : int? <<get>> <<set>>
+    + OnGet() : void
+    + OnPostLoad() : IActionResult
+    + <<async>> OnPostSaveAsync() : Task<IActionResult>
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+class PredictionResponse {
+    + Predictions : object? <<get>> <<set>>
+}
+PageModel <|-- SurveyInputModel
+SurveyInputModel --> "_csvService" HouseholdSurveyCsvService
+SurveyInputModel o-> "Survey" HouseholdSurveyTab
+SurveyInputModel o-> "Profile" HalfHourlyConsumptionProfile
+SurveyInputModel o-> "SurveyProperties<PropertyInfo>" "List`1"
+SurveyInputModel o-> "QuestionLabels<string,string>" "Dictionary`2"
+SurveyInputModel +-- PredictionResponse
 class FeedbackResultsModel {
     + FeedbackResultsModel(context:ApplicationDbContext)
     + <<async>> OnGetAsync() : Task
