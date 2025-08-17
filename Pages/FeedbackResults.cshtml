@@ -1,0 +1,33 @@
+﻿@page
+@model EnergyTariffAdvisor.Pages.FeedbackResultsModel
+@{
+    ViewData["Title"] = "Feedback Responses";
+}
+<h2>Feedback Responses</h2>
+<table>
+    <thead>
+        <tr>
+            <th>N</th>
+            <th>Do you live in the UK?</th>
+            <th>Do you find the project idea relevant to your lifestyle?</th>
+            <th>Do you think AI predicted your consumption profile accurately?</th>
+            <th>What questions could improve the survey and prediction quality?</th>
+            <th>Did our calculator offer a more suitable tariff than your current one?</th>
+            <th>Дата</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var response in Model.FeedbackResponses)
+        {
+            <tr>
+                <td>@response.Id</td>
+                <td>@response.LiveInUK</td>
+                <td>@response.ProjectRelevant</td>
+                <td>@response.AIProfileAccurate</td>
+                <td>@response.Suggestions</td>
+                <td>@response.CalculatorBetter</td>
+                <td>@response.SubmittedAt</td>
+            </tr>
+        }
+    </tbody>
+</table>

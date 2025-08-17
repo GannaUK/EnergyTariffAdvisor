@@ -36,7 +36,9 @@ namespace EnergyTariffAdvisor.Pages
 
             // Сортируем по стоимости - sorted results and comparison tariffs by TotalCost
             Results.Sort((a, b) => a.TotalCost.CompareTo(b.TotalCost));
-            comparisonTariffs.Sort((a, b) => a.CalculateCost(Profile).CompareTo(b.CalculateCost(Profile)));
+            comparisonTariffs.Sort((a, b) => 
+    (a.CalculateCost(Profile) + a.StandingChargeDaily / 100)
+    .CompareTo(b.CalculateCost(Profile) + b.StandingChargeDaily / 100));
 
             HttpContext.Session.SetObject("ComparisonTariffs", comparisonTariffs);
         }
