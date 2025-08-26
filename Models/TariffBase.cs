@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace EnergyTariffAdvisor.Models
 {
-    // Абстрактный базовый класс для тарифов
+    
     public abstract class TariffBase
     {
         public string TariffCode { get; set; }
@@ -18,11 +18,11 @@ namespace EnergyTariffAdvisor.Models
         public decimal AdditionalFee { get; set; } = 0;
         public string Href { get; set; } = string.Empty;
 
-        //пробую перенести код в общий класс
+       
         public List<decimal> UnitRatesPerInterval { get; set; } = new List<decimal>();
 
 
-        // Расчёт стоимости — общий для всех тарифов
+        
         // calculate cost — common for all tariffs
         public decimal CalculateCost(HalfHourlyConsumptionProfile profile)
         {
@@ -32,7 +32,7 @@ namespace EnergyTariffAdvisor.Models
             if (profile.Consumption.Count != UnitRatesPerInterval.Count)
                 throw new InvalidOperationException("Mismatch between consumption and tariff intervals");
 
-            // TODO: пока уберу дополнительную плату, если успею, добавлю позже
+            
             //decimal totalCost = StandingChargeDaily + AdditionalFee;
             decimal totalCost = StandingChargeDaily;// pence
             Debug.WriteLine($"[Init] Standing charge: {StandingChargeDaily}");
@@ -42,12 +42,12 @@ namespace EnergyTariffAdvisor.Models
                 Debug.WriteLine($"[i={i}] Consumption: {profile.Consumption[i]}, Rate: {UnitRatesPerInterval[i]},  RunningTotal: {totalCost}");
             }
             Debug.WriteLine($"[Result] Total cost: {totalCost}");
-            // Преобразуем в £
+            
             totalCost /= 100; // Convert pence to pounds
             return totalCost;
         }
 
-        // Отображение тарифов — индивидуально для каждого тарифа
+        
         // Display of rates — individually for each tariff
         public abstract string GetUnitRateDisplay();
 

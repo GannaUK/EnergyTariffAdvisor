@@ -1,4 +1,4 @@
-﻿// Класс для работы с API (HttpClient, запросы, преобразования)
+﻿
 // Class for working with the API (HttpClient, requests, transformations)
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -33,7 +33,7 @@ namespace EnergyTariffAdvisor.OctopusApi
         // "H" is the region code for North Scotland (including Aberdeen)
         public async Task<StandardUnitRatesResponse?> GetStandardUnitRatesAsync(string productCode, string tariffCode, string regionCode = "H")
         {
-            // здесь костыль - в API Octopus Energy не всегда есть возможноть получить тарифы на текущий день, поэтому мы запрашиваем тарифы на вчера
+            
             // here is a workaround - in the Octopus Energy API, it is not always possible to get tariffs for the current day, so we request tariffs for yesterday
             //var todayUtc = DateTime.UtcNow.Date; // 00:00 of current day UTC
             //var tomorrowUtc = todayUtc.AddDays(1); // 00:00 of next day

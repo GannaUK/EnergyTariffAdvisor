@@ -18,7 +18,7 @@ namespace EnergyTariffAdvisor.Pages
                 Profile = sessionProfile;
             }
 
-            // Если профиль пуст, инициализируем тестовым значением (например, 1 на каждый интервал)
+            
             if (Profile.Consumption == null || Profile.Consumption.Count != 48)
             {
                 Profile.Consumption = new List<decimal>();
@@ -63,7 +63,7 @@ namespace EnergyTariffAdvisor.Pages
                     using var reader = new StreamReader(csvFile.OpenReadStream());
                     var content = reader.ReadToEnd();
 
-                    // Разделение на числа, поддержка как запятой, так и новой строки
+                    
                     var values = content
                         .Trim()
                         .Split(new[] { ',', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
@@ -82,7 +82,7 @@ namespace EnergyTariffAdvisor.Pages
                             TempData["ProfileWarning"] = $"Invalid number in CSV: '{val}'.";
                             return Page();
                         }
-                        // Преобразуем показания счетчика в кВт·ч, предполагая, что в CSV указано в Вт
+                        
                         // turn this into kWh from W
                         //newConsumption.Add(d * 0.001m);
                         newConsumption.Add(d * 0.001m * (5m / 60m));

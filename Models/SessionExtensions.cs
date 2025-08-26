@@ -9,10 +9,10 @@ namespace EnergyTariffAdvisor.Models
 {
     public static class SessionExtensions
     {
-        // Настройки сериализации с поддержкой полиморфизма
+        // settings for serialization with polymorphism support
         private static readonly JsonSerializerOptions options;
 
-        // Статический конструктор для инициализации options
+        // Static constructor for initializing options
         static SessionExtensions()
         {
             options = new JsonSerializerOptions
@@ -28,7 +28,7 @@ namespace EnergyTariffAdvisor.Models
             options.TypeInfoResolver = resolver;
         }
 
-        // Метод настройки полиморфизма для TariffBase
+        // Method for configuring polymorphism for TariffBase
         private static void ConfigurePolymorphism(JsonTypeInfo typeInfo)
         {
             if (typeInfo.Type == typeof(TariffBase))
@@ -53,14 +53,14 @@ namespace EnergyTariffAdvisor.Models
             }
         }
 
-        // Сохранение объекта в сессию
+        // Saving an object to the session
         public static void SetObject<T>(this ISession session, string key, T value)
         {
             string json = JsonSerializer.Serialize(value, options);
             session.SetString(key, json);
         }
 
-        // Загрузка объекта из сессии
+        // Loading an object from the session
         public static T? GetObject<T>(this ISession session, string key)
         {
             string json = session.GetString(key);

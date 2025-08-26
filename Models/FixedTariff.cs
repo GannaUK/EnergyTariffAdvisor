@@ -10,7 +10,7 @@ namespace EnergyTariffAdvisor.Models
             StandingChargeDaily = standingChargeDaily;
             AdditionalFee = additionalFee;
 
-            // Заполняем 48 интервалов одной ставкой
+            // Fill 48 intervals with a single rate
             UnitRatesPerInterval = Enumerable.Repeat(unitRate, 48).ToList();
 
             TariffType = TariffType.Fixed; 

@@ -1,11 +1,8 @@
 using EnergyTariffAdvisor.Models;
-using EnergyTariffAdvisor.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Reflection;
 using System.Reflection;
 using System.Text.Json;
 
@@ -43,19 +40,19 @@ namespace EnergyTariffAdvisor.Pages
             try
             {
                 SurveyProperties = typeof(HouseholdSurveyTab).GetProperties().ToList();
-            QuestionLabels = HouseholdSurveyQuestionLabels.GetLabels();
+                QuestionLabels = HouseholdSurveyQuestionLabels.GetLabels();
 
-            if (LoadId.HasValue)
-            {
-                var loaded = _csvService.LoadSurveyById("csv/survey_only.csv", ("household_" + LoadId.Value));
-                if (loaded != null)
-                    Survey = loaded;
-            }
-            return Page();
+                if (LoadId.HasValue)
+                {
+                    var loaded = _csvService.LoadSurveyById("csv/survey_only.csv", ("household_" + LoadId.Value));
+                    if (loaded != null)
+                        Survey = loaded;
+                }
+                return Page();
             }
             catch (Exception ex)
-            {                
-                
+            {
+
                 return Page();
             }
         }
@@ -69,6 +66,7 @@ namespace EnergyTariffAdvisor.Pages
             // - Use Select to check for null and substitute 0 for int?/double? properties.
             // normalization
             var normalizer = new Normalizer();
+
 
 
             var featureValues = SurveyProperties
@@ -123,7 +121,7 @@ namespace EnergyTariffAdvisor.Pages
                     .Select(e => e.GetDecimal())
                     .ToArray();
 
-                // “еперь predictionsArray Ч это decimal[48]
+                // predictionsArray Ч это decimal[48]
                 var newConsumption = new List<decimal>();
                 foreach (var val in predictionsArray)
                 {

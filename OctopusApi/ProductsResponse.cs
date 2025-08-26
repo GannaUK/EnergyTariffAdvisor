@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-// Ответ на GET /products/ с вложенными DTO (ProductDto, LinkDto и т.д.)
+
 // response of GET /products/ with nested DTOs (ProductDto, LinkDto, etc.)
 
 namespace EnergyTariffAdvisor.OctopusApi

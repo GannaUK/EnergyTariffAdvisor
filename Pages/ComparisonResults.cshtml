@@ -3,6 +3,15 @@
 
 <h2>Comparison Results</h2>
 
+<div class="alert alert-warning" role="alert">
+    <strong>Warning:</strong> This is an educational project. The data shown here may differ significantly from real-world values.
+</div>
+
+<div class="mb-3">
+    <a asp-page="/Feedback" class="btn btn-primary">
+        Leave Feedback
+    </a>
+</div>
 
 @if (Model.Results.Any())
 {
@@ -42,7 +51,7 @@
             <td>@result.StandingCharge.ToString("0.00")</td>
             <td>@result.TotalCost.ToString("0.00")</td>
         </tr>
-                }
+            }
         </tbody>
     </table>
 }

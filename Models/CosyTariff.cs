@@ -8,27 +8,27 @@ namespace EnergyTariffAdvisor.Models
         public List<OctopusApi.StandardUnitRateDto> RatesList { get; set; } = new List<OctopusApi.StandardUnitRateDto>();
         public CosyTariff(List<OctopusApi.StandardUnitRateDto> RatesList)
         {
-            // Сортируем rates по ValidFrom для последовательной обработки
+            // Sort rates by ValidFrom for sequential processing
             var ratesSorted = RatesList
                 .OrderBy(r => r.ValidFrom)
                 .ToList();
 
-            // Определяем начало дня (вчера)
-            DateTime dayStart = DateTime.Today.AddDays(-1); // 00:00:00 предыдущего дня
-            
-            
-                decimal rateValue = 0m; // Значение по умолчанию, если не найдено
-            // Заполняем 48 интервалов (каждые 30 минут)
+            // Determine the start of the day (yesterday)
+            DateTime dayStart = DateTime.Today.AddDays(-1); // 00:00:00 of the previous day
+
+
+            decimal rateValue = 0m; // Default value if not found
+                                    // Fill 48 intervals (every 30 minutes)
             for (int i = 0; i < 48; i++)
             {
-                // Начало текущего 30-минутного слота
+                // Start of the current 30-minute slot
                 DateTime slotStart = dayStart.AddMinutes(i * 30);
-                              
+
 
                 foreach (var rate in ratesSorted)
                 {
-                    // Проверяем, попадает ли slotStart в интервал [ValidFrom, ValidTo)
-                    // Предполагаем, что ValidTo - эксклюзивное (не включая саму ValidTo)
+                    // Check if slotStart falls within the interval [ValidFrom, ValidTo)
+                    // Assume ValidTo is exclusive (not including ValidTo itself)
                     if (slotStart >= rate.ValidFrom && slotStart < rate.ValidTo)
                     {
                         rateValue = rate.ValueIncVat;
@@ -38,7 +38,7 @@ namespace EnergyTariffAdvisor.Models
 
                 UnitRatesPerInterval.Add(rateValue);
             }
-            
+
 
             TariffType = TariffType.Cosy;
         }

@@ -44,7 +44,7 @@ namespace EnergyTariffAdvisor
                 if (intervalNode == null) continue;
 
                 var closure = intervalNode.Attributes?["closure"]?.Value;
-                if (closure != "closedClosed") continue; // Поддерживаем только closedClosed интервалы
+                if (closure != "closedClosed") continue; // only closedClosed intervals
 
                 if (decimal.TryParse(intervalNode.Attributes?["leftMargin"]?.Value, out decimal min) &&
                     decimal.TryParse(intervalNode.Attributes?["rightMargin"]?.Value, out decimal max))
@@ -63,7 +63,7 @@ namespace EnergyTariffAdvisor
                 return rules;
             }
 
-            throw new KeyNotFoundException($"Правила нормализации для поля '{fieldName}' не найдены.");
+            throw new KeyNotFoundException($"no normalization rules found for '{fieldName}'.");
         }
 
        
@@ -76,7 +76,7 @@ namespace EnergyTariffAdvisor
 
             if (max == min)
             {
-                //throw new InvalidOperationException($"Невозможно нормализовать: min и max равны для поля '{fieldName}'.");
+              
                 return value;
             }
 

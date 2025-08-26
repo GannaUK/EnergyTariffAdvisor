@@ -13,63 +13,63 @@
         <div class="col-md-8 col-lg-6 mb-4">
             <div class="card shadow">
                 <div class="card-body">
-                    <h3 class="card-title mb-4 text-center">Feedback Survey / Опитування</h3>
+                    <h3 class="card-title mb-4 text-center">Feedback Survey</h3>
 
                     @if (Model.Submitted)
                     {
                         <div class="alert alert-success">
-                            Thank you for your feedback! / Дякуємо за ваш відгук!
+                            Thank you for your feedback! 
                         </div>
                     }
                     else
                     {
                         <form method="post">
                             <div class="mb-3">
-                                <label class="form-label">1. Do you live in the UK? <br /><span class="text-muted">Ви проживаєте у Великій Британії?</span></label>
+                                <label class="form-label">1. Do you live in the UK?</label>
                                 <div>
                                     <input type="radio" asp-for="Response.LiveInUK" value="true" class="btn-check" id="ukYes" autocomplete="off">
-                                    <label class="btn btn-outline-primary me-2" for="ukYes">Yes / Так</label>
+                                    <label class="btn btn-outline-primary me-2" for="ukYes">Yes</label>
                                     <input type="radio" asp-for="Response.LiveInUK" value="false" class="btn-check" id="ukNo" autocomplete="off">
-                                    <label class="btn btn-outline-primary" for="ukNo">No / Ні</label>
+                                    <label class="btn btn-outline-primary" for="ukNo">No</label>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">2. Do you consider this project useful for your lifestyle? <br /><span class="text-muted">Вважаєте ідею проекту актуальною для вашого способу життя?</span></label>
+                                <label class="form-label">2. Do you consider this project useful for your lifestyle?</label>
                                 <div>
                                     <input type="radio" asp-for="Response.ProjectRelevant" value="true" class="btn-check" id="relYes" autocomplete="off">
-                                    <label class="btn btn-outline-primary me-2" for="relYes">Yes / Так</label>
+                                    <label class="btn btn-outline-primary me-2" for="relYes">Yes</label>
                                     <input type="radio" asp-for="Response.ProjectRelevant" value="false" class="btn-check" id="relNo" autocomplete="off">
-                                    <label class="btn btn-outline-primary" for="relNo">No / Ні</label>
+                                    <label class="btn btn-outline-primary" for="relNo">No</label>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">3. Do you think AI predicted your consumption profile accurately? <br /><span class="text-muted">Чи вважаєте, що ШІ правдоподібно передбачив ваш профіль споживання?</span></label>
+                                <label class="form-label">3. Do you think AI predicted your consumption profile accurately?</label>
                                 <div>
                                     <input type="radio" asp-for="Response.AIProfileAccurate" value="true" class="btn-check" id="aiYes" autocomplete="off">
-                                    <label class="btn btn-outline-primary me-2" for="aiYes">Yes / Так</label>
+                                    <label class="btn btn-outline-primary me-2" for="aiYes">Yes</label>
                                     <input type="radio" asp-for="Response.AIProfileAccurate" value="false" class="btn-check" id="aiNo" autocomplete="off">
-                                    <label class="btn btn-outline-primary" for="aiNo">No / Ні</label>
+                                    <label class="btn btn-outline-primary" for="aiNo">No</label>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">4. What questions could improve the survey and prediction quality? <br /><span class="text-muted">Які питання могли б покращити опитувальник і якість передбачення?</span></label>
+                                <label class="form-label">4. What questions could improve the survey and prediction quality?</label>
                                 <textarea asp-for="Response.Suggestions" class="form-control" rows="4"></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">5. Did our calculator help you find a more appropriate tariff for your needs? <br /><span class="text-muted">Чи був наш калькулятор тарифів більш відповідним, ніж ваш поточний тариф?</span></label>
+                                <label class="form-label">5. Did our calculator help you find a more appropriate tariff for your needs?</label>
                                 <div>
                                     <input type="radio" asp-for="Response.CalculatorBetter" value="true" class="btn-check" id="calcYes" autocomplete="off">
-                                    <label class="btn btn-outline-primary me-2" for="calcYes">Yes / Так</label>
+                                    <label class="btn btn-outline-primary me-2" for="calcYes">Yes</label>
                                     <input type="radio" asp-for="Response.CalculatorBetter" value="false" class="btn-check" id="calcNo" autocomplete="off">
-                                    <label class="btn btn-outline-primary" for="calcNo">No / Ні</label>
+                                    <label class="btn btn-outline-primary" for="calcNo">No</label>
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-success w-100 mb-4">Submit / Надіслати</button>
+                            <button type="submit" class="btn btn-success w-100 mb-4">Submit</button>
                             <br />
                         </form>
                     }

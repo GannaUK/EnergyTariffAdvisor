@@ -1,4 +1,4 @@
-﻿// Ответ на GET /standing-charges/ с вложенными DTO абонентской платы
+﻿
 // response to GET /standing-charges/ with nested DTOs for standing charges
 
 using System;

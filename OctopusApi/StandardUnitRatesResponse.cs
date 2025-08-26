@@ -1,5 +1,5 @@
 ﻿// response to GET /standard-unit-rates/ with nested DTOs for tariff rates
-// Ответ на GET /standard-unit-rates/ с вложенными DTO тарифных ставок
+
 
 using System;
 using System.Collections.Generic;
