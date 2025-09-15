@@ -5,165 +5,43 @@ class "AddHttpClient`2"<T1,T2> {
 }
 class "AddSingleton`1"<T> {
 }
-class InitialCreate <<partial>> {
-    # <<override>> BuildTargetModel(modelBuilder:ModelBuilder) : void
+class FeedbackResponse {
+    + Id : int <<get>> <<set>>
+    + LiveInUK : bool? <<get>> <<set>>
+    + ProjectRelevant : bool? <<get>> <<set>>
+    + AIProfileAccurate : bool? <<get>> <<set>>
+    + Suggestions : string <<get>> <<set>>
+    + CalculatorBetter : bool? <<get>> <<set>>
 }
-class InitialCreate <<partial>> {
-    # <<override>> Up(migrationBuilder:MigrationBuilder) : void
-    # <<override>> Down(migrationBuilder:MigrationBuilder) : void
+FeedbackResponse o-> "SubmittedAt" DateTime
+class SessionExtensions <<static>> {
+    {static} - SessionExtensions()
+    - {static} ConfigurePolymorphism(typeInfo:JsonTypeInfo) : void
+    + {static} SetObject(session:ISession, key:string, value:T) : void
+    + {static} GetObject(session:ISession, key:string) : T?
 }
-Migration <|-- InitialCreate
-class ApplicationDbContextModelSnapshot <<partial>> {
-    # <<override>> BuildModel(modelBuilder:ModelBuilder) : void
-}
-ModelSnapshot <|-- ApplicationDbContextModelSnapshot
-class LinkDto {
-    + Href : string <<get>> <<set>>
-    + Method : string <<get>> <<set>>
-    + Rel : string <<get>> <<set>>
-}
-interface IOctopusTariffProvider {
-    GetProductsAsync() : Task<ProductsResponse?>
-    GetProductDetailsByUrlAsync(productUrl:string) : Task<ProductDto?>
-    GetStandardUnitRatesAsync(productCode:string, tariffCode:string, regionCode:string) : Task<StandardUnitRatesResponse?>
-    GetStandingChargesAsync(productCode:string, tariffCode:string, regionCode:string) : Task<StandingChargesResponse?>
-}
-class StandardUnitRatesResponse {
-    + Count : int <<get>> <<set>>
-    + Next : string? <<get>> <<set>>
-    + Previous : string? <<get>> <<set>>
-}
-class StandardUnitRateDto {
-    + ValueIncVat : decimal <<get>> <<set>>
-    + ValueExcVat : decimal <<get>> <<set>>
-    + PaymentMethod : string <<get>> <<set>>
-    + PriceAvailability : string <<get>> <<set>>
-    + IsVariable : bool <<get>> <<set>>
-    + IsGreen : bool <<get>> <<set>>
-    + ProductCode : string <<get>> <<set>>
-    + TariffCode : string <<get>> <<set>>
-}
-class "List`1"<T> {
-}
-StandardUnitRatesResponse o-> "Results<StandardUnitRateDto>" "List`1"
-StandardUnitRateDto --> "ValidFrom" DateTime
-StandardUnitRateDto --> "ValidTo" DateTime
-class StandingChargesResponse {
-    + Count : int <<get>> <<set>>
-    + Next : string? <<get>> <<set>>
-    + Previous : string? <<get>> <<set>>
-}
-class StandingChargeDto {
-    + ValueIncVat : decimal <<get>> <<set>>
-    + ValueExcVat : decimal <<get>> <<set>>
-    + PaymentMethod : string <<get>> <<set>>
-    + PriceAvailability : string <<get>> <<set>>
-    + ProductCode : string <<get>> <<set>>
-    + TariffCode : string <<get>> <<set>>
-}
-class "List`1"<T> {
-}
-StandingChargesResponse o-> "Results<StandingChargeDto>" "List`1"
-StandingChargeDto --> "ValidFrom" DateTime
-StandingChargeDto --> "ValidTo" DateTime
-class OctopusTariffService {
-    + OctopusTariffService(httpClient:HttpClient)
-    + <<async>> GetProductsAsync() : Task<ProductsResponse?>
-    + <<async>> GetProductDetailsByUrlAsync(productUrl:string) : Task<ProductDto?>
-    + <<async>> GetStandardUnitRatesAsync(productCode:string, tariffCode:string, regionCode:string) : Task<StandardUnitRatesResponse?>
-    + <<async>> GetStandingChargesAsync(productCode:string, tariffCode:string, regionCode:string) : Task<StandingChargesResponse?>
-}
-IOctopusTariffProvider <|-- OctopusTariffService
-OctopusTariffService --> "_httpClient" HttpClient
-class ProductsResponse {
-    + Count : int <<get>> <<set>>
-    + Next : string? <<get>> <<set>>
-    + Previous : string? <<get>> <<set>>
-}
-class ProductDto <<partial>> {
-    + Code : string <<get>> <<set>>
-    + Direction : string <<get>> <<set>>
-    + FullName : string <<get>> <<set>>
-    + DisplayName : string <<get>> <<set>>
-    + Description : string <<get>> <<set>>
-    + IsVariable : bool <<get>> <<set>>
-    + IsGreen : bool <<get>> <<set>>
-    + IsTracker : bool <<get>> <<set>>
-    + IsPrepay : bool <<get>> <<set>>
-    + IsBusiness : bool <<get>> <<set>>
-    + IsRestricted : bool <<get>> <<set>>
-    + Term : int? <<get>> <<set>>
-    + Brand : string <<get>> <<set>>
-}
-class TariffDetailsDto {
-    + Code : string <<get>> <<set>>
-    + StandingChargeExcVat : decimal <<get>> <<set>>
-    + StandingChargeIncVat : decimal <<get>> <<set>>
-    + OnlineDiscountExcVat : decimal <<get>> <<set>>
-    + OnlineDiscountIncVat : decimal <<get>> <<set>>
-    + DualFuelDiscountExcVat : decimal <<get>> <<set>>
-    + DualFuelDiscountIncVat : decimal <<get>> <<set>>
-    + ExitFeesExcVat : decimal <<get>> <<set>>
-    + ExitFeesIncVat : decimal <<get>> <<set>>
-    + ExitFeesType : string <<get>> <<set>>
-    + StandardUnitRateExcVat : decimal <<get>> <<set>>
-    + StandardUnitRateIncVat : decimal <<get>> <<set>>
-}
-class "List`1"<T> {
-}
-class "Dictionary`2"<T1,T2> {
-}
-ProductsResponse o-> "Results<ProductDto>" "List`1"
-ProductDto --> "AvailableFrom" DateTime
-ProductDto --> "AvailableTo" DateTime
-ProductDto o-> "Links<LinkDto>" "List`1"
-ProductDto o-> "SingleRegisterElectricityTariffs<string,Dictionary<string, TariffDetailsDto>>" "Dictionary`2"
-ProductDto o-> "DualRegisterElectricityTariffs<string,Dictionary<string, TariffDetailsDto>>" "Dictionary`2"
-ProductDto o-> "ThreeRateElectricityTariffs<string,Dictionary<string, TariffDetailsDto>>" "Dictionary`2"
-TariffDetailsDto o-> "Links<LinkDto>" "List`1"
-class Normalizer {
-    + Normalizer()
-    - LoadPmml(filePath:string) : void
-    + GetNormalizationRules(fieldName:string) : (decimal Min, decimal Max)
-    + Normalize(fieldName:string, value:decimal) : decimal
-}
-class "Dictionary`2"<T1,T2> {
-}
-Normalizer o-> "_normalizationRules<string,(decimal Min, decimal Max)>" "Dictionary`2"
-class CosyTariff {
-    + CosyTariff(RatesList:List<OctopusApi.StandardUnitRateDto>)
+SessionExtensions --> "options" JsonSerializerOptions
+class DayNightTariff {
+    + DayRate : decimal <<get>> <<set>>
+    + NightRate : decimal <<get>> <<set>>
+    + DayNightTariff(dayRate:decimal, nightRate:decimal)
     + <<override>> GetUnitRateDisplay() : string
 }
-class "List`1"<T> {
+TariffBase <|-- DayNightTariff
+enum TariffType {
+    Fixed,
+    DayNight,
+    Flexible,
+    Tracker,
+    Cosy,
 }
-TariffBase <|-- CosyTariff
-CosyTariff o-> "RatesList<OctopusApi.StandardUnitRateDto>" "List`1"
-class FixedTariff {
-    + FixedTariff(unitRate:decimal, standingChargeDaily:decimal, additionalFee:decimal)
+class IntervalTariff {
     + <<override>> GetUnitRateDisplay() : string
 }
-TariffBase <|-- FixedTariff
-class HouseholdSurveyCsvService {
-    + LoadSurveyById(csvPath:string, householdId:string) : HouseholdSurveyTab?
-    + SaveSurvey(csvPath:string, survey:HouseholdSurveyTab) : void
+TariffBase <|-- IntervalTariff
+class HouseholdSurveyQuestionLabels <<static>> {
+    + {static} GetLabels() : Dictionary<string, string>
 }
-abstract class TariffBase {
-    + TariffCode : string <<get>> <<set>>
-    + ProductName : string <<get>> <<set>>
-    + SupplierName : string <<get>> <<set>>
-    + Description : string <<get>> <<set>>
-    + StandingChargeDaily : decimal <<get>> <<set>> = 0
-    + UnitRate : decimal <<get>> <<set>>
-    + AdditionalFee : decimal <<get>> <<set>> = 0
-    + Href : string <<get>> <<set>>
-    + CalculateCost(profile:HalfHourlyConsumptionProfile) : decimal
-    + {abstract} GetUnitRateDisplay() : string
-    <<internal>> GetUnitRateForInterval(i:int) : decimal
-}
-class "List`1"<T> {
-}
-TariffBase --> "TariffType" TariffType
-TariffBase o-> "UnitRatesPerInterval<decimal>" "List`1"
 class HouseholdSurveyTab {
     + Id : string <<get>> <<set>>
     + A1 : int? <<get>> <<set>>
@@ -285,32 +163,15 @@ class HouseholdSurveyTab {
     + A36 : int? <<get>> <<set>>
     + A37 : int? <<get>> <<set>>
 }
-enum TariffType {
-    Fixed,
-    DayNight,
-    Flexible,
-    Tracker,
-    Cosy,
+class Normalizer {
+    + Normalizer()
+    - LoadPmml(filePath:string) : void
+    + GetNormalizationRules(fieldName:string) : (decimal Min, decimal Max)
+    + Normalize(fieldName:string, value:decimal) : decimal
 }
-class FeedbackResponse {
-    + Id : int <<get>> <<set>>
-    + LiveInUK : bool? <<get>> <<set>>
-    + ProjectRelevant : bool? <<get>> <<set>>
-    + AIProfileAccurate : bool? <<get>> <<set>>
-    + Suggestions : string <<get>> <<set>>
-    + CalculatorBetter : bool? <<get>> <<set>>
+class "Dictionary`2"<T1,T2> {
 }
-FeedbackResponse o-> "SubmittedAt" DateTime
-class HouseholdSurveyQuestionLabels <<static>> {
-    + {static} GetLabels() : Dictionary<string, string>
-}
-class DayNightTariff {
-    + DayRate : decimal <<get>> <<set>>
-    + NightRate : decimal <<get>> <<set>>
-    + DayNightTariff(dayRate:decimal, nightRate:decimal)
-    + <<override>> GetUnitRateDisplay() : string
-}
-TariffBase <|-- DayNightTariff
+Normalizer o-> "_normalizationRules<string,(decimal Min, decimal Max)>" "Dictionary`2"
 class HalfHourlyConsumptionProfile {
     + HalfHourlyConsumptionProfile()
     + IsValid() : bool
@@ -319,78 +180,162 @@ class HalfHourlyConsumptionProfile {
 class "List`1"<T> {
 }
 HalfHourlyConsumptionProfile --> "Consumption<decimal>" "List`1"
-class IntervalTariff {
+abstract class TariffBase {
+    + TariffCode : string <<get>> <<set>>
+    + ProductName : string <<get>> <<set>>
+    + SupplierName : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + StandingChargeDaily : decimal <<get>> <<set>> = 0
+    + UnitRate : decimal <<get>> <<set>>
+    + AdditionalFee : decimal <<get>> <<set>> = 0
+    + Href : string <<get>> <<set>>
+    + CalculateCost(profile:HalfHourlyConsumptionProfile) : decimal
+    + {abstract} GetUnitRateDisplay() : string
+    <<internal>> GetUnitRateForInterval(i:int) : decimal
+}
+class "List`1"<T> {
+}
+TariffBase --> "TariffType" TariffType
+TariffBase o-> "UnitRatesPerInterval<decimal>" "List`1"
+class CosyTariff {
+    + CosyTariff(RatesList:List<OctopusApi.StandardUnitRateDto>)
     + <<override>> GetUnitRateDisplay() : string
 }
-TariffBase <|-- IntervalTariff
-class SessionExtensions <<static>> {
-    {static} - SessionExtensions()
-    - {static} ConfigurePolymorphism(typeInfo:JsonTypeInfo) : void
-    + {static} SetObject(session:ISession, key:string, value:T) : void
-    + {static} GetObject(session:ISession, key:string) : T?
+class "List`1"<T> {
 }
-SessionExtensions --> "options" JsonSerializerOptions
-class FeedbackModel {
-    + FeedbackModel(context:Data.ApplicationDbContext)
-    + Submitted : bool <<get>> <<set>> = false
-    + <<async>> OnPostAsync() : Task<IActionResult>
-    + OnGet() : void
+TariffBase <|-- CosyTariff
+CosyTariff o-> "RatesList<OctopusApi.StandardUnitRateDto>" "List`1"
+class HouseholdSurveyCsvService {
+    + LoadSurveyById(csvPath:string, householdId:string) : HouseholdSurveyTab?
+    + SaveSurvey(csvPath:string, survey:HouseholdSurveyTab) : void
 }
-PageModel <|-- FeedbackModel
-FeedbackModel o-> "Response" FeedbackResponse
-class SurveyInputModel {
-    + SurveyInputModel(csvService:HouseholdSurveyCsvService)
-    + LoadId : int? <<get>> <<set>>
-    + OnGet() : void
-    + OnPostLoad() : IActionResult
-    + <<async>> OnPostSaveAsync() : Task<IActionResult>
+class FixedTariff {
+    + FixedTariff(unitRate:decimal, standingChargeDaily:decimal, additionalFee:decimal)
+    + <<override>> GetUnitRateDisplay() : string
+}
+TariffBase <|-- FixedTariff
+class InitialCreate <<partial>> {
+    # <<override>> Up(migrationBuilder:MigrationBuilder) : void
+    # <<override>> Down(migrationBuilder:MigrationBuilder) : void
+}
+Migration <|-- InitialCreate
+class ApplicationDbContextModelSnapshot <<partial>> {
+    # <<override>> BuildModel(modelBuilder:ModelBuilder) : void
+}
+ModelSnapshot <|-- ApplicationDbContextModelSnapshot
+class InitialCreate <<partial>> {
+    # <<override>> BuildTargetModel(modelBuilder:ModelBuilder) : void
+}
+class StandardUnitRatesResponse {
+    + Count : int <<get>> <<set>>
+    + Next : string? <<get>> <<set>>
+    + Previous : string? <<get>> <<set>>
+}
+class StandardUnitRateDto {
+    + ValueIncVat : decimal <<get>> <<set>>
+    + ValueExcVat : decimal <<get>> <<set>>
+    + PaymentMethod : string <<get>> <<set>>
+    + PriceAvailability : string <<get>> <<set>>
+    + IsVariable : bool <<get>> <<set>>
+    + IsGreen : bool <<get>> <<set>>
+    + ProductCode : string <<get>> <<set>>
+    + TariffCode : string <<get>> <<set>>
+}
+class "List`1"<T> {
+}
+StandardUnitRatesResponse o-> "Results<StandardUnitRateDto>" "List`1"
+StandardUnitRateDto --> "ValidFrom" DateTime
+StandardUnitRateDto --> "ValidTo" DateTime
+interface IOctopusTariffProvider {
+    GetProductsAsync() : Task<ProductsResponse?>
+    GetProductDetailsByUrlAsync(productUrl:string) : Task<ProductDto?>
+    GetStandardUnitRatesAsync(productCode:string, tariffCode:string, regionCode:string) : Task<StandardUnitRatesResponse?>
+    GetStandingChargesAsync(productCode:string, tariffCode:string, regionCode:string) : Task<StandingChargesResponse?>
+}
+class LinkDto {
+    + Href : string <<get>> <<set>>
+    + Method : string <<get>> <<set>>
+    + Rel : string <<get>> <<set>>
+}
+class ProductsResponse {
+    + Count : int <<get>> <<set>>
+    + Next : string? <<get>> <<set>>
+    + Previous : string? <<get>> <<set>>
+}
+class ProductDto <<partial>> {
+    + Code : string <<get>> <<set>>
+    + Direction : string <<get>> <<set>>
+    + FullName : string <<get>> <<set>>
+    + DisplayName : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + IsVariable : bool <<get>> <<set>>
+    + IsGreen : bool <<get>> <<set>>
+    + IsTracker : bool <<get>> <<set>>
+    + IsPrepay : bool <<get>> <<set>>
+    + IsBusiness : bool <<get>> <<set>>
+    + IsRestricted : bool <<get>> <<set>>
+    + Term : int? <<get>> <<set>>
+    + Brand : string <<get>> <<set>>
+}
+class TariffDetailsDto {
+    + Code : string <<get>> <<set>>
+    + StandingChargeExcVat : decimal <<get>> <<set>>
+    + StandingChargeIncVat : decimal <<get>> <<set>>
+    + OnlineDiscountExcVat : decimal <<get>> <<set>>
+    + OnlineDiscountIncVat : decimal <<get>> <<set>>
+    + DualFuelDiscountExcVat : decimal <<get>> <<set>>
+    + DualFuelDiscountIncVat : decimal <<get>> <<set>>
+    + ExitFeesExcVat : decimal <<get>> <<set>>
+    + ExitFeesIncVat : decimal <<get>> <<set>>
+    + ExitFeesType : string <<get>> <<set>>
+    + StandardUnitRateExcVat : decimal <<get>> <<set>>
+    + StandardUnitRateIncVat : decimal <<get>> <<set>>
 }
 class "List`1"<T> {
 }
 class "Dictionary`2"<T1,T2> {
 }
-class PredictionResponse {
-    + Predictions : object? <<get>> <<set>>
+ProductsResponse o-> "Results<ProductDto>" "List`1"
+ProductDto --> "AvailableFrom" DateTime
+ProductDto --> "AvailableTo" DateTime
+ProductDto o-> "Links<LinkDto>" "List`1"
+ProductDto o-> "SingleRegisterElectricityTariffs<string,Dictionary<string, TariffDetailsDto>>" "Dictionary`2"
+ProductDto o-> "DualRegisterElectricityTariffs<string,Dictionary<string, TariffDetailsDto>>" "Dictionary`2"
+ProductDto o-> "ThreeRateElectricityTariffs<string,Dictionary<string, TariffDetailsDto>>" "Dictionary`2"
+TariffDetailsDto o-> "Links<LinkDto>" "List`1"
+class StandingChargesResponse {
+    + Count : int <<get>> <<set>>
+    + Next : string? <<get>> <<set>>
+    + Previous : string? <<get>> <<set>>
 }
-PageModel <|-- SurveyInputModel
-SurveyInputModel --> "_csvService" HouseholdSurveyCsvService
-SurveyInputModel o-> "Survey" HouseholdSurveyTab
-SurveyInputModel o-> "Profile" HalfHourlyConsumptionProfile
-SurveyInputModel o-> "SurveyProperties<PropertyInfo>" "List`1"
-SurveyInputModel o-> "QuestionLabels<string,string>" "Dictionary`2"
-SurveyInputModel +-- PredictionResponse
-class FeedbackResultsModel {
-    + FeedbackResultsModel(context:ApplicationDbContext)
-    + <<async>> OnGetAsync() : Task
+class StandingChargeDto {
+    + ValueIncVat : decimal <<get>> <<set>>
+    + ValueExcVat : decimal <<get>> <<set>>
+    + PaymentMethod : string <<get>> <<set>>
+    + PriceAvailability : string <<get>> <<set>>
+    + ProductCode : string <<get>> <<set>>
+    + TariffCode : string <<get>> <<set>>
 }
-class "IList`1"<T> {
+class "List`1"<T> {
 }
-PageModel <|-- FeedbackResultsModel
-FeedbackResultsModel --> "_context" ApplicationDbContext
-FeedbackResultsModel --> "FeedbackResponses<FeedbackResponse>" "IList`1"
-class TariffDetailsModel {
+StandingChargesResponse o-> "Results<StandingChargeDto>" "List`1"
+StandingChargeDto --> "ValidFrom" DateTime
+StandingChargeDto --> "ValidTo" DateTime
+class OctopusTariffService {
+    + OctopusTariffService(httpClient:HttpClient)
+    + <<async>> GetProductsAsync() : Task<ProductsResponse?>
+    + <<async>> GetProductDetailsByUrlAsync(productUrl:string) : Task<ProductDto?>
+    + <<async>> GetStandardUnitRatesAsync(productCode:string, tariffCode:string, regionCode:string) : Task<StandardUnitRatesResponse?>
+    + <<async>> GetStandingChargesAsync(productCode:string, tariffCode:string, regionCode:string) : Task<StandingChargesResponse?>
+}
+IOctopusTariffProvider <|-- OctopusTariffService
+OctopusTariffService --> "_httpClient" HttpClient
+class TestTariffModel {
+    + Cost : decimal <<get>> <<set>>
     + OnGet() : void
 }
-PageModel <|-- TariffDetailsModel
-TariffDetailsModel --> "Tariff" TariffBase
-class ErrorModel {
-    + RequestId : string? <<get>> <<set>>
-    + ShowRequestId : bool <<get>>
-    + ErrorModel(logger:ILogger<ErrorModel>)
-    + OnGet() : void
-}
-class "ILogger`1"<T> {
-}
-PageModel <|-- ErrorModel
-ErrorModel --> "_logger<ErrorModel>" "ILogger`1"
-class PrivacyModel {
-    + PrivacyModel(logger:ILogger<PrivacyModel>)
-    + OnGet() : void
-}
-class "ILogger`1"<T> {
-}
-PageModel <|-- PrivacyModel
-PrivacyModel --> "_logger<PrivacyModel>" "ILogger`1"
+PageModel <|-- TestTariffModel
+TestTariffModel --> "Profile" HalfHourlyConsumptionProfile
 class TariffChartModel {
     + totalUsage : decimal <<get>>
     + totalCost : decimal <<get>>
@@ -413,6 +358,58 @@ TariffChartModel --> "Tariff" TariffBase
 TariffChartModel --> "Profile" HalfHourlyConsumptionProfile
 TariffChartModel o-> "IntervalChartData<IntervalData>" "List`1"
 TariffChartModel +-- IntervalData
+class ComparisonResultsModel {
+    + OnGet() : void
+    + OnGetViewDetails(index:int) : IActionResult
+}
+class TariffCostResult {
+    + Cost : decimal <<get>> <<set>>
+    + StandingCharge : decimal <<get>>
+    + TotalCost : decimal <<get>>
+}
+class "List`1"<T> {
+}
+PageModel <|-- ComparisonResultsModel
+ComparisonResultsModel --> "Profile" HalfHourlyConsumptionProfile
+ComparisonResultsModel o-> "Results<TariffCostResult>" "List`1"
+TariffCostResult --> "Tariff" TariffBase
+class OctopusTestModel {
+    + OctopusTestModel(octopusService:IOctopusTariffProvider)
+    + <<async>> OnGetAsync() : Task
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+PageModel <|-- OctopusTestModel
+OctopusTestModel --> "_octopusService" IOctopusTariffProvider
+OctopusTestModel o-> "Products<ProductDto>" "List`1"
+OctopusTestModel o-> "TariffsByProduct<string,List<TariffDetailsDto>>" "Dictionary`2"
+OctopusTestModel o-> "UnitRatesByTariff<string,List<StandardUnitRateDto>>" "Dictionary`2"
+class PrivacyModel {
+    + PrivacyModel(logger:ILogger<PrivacyModel>)
+    + OnGet() : void
+}
+class "ILogger`1"<T> {
+}
+PageModel <|-- PrivacyModel
+PrivacyModel --> "_logger<PrivacyModel>" "ILogger`1"
+class FeedbackModel {
+    + FeedbackModel(context:Data.ApplicationDbContext)
+    + Submitted : bool <<get>> <<set>> = false
+    + <<async>> OnPostAsync() : Task<IActionResult>
+    + OnGet() : void
+}
+PageModel <|-- FeedbackModel
+FeedbackModel o-> "Response" FeedbackResponse
+class IndexModel {
+    + IndexModel(logger:ILogger<IndexModel>)
+    + OnGet() : void
+}
+class "ILogger`1"<T> {
+}
+PageModel <|-- IndexModel
+IndexModel --> "_logger<IndexModel>" "ILogger`1"
 class SurveyInputModel {
     + SurveyInputModel(csvService:HouseholdSurveyCsvService)
     + LoadId : int? <<get>> <<set>>
@@ -434,21 +431,57 @@ SurveyInputModel o-> "Profile" HalfHourlyConsumptionProfile
 SurveyInputModel o-> "SurveyProperties<PropertyInfo>" "List`1"
 SurveyInputModel o-> "QuestionLabels<string,string>" "Dictionary`2"
 SurveyInputModel +-- PredictionResponse
-class ComparisonResultsModel {
+class TariffDetailsModel {
     + OnGet() : void
-    + OnGetViewDetails(index:int) : IActionResult
 }
-class TariffCostResult {
-    + Cost : decimal <<get>> <<set>>
-    + StandingCharge : decimal <<get>>
-    + TotalCost : decimal <<get>>
+PageModel <|-- TariffDetailsModel
+TariffDetailsModel --> "Tariff" TariffBase
+class ProfileEditorModel {
+    + OnGet() : void
+    + OnPost(action:string, csvFile:IFormFile?) : IActionResult
+}
+PageModel <|-- ProfileEditorModel
+ProfileEditorModel o-> "Profile" HalfHourlyConsumptionProfile
+class SurveyInputModel {
+    + SurveyInputModel(csvService:HouseholdSurveyCsvService)
+    + LoadId : int? <<get>> <<set>>
+    + OnGet() : void
+    + OnPostLoad() : IActionResult
+    + <<async>> OnPostSaveAsync() : Task<IActionResult>
 }
 class "List`1"<T> {
 }
-PageModel <|-- ComparisonResultsModel
-ComparisonResultsModel --> "Profile" HalfHourlyConsumptionProfile
-ComparisonResultsModel o-> "Results<TariffCostResult>" "List`1"
-TariffCostResult --> "Tariff" TariffBase
+class "Dictionary`2"<T1,T2> {
+}
+class PredictionResponse {
+    + Predictions : object? <<get>> <<set>>
+}
+PageModel <|-- SurveyInputModel
+SurveyInputModel --> "_csvService" HouseholdSurveyCsvService
+SurveyInputModel o-> "Survey" HouseholdSurveyTab
+SurveyInputModel o-> "Profile" HalfHourlyConsumptionProfile
+SurveyInputModel o-> "SurveyProperties<PropertyInfo>" "List`1"
+SurveyInputModel o-> "QuestionLabels<string,string>" "Dictionary`2"
+SurveyInputModel +-- PredictionResponse
+class ErrorModel {
+    + RequestId : string? <<get>> <<set>>
+    + ShowRequestId : bool <<get>>
+    + ErrorModel(logger:ILogger<ErrorModel>)
+    + OnGet() : void
+}
+class "ILogger`1"<T> {
+}
+PageModel <|-- ErrorModel
+ErrorModel --> "_logger<ErrorModel>" "ILogger`1"
+class FeedbackResultsModel {
+    + FeedbackResultsModel(context:ApplicationDbContext)
+    + <<async>> OnGetAsync() : Task
+}
+class "IList`1"<T> {
+}
+PageModel <|-- FeedbackResultsModel
+FeedbackResultsModel --> "_context" ApplicationDbContext
+FeedbackResultsModel --> "FeedbackResponses<FeedbackResponse>" "IList`1"
 class CompareTariffsModel {
     + CompareTariffsModel(octopusService:IOctopusTariffProvider)
     + ManualTariffName : string <<get>> <<set>>
@@ -468,39 +501,6 @@ PageModel <|-- CompareTariffsModel
 CompareTariffsModel --> "_octopusService" IOctopusTariffProvider
 CompareTariffsModel o-> "AvailableTariffs<TariffBase>" "List`1"
 CompareTariffsModel o-> "SelectedTariffs<int>" "List`1"
-class OctopusTestModel {
-    + OctopusTestModel(octopusService:IOctopusTariffProvider)
-    + <<async>> OnGetAsync() : Task
-}
-class "List`1"<T> {
-}
-class "Dictionary`2"<T1,T2> {
-}
-PageModel <|-- OctopusTestModel
-OctopusTestModel --> "_octopusService" IOctopusTariffProvider
-OctopusTestModel o-> "Products<ProductDto>" "List`1"
-OctopusTestModel o-> "TariffsByProduct<string,List<TariffDetailsDto>>" "Dictionary`2"
-OctopusTestModel o-> "UnitRatesByTariff<string,List<StandardUnitRateDto>>" "Dictionary`2"
-class ProfileEditorModel {
-    + OnGet() : void
-    + OnPost(action:string, csvFile:IFormFile?) : IActionResult
-}
-PageModel <|-- ProfileEditorModel
-ProfileEditorModel o-> "Profile" HalfHourlyConsumptionProfile
-class TestTariffModel {
-    + Cost : decimal <<get>> <<set>>
-    + OnGet() : void
-}
-PageModel <|-- TestTariffModel
-TestTariffModel --> "Profile" HalfHourlyConsumptionProfile
-class IndexModel {
-    + IndexModel(logger:ILogger<IndexModel>)
-    + OnGet() : void
-}
-class "ILogger`1"<T> {
-}
-PageModel <|-- IndexModel
-IndexModel --> "_logger<IndexModel>" "ILogger`1"
 class ApplicationDbContext {
     + ApplicationDbContext(options:DbContextOptions<ApplicationDbContext>)
 }
